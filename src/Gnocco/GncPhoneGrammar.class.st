@@ -1,15 +1,18 @@
+"
+I am an example grammar to produce syntactically valid (more or less) French phone numbers.
+"
 Class {
-	#name : #PhoneGrammar,
-	#superclass : #BaseGrammar,
+	#name : #GncPhoneGrammar,
+	#superclass : #GncBaseGrammar,
 	#instVars : [
 		'ntPhoneNumber',
 		'ntBlock'
 	],
-	#category : #Gnocco
+	#category : #'Gnocco-Grammar Library'
 }
 
 { #category : #initialization }
-PhoneGrammar >> defineGrammar [ 
+GncPhoneGrammar >> defineGrammar [ 
 	super defineGrammar.
 	
 	ntPhoneNumber --> ntBlock, ' ', ntBlock, ' ', ntBlock, ' ', ntBlock, ' ', ntBlock.
@@ -17,7 +20,7 @@ PhoneGrammar >> defineGrammar [
 ]
 
 { #category : #accessing }
-PhoneGrammar >> start [
+GncPhoneGrammar >> start [
 
 	^ ntPhoneNumber 
 ]

@@ -1,16 +1,19 @@
+"
+I store the data collected while benchmarking _something_. Try to inspect me!
+"
 Class {
-	#name : #BenchResult,
+	#name : #GncBenchmarkResult,
 	#superclass : #Object,
 	#instVars : [
 		'inData',
 		'outData',
 		'plot'
 	],
-	#category : #Gnocco
+	#category : #'Gnocco-Fuzzing Artifact'
 }
 
 { #category : #'as yet unclassified' }
-BenchResult >> dumpAt: file [
+GncBenchmarkResult >> dumpAt: file [
 	| fileStream |
 	fileStream := (FileSystem disk workingDirectory / file) writeStream.
 	inData
@@ -25,7 +28,7 @@ BenchResult >> dumpAt: file [
 ]
 
 { #category : #'as yet unclassified' }
-BenchResult >> ensurePlotIsBuilt [
+GncBenchmarkResult >> ensurePlotIsBuilt [
 
 	plot ifNil: [
 		plot := self plot.
@@ -33,13 +36,13 @@ BenchResult >> ensurePlotIsBuilt [
 ]
 
 { #category : #'as yet unclassified' }
-BenchResult >> given: input itProduces: output [
+GncBenchmarkResult >> given: input itProduces: output [
 	inData := input.
 	outData := output.
 ]
 
 { #category : #'as yet unclassified' }
-BenchResult >> inspectorPlot [
+GncBenchmarkResult >> inspectorPlot [
 
 	<inspectorPresentationOrder: 0 title: 'Results'>
 	self ensurePlotIsBuilt.
@@ -49,7 +52,7 @@ BenchResult >> inspectorPlot [
 ]
 
 { #category : #'as yet unclassified' }
-BenchResult >> plot [
+GncBenchmarkResult >> plot [
 
 	| chart lineaxes |
 	chart := RSChart new.

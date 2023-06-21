@@ -1,16 +1,19 @@
+"
+I am an example grammar to produce arithmetic expressions.
+"
 Class {
-	#name : #ExpressionGrammar,
-	#superclass : #BaseGrammar,
+	#name : #GncExpressionGrammar,
+	#superclass : #GncBaseGrammar,
 	#instVars : [
 		'ntExpression',
 		'ntFactor',
 		'ntTerm'
 	],
-	#category : #Gnocco
+	#category : #'Gnocco-Grammar Library'
 }
 
 { #category : #initialization }
-ExpressionGrammar >> defineGrammar [
+GncExpressionGrammar >> defineGrammar [
 
 	super defineGrammar.
 	ntExpression --> ntTerm, '+', ntExpression
@@ -29,7 +32,7 @@ ExpressionGrammar >> defineGrammar [
 ]
 
 { #category : #accessing }
-ExpressionGrammar >> start [
+GncExpressionGrammar >> start [
 
 	^ ntExpression
 ]

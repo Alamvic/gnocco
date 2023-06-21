@@ -1,20 +1,19 @@
+"
+I represent classes that have the ability to ""fuzz"" (ie. randomly generate) Abstract Syntax Trees (a `GncAST`).
+The only method required to be implemented is `generateAstWithMaxCost: maxCost`, where `maxCost` is the maximum height of the generated tree.
+
+Note that using this trait automatically provides the `TFuzzText` trait, because the generated AST is assumed to use `TFuzzText`.
+"
 Trait {
 	#name : #TFuzzAst,
-	#traits : 'TFuzzText',
 	#classTraits : 'TFuzzText classTrait',
-	#category : #Gnocco
+	#category : #'Gnocco-AST'
 }
 
 { #category : #translating }
 TFuzzAst >> generateAstWithMaxCost: cost [
 
 	^ self explicitRequirement 
-]
-
-{ #category : #translating }
-TFuzzAst >> generateInto: stream [
-
-	self generateAst generateInto: stream
 ]
 
 { #category : #translating }

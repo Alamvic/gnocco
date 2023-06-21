@@ -1,13 +1,19 @@
 Class {
-	#name : #AST,
+	#name : #GncAST,
 	#superclass : #Object,
 	#traits : 'TFuzzText',
 	#classTraits : 'TFuzzText classTrait',
-	#category : #Gnocco
+	#category : #'Gnocco-AST'
 }
 
 { #category : #translating }
-AST >> generateInto: stream [
+GncAST >> cost [
+
+	^ self subclassResponsibility
+]
+
+{ #category : #translating }
+GncAST >> generateInto: stream [
 
 	^ self subclassResponsibility
 ]

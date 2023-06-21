@@ -1,58 +1,63 @@
+"
+I am responsible for creating rules of a non terminal in a grammar, that is both seamless,
+similar to how production rules are written in the literature, and integrates well with
+Pharo.
+"
 Class {
-	#name : #RuleMaker,
+	#name : #GncRuleMaker,
 	#superclass : #Object,
 	#instVars : [
 		'rule',
 		'nonTerminal'
 	],
-	#category : #Gnocco
+	#category : #'Gnocco-Private'
 }
 
 { #category : #'as yet unclassified' }
-RuleMaker class >> with: rule in: nonTerminal [
+GncRuleMaker class >> with: rule in: nonTerminal [
 
 	^ self new rule: rule; nonTerminal: nonTerminal; yourself
 ]
 
 { #category : #copying }
-RuleMaker >> , fragment [
+GncRuleMaker >> , fragment [
 
 	rule addFragment: fragment.
 	^ self
 ]
 
 { #category : #copying }
-RuleMaker >> < preCallback [
+GncRuleMaker >> < preCallback [
 
 	rule pre: preCallback
 ]
 
 { #category : #copying }
-RuleMaker >> > postCallback [
+GncRuleMaker >> > postCallback [
 
 	rule post: postCallback
 ]
 
 { #category : #copying }
-RuleMaker >> @ weight [
+GncRuleMaker >> @ weight [
 
 	rule weight: weight
 ]
 
 { #category : #accessing }
-RuleMaker >> nonTerminal: aNonTerminal [
+GncRuleMaker >> nonTerminal: aNonTerminal [
 
 	nonTerminal := aNonTerminal
 ]
 
 { #category : #accessing }
-RuleMaker >> rule: aRule [
+GncRuleMaker >> rule: aRule [
 
 	rule := aRule
 ]
 
 { #category : #copying }
-RuleMaker >> | fragment [
+GncRuleMaker >> | fragment [
 
 	rule := nonTerminal newRule.
 	^ self , fragment

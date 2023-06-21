@@ -11,14 +11,14 @@ Class {
 ManifestGnocco class >> ruleEmptyExceptionHandlerRuleV1FalsePositive [
 
 	<ignoreForCoverage>
-	^ #(#(#(#RGMethodDefinition #(#'SingletonFactory class' #clearAll #true)) #'2023-06-16T16:17:15.694661+02:00') #(#(#RGMethodDefinition #(#Data #with: #false)) #'2023-06-20T09:20:27.940313+02:00') )
+	^ #(#(#(#RGMethodDefinition #(#'SingletonFactory class' #clearAll #true)) #'2023-06-16T16:17:15.694661+02:00') #(#(#RGMethodDefinition #(#GncObjectGraph #with: #false)) #'2023-06-20T09:20:27.940313+02:00') )
 ]
 
 { #category : #'code-critics' }
 ManifestGnocco class >> ruleEqualNotUsedRuleV1FalsePositive [
 
 	<ignoreForCoverage>
-	^ #(#(#(#RGMethodDefinition #(#PhoneGrammar #defineGrammar #false)) #'2023-06-19T13:45:12.039781+02:00') #(#(#RGMethodDefinition #(#StonGrammar #defineGrammar #false)) #'2023-06-19T14:53:00.14885+02:00') )
+	^ #(#(#(#RGMethodDefinition #(#GncPhoneGrammar #defineGrammar #false)) #'2023-06-19T13:45:12.039781+02:00') #(#(#RGMethodDefinition #(#GncStonGrammar #defineGrammar #false)) #'2023-06-19T14:53:00.14885+02:00') )
 ]
 
 { #category : #'code-critics' }
@@ -32,12 +32,12 @@ ManifestGnocco class >> ruleSelfSentNotImplementedRuleV1FalsePositive [
 ManifestGnocco class >> ruleThreeElementPointRuleV1FalsePositive [
 
 	<ignoreForCoverage>
-	^ #(#(#(#RGMethodDefinition #(#WeightedExpressionGrammar #defineGrammar #false)) #'2023-06-19T13:11:23.04342+02:00') #(#(#RGMethodDefinition #(#StonGrammar #defineGrammar #false)) #'2023-06-19T15:53:00.368699+02:00') )
+	^ #(#(#(#RGMethodDefinition #(#GncWeightedExpressionGrammar #defineGrammar #false)) #'2023-06-19T13:11:23.04342+02:00') #(#(#RGMethodDefinition #(#GncStonGrammar #defineGrammar #false)) #'2023-06-19T15:53:00.368699+02:00') )
 ]
 
 { #category : #'code-critics' }
 ManifestGnocco class >> ruleUnaryAccessingMethodWithoutReturnRuleV1FalsePositive [
 
 	<ignoreForCoverage>
-	^ #(#(#(#RGMethodDefinition #(#'SingletonFactory class' #clearAll #true)) #'2023-06-16T16:17:21.083052+02:00') #(#(#RGMethodDefinition #(#NonTerminal #seal #false)) #'2023-06-19T09:56:47.606384+02:00') #(#(#RGMethodDefinition #(#Terminal #computeCost #false)) #'2023-06-19T12:13:02.266643+02:00') #(#(#RGMethodDefinition #(#NonTerminal #computeCost #false)) #'2023-06-19T12:13:24.383547+02:00') #(#(#RGMethodDefinition #(#ListOfFragments #computeCost #false)) #'2023-06-19T14:10:58.321598+02:00') )
+	^ #(#(#(#RGMethodDefinition #(#'SingletonFactory class' #clearAll #true)) #'2023-06-16T16:17:21.083052+02:00') #(#(#RGMethodDefinition #(#GncNonTerminal #seal #false)) #'2023-06-19T09:56:47.606384+02:00') #(#(#RGMethodDefinition #(#GncTerminal #computeCost #false)) #'2023-06-19T12:13:02.266643+02:00') #(#(#RGMethodDefinition #(#GncNonTerminal #computeCost #false)) #'2023-06-19T12:13:24.383547+02:00') #(#(#RGMethodDefinition #(#ListOfFragments #computeCost #false)) #'2023-06-19T14:10:58.321598+02:00') )
 ]

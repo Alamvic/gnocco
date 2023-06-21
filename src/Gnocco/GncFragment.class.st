@@ -1,43 +1,43 @@
 Class {
-	#name : #Fragment,
+	#name : #GncFragment,
 	#superclass : #Object,
 	#traits : 'TFuzzAst',
 	#classTraits : 'TFuzzAst classTrait',
-	#category : #Gnocco
+	#category : #'Gnocco-Grammar'
 }
 
 { #category : #accessing }
-Fragment >> asFragment [
+GncFragment >> asFragment [
 
 	^ self
 ]
 
 { #category : #accessing }
-Fragment >> computeCost [
+GncFragment >> computeCost [
 
 	^ self subclassResponsibility
 ]
 
 { #category : #accessing }
-Fragment >> cost [
+GncFragment >> cost [
 
 	^ self subclassResponsibility
 ]
 
 { #category : #accessing }
-Fragment >> formatName: stream [
+GncFragment >> formatName: stream [
 
 	^ self subclassResponsibility 
 ]
 
 { #category : #translating }
-Fragment >> generateAstWithMaxCost: cost [
+GncFragment >> generateAstWithMaxCost: cost [
 
 	^ self subclassResponsibility
 ]
 
 { #category : #'as yet unclassified' }
-Fragment >> reset [
+GncFragment >> reset [
 
 	^ self subclassResponsibility
 ]

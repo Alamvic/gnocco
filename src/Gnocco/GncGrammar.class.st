@@ -1,23 +1,25 @@
+"
+I am a generative (context-free) grammar. Inspect me!
+"
 Class {
-	#name : #Grammar,
+	#name : #GncGrammar,
 	#superclass : #Object,
-	#traits : 'TFuzzAst',
 	#classTraits : 'TFuzzAst classTrait',
-	#category : #Gnocco
+	#category : #'Gnocco-Grammar'
 }
 
-{ #category : #'as yet unclassified' }
-Grammar >> cost [
+{ #category : #accessing }
+GncGrammar >> cost [
 
 	^ self start cost
 ]
 
 { #category : #initialization }
-Grammar >> defineGrammar [
+GncGrammar >> defineGrammar [
 ]
 
 { #category : #'iterating elements' }
-Grammar >> eachNonTerminal: body [
+GncGrammar >> eachNonTerminal: body [
 
 	self eachNonTerminalSlot: [ :slot |
 		| nonTerminal |
@@ -26,7 +28,7 @@ Grammar >> eachNonTerminal: body [
 ]
 
 { #category : #'iterating elements' }
-Grammar >> eachNonTerminalSlot: body [
+GncGrammar >> eachNonTerminalSlot: body [
 
 	self class allSlots do: [ :slot |
 		(slot name beginsWith: 'nt') ifTrue: [
@@ -34,7 +36,7 @@ Grammar >> eachNonTerminalSlot: body [
 ]
 
 { #category : #printing }
-Grammar >> format: stream [
+GncGrammar >> format: stream [
 
 	self eachNonTerminal: [ :nonTerminal |
 		self start = nonTerminal ifTrue: [ stream << '@' ].
@@ -42,25 +44,25 @@ Grammar >> format: stream [
 		stream << OSPlatform current lineEnding ]
 ]
 
-{ #category : #'as yet unclassified' }
-Grammar >> generateAst [ 
-
-	^ self start generateAst
-]
-
 { #category : #translating }
-Grammar >> generateAstWithMaxCost: cost [
+GncGrammar >> generateAstWithMaxCost: cost [
 
 	^ self start generateAstWithMaxCost: cost
 ]
 
+{ #category : #translating }
+GncGrammar >> generateWithMinCost [
+
+	^ self generateWithMaxCost: self cost
+]
+
 { #category : #initialization }
-Grammar >> initialize [
+GncGrammar >> initialize [
 
 	self eachNonTerminalSlot: [ :slot |
 		| name nonTerminal |
 		name := slot name allButFirst: 2.
-		nonTerminal := NonTerminal withName: name.
+		nonTerminal := GncNonTerminal withName: name.
 		slot write: nonTerminal to: self ].
 
 	self defineGrammar.
@@ -95,13 +97,13 @@ Grammar >> initialize [
 ]
 
 { #category : #printing }
-Grammar >> printString [
+GncGrammar >> printString [
 
 	^ String streamContents: [ :stream | self format: stream ]
 ]
 
 { #category : #translating }
-Grammar >> showInInspect [
+GncGrammar >> showInInspect [
 
 	<inspectorPresentationOrder: 0 title: 'Grammar Rules'>
 	^ SpTextPresenter new
@@ -111,7 +113,7 @@ Grammar >> showInInspect [
 ]
 
 { #category : #accessing }
-Grammar >> start [
+GncGrammar >> start [
 
 	self subclassResponsibility
 ]

@@ -1,6 +1,6 @@
 Class {
-	#name : #StonGrammar,
-	#superclass : #Grammar,
+	#name : #GncStonGrammar,
+	#superclass : #GncGrammar,
 	#instVars : [
 		'ntId',
 		'ntPrimitive',
@@ -19,11 +19,11 @@ Class {
 		'availableId',
 		'ntObjectInstance'
 	],
-	#category : #Gnocco
+	#category : #'Gnocco-Grammar'
 }
 
 { #category : #initialization }
-StonGrammar >> defineGrammar [ 
+GncStonGrammar >> defineGrammar [ 
 
 	ntObjects --> ntObjectInstance @ 1
 		| ntObjectInstance, OSPlatform current lineEnding, ntObjects @ 99.
@@ -45,24 +45,24 @@ StonGrammar >> defineGrammar [
 	ntStringContent --> ntLetter, ntStringContent | ntLetter.
 	ntLetter --> ($a - $z) | ($A - $Z).
 	
-	ntObjectTag --> 'FuzzyClass', ($0 - $9).
+	ntObjectTag --> 'GncFuzzyClass', ($1 - $9).
 	ntObjectTag post: [ :result | availableId := availableId + 1 ].
 	ntObjectBody --> '[ ', ntValuesOrEmpty, ' ]'.
 	ntValuesOrEmpty --> '' | ntValues @ 99.
 	ntValues --> ntObject | ntObject, ', ', ntObject @ 99.
 	
-	ntId --> '' < [ Leaf with: availableId atRandom printString ].
+	ntId --> '' < [ GncLeaf withToken: availableId atRandom printString ].
 ]
 
 { #category : #translating }
-StonGrammar >> generateAstWithMaxCost: cost [
+GncStonGrammar >> generateAstWithMaxCost: cost [
 
 	availableId := 0.
 	^ super generateAstWithMaxCost: cost
 ]
 
 { #category : #accessing }
-StonGrammar >> start [
+GncStonGrammar >> start [
 
 	^ ntObjectInstance
 ]

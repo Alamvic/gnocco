@@ -1,16 +1,19 @@
+"
+I am an example grammar that produces arithmetic expressions. I am weighted to produce more seemingly natural arithmetic expression than my non-weighted counterpart, `GncExpressionGrammar`.
+"
 Class {
-	#name : #WeightedExpressionGrammar,
-	#superclass : #BaseGrammar,
+	#name : #GncWeightedExpressionGrammar,
+	#superclass : #GncBaseGrammar,
 	#instVars : [
 		'ntExpression',
 		'ntFactor',
 		'ntTerm'
 	],
-	#category : #Gnocco
+	#category : #'Gnocco-Grammar Library'
 }
 
 { #category : #initialization }
-WeightedExpressionGrammar >> defineGrammar [
+GncWeightedExpressionGrammar >> defineGrammar [
 
 	super defineGrammar.
 	ntExpression --> ntTerm, '+', ntExpression
@@ -31,7 +34,7 @@ WeightedExpressionGrammar >> defineGrammar [
 ]
 
 { #category : #accessing }
-WeightedExpressionGrammar >> start [
+GncWeightedExpressionGrammar >> start [
 
 	^ ntExpression
 ]

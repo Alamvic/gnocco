@@ -1,5 +1,22 @@
+"
+I am an object graph, as produced by a fuzzing grammar generator like `GncStonGrammar` deserialized
+with `STON`.
+
+I hold information about the structure of the produced graph. In particular, you can inspect me to
+find neat representations (so to speak) of the data produced.
+
+I can be created with `GncObjectGraph fuzz: graphCost`, where `graphCost` is an upper bound on the
+logarithm of the size of the graph (roughly).
+
+Public API and Key Messages
+
+- `GncObjectGraph >> #dataSize`
+- `GncObjectGraph >> #nbEdges`
+- `GncObjectGraph >> #nbNodes`
+- `GncObjectGraph >> #serializeInto: file`
+"
 Class {
-	#name : #Data,
+	#name : #GncObjectGraph,
 	#superclass : #Object,
 	#type : #variable,
 	#traits : 'TBenchmarkable',
@@ -10,20 +27,20 @@ Class {
 		'canvas',
 		'nbEdges'
 	],
-	#category : #Gnocco
+	#category : #'Gnocco-Fuzzing Artifact'
 }
 
 { #category : #'instance creation' }
-Data class >> fuzz [
+GncObjectGraph class >> fuzz [
 
 	^ self fuzz: 20 "Why 20? Why not... :|"
 ]
 
 { #category : #'instance creation' }
-Data class >> fuzz: cost [
+GncObjectGraph class >> fuzz: cost [
 
 	| input data |
-	input := StonGrammar new generateWithMaxCost: cost.
+	input := GncStonGrammar new generateWithMaxCost: cost.
 	data := STON reader
 		        on: input readStream;
 		        next.
@@ -31,7 +48,7 @@ Data class >> fuzz: cost [
 ]
 
 { #category : #'instance creation' }
-Data class >> fuzz: nbFuzz from: minCost to: maxCost [
+GncObjectGraph class >> fuzz: nbFuzz from: minCost to: maxCost [
 
 	| input output stuff result |
 	input := Array new: nbFuzz.
@@ -41,23 +58,23 @@ Data class >> fuzz: nbFuzz from: minCost to: maxCost [
 		result := stuff benchIntoFile: 'hello.fuel'.
 		input at: i put: result key.
 		output at: i put: result value ].
-	^ BenchResult new given: input itProduces: output
+	^ GncBenchmarkResult new given: input itProduces: output
 ]
 
 { #category : #'instance creation' }
-Data class >> with: objects [
+GncObjectGraph class >> with: objects [
 
 	^ self new with: objects
 ]
 
-{ #category : #'as yet unclassified' }
-Data >> dataSize [
+{ #category : #accessing }
+GncObjectGraph >> dataSize [
 
 	^ self nbNodes + self nbEdges
 ]
 
-{ #category : #'as yet unclassified' }
-Data >> ensureCanvasIsBuilt [
+{ #category : #'private - lazy initialization' }
+GncObjectGraph >> ensureCanvasIsBuilt [
 
 	| graphNodes eb |
 	canvas ifNil: [
@@ -84,8 +101,8 @@ Data >> ensureCanvasIsBuilt [
 		canvas @ RSCanvasController ].
 ]
 
-{ #category : #'instance creation' }
-Data >> inspectGraph [
+{ #category : #inspector }
+GncObjectGraph >> inspectGraph [
 
 	<inspectorPresentationOrder: 0 title: 'Graph'>
 	self ensureCanvasIsBuilt.
@@ -94,38 +111,38 @@ Data >> inspectGraph [
 		  yourself
 ]
 
-{ #category : #'instance creation' }
-Data >> minNumberOfRuns [
+{ #category : #'accessing - parameters' }
+GncObjectGraph >> minNumberOfRuns [
 
 	^ 1
 ]
 
 { #category : #'instance creation' }
-Data >> nbEdges [
+GncObjectGraph >> nbEdges [
 
 	^ nbEdges
 ]
 
 { #category : #'instance creation' }
-Data >> nbNodes [
+GncObjectGraph >> nbNodes [
 
 	^ nodes size
 ]
 
 { #category : #'instance creation' }
-Data >> nodes [
+GncObjectGraph >> nodes [
 
 	^ nodes
 ]
 
 { #category : #'instance creation' }
-Data >> serializeInto: file [
+GncObjectGraph >> serializeInto: file [
 
 	FLSerializer serialize: data toFileNamed: file
 ]
 
 { #category : #'instance creation' }
-Data >> with: objects [
+GncObjectGraph >> with: objects [
 
 	| seen boundary current |
 	data := objects.

@@ -23,8 +23,8 @@ Internal Representation and Key Implementation Points.
     Implementation Points
 "
 Class {
-	#name : #NonTerminal,
-	#superclass : #Fragment,
+	#name : #GncNonTerminal,
+	#superclass : #GncFragment,
 	#instVars : [
 		'name',
 		'rules',
@@ -33,27 +33,27 @@ Class {
 		'preHook',
 		'postHook'
 	],
-	#category : #Gnocco
+	#category : #'Gnocco-Grammar'
 }
 
 { #category : #construction }
-NonTerminal class >> withName: aName [
+GncNonTerminal class >> withName: aName [
 
 	^ self new name: aName
 ]
 
 { #category : #accessing }
-NonTerminal >> --> fragment [
+GncNonTerminal >> --> fragment [
 	"Add a new definition of a non terminal, keeping the old ones."
 
 	| currentRule |
 	currentRule := self newRule.
 	currentRule addFragment: fragment.
-	^ RuleMaker with: currentRule in: self
+	^ GncRuleMaker with: currentRule in: self
 ]
 
 { #category : #accessing }
-NonTerminal >> ->> fragment [
+GncNonTerminal >> ->> fragment [
 	"Add new definition of a non terminal, overwriting the previous ones."
 
 	rules := OrderedCollection new.
@@ -61,7 +61,7 @@ NonTerminal >> ->> fragment [
 ]
 
 { #category : #accessing }
-NonTerminal >> computeCost [
+GncNonTerminal >> computeCost [
 	"While we are computing the cost for this non terminal, it's set to infinity, so that if"
 	"the cost is asked again before this computation has ended, it means that we have encountered"
 	"a cycle, and therefore:"
@@ -78,7 +78,7 @@ NonTerminal >> computeCost [
 ]
 
 { #category : #accessing }
-NonTerminal >> cost [
+GncNonTerminal >> cost [
 
 	cost ifNotNil: [ ^ cost ].
 	"While we are computing the cost for this non terminal, it's set to infinity, so that if"
@@ -93,7 +93,7 @@ NonTerminal >> cost [
 ]
 
 { #category : #accessing }
-NonTerminal >> format: stream [
+GncNonTerminal >> format: stream [
 
 	| first |
 	stream
@@ -114,17 +114,17 @@ NonTerminal >> format: stream [
 ]
 
 { #category : #accessing }
-NonTerminal >> formatName: stream [
+GncNonTerminal >> formatName: stream [
 
 	^ stream << name
 ]
 
 { #category : #translating }
-NonTerminal >> generateAstWithMaxCost: maxCost [
+GncNonTerminal >> generateAstWithMaxCost: maxCost [
 
 	| totalWeight selected result |
 	self cost > maxCost ifTrue: [
-		Error new signal:
+		CostIsTooLow new signal:
 			'There is no such cheap derivation, the minimum is '
 			, self cost printString , '.' ].
 
@@ -147,46 +147,46 @@ NonTerminal >> generateAstWithMaxCost: maxCost [
 ]
 
 { #category : #initialization }
-NonTerminal >> initialize [
+GncNonTerminal >> initialize [
 	rules := OrderedCollection new.
 	computed := false.
 ]
 
 { #category : #accessing }
-NonTerminal >> name [
+GncNonTerminal >> name [
 
 	^ name
 ]
 
 { #category : #accessing }
-NonTerminal >> name: string [
+GncNonTerminal >> name: string [
 
 	name := string
 ]
 
 { #category : #accessing }
-NonTerminal >> newRule [
+GncNonTerminal >> newRule [
 
 	| rule |
-	rule := Rule new.
+	rule := GncRule new.
 	rules add: rule.
 	^ rule
 ]
 
 { #category : #accessing }
-NonTerminal >> post: postBlock [
+GncNonTerminal >> post: postBlock [
 
 	postHook := postBlock
 ]
 
 { #category : #accessing }
-NonTerminal >> pre: preBlock [
+GncNonTerminal >> pre: preBlock [
 
 	preHook := preBlock
 ]
 
 { #category : #private }
-NonTerminal >> reset [
+GncNonTerminal >> reset [
 
 	computed ifFalse: [ ^ self ].
 	computed := false.
@@ -194,18 +194,18 @@ NonTerminal >> reset [
 ]
 
 { #category : #accessing }
-NonTerminal >> rule: rule [
-	rules add: (Rule newWithFragments: rule)
+GncNonTerminal >> rule: rule [
+	rules add: (GncRule newWithFragments: rule)
 ]
 
 { #category : #private }
-NonTerminal >> rules [
+GncNonTerminal >> rules [
 
 	^ rules
 ]
 
 { #category : #private }
-NonTerminal >> seal [
+GncNonTerminal >> seal [
 
 	rules do: [ :rule | rule seal ]
 ]

@@ -1,5 +1,5 @@
 Class {
-	#name : #Rule,
+	#name : #GncRule,
 	#superclass : #Object,
 	#traits : 'TFuzzAst',
 	#classTraits : 'TFuzzAst classTrait',
@@ -10,24 +10,24 @@ Class {
 		'preHook',
 		'postHook'
 	],
-	#category : #Gnocco
+	#category : #'Gnocco-Private'
 }
 
 { #category : #'instance creation' }
-Rule class >> newWithFragments: fragments [
+GncRule class >> newWithFragments: fragments [
 
 	^ self new fragments:
 		  (fragments collect: [ :fragment | fragment asFragment ])
 ]
 
 { #category : #translating }
-Rule >> addFragment: fragment [
+GncRule >> addFragment: fragment [
 
 	fragments add: fragment asFragment
 ]
 
 { #category : #translating }
-Rule >> computeCost [
+GncRule >> computeCost [
 
 	| minCost |
 	minCost := 0.
@@ -38,13 +38,13 @@ Rule >> computeCost [
 ]
 
 { #category : #translating }
-Rule >> cost [
+GncRule >> cost [
 
 	^ cost
 ]
 
 { #category : #translating }
-Rule >> format: stream [
+GncRule >> format: stream [
 
 	fragments do: [ :fragment |
 		fragment formatName: stream.
@@ -58,13 +58,13 @@ Rule >> format: stream [
 ]
 
 { #category : #translating }
-Rule >> fragments: rule [
+GncRule >> fragments: rule [
 
 	fragments := rule
 ]
 
 { #category : #translating }
-Rule >> generateAstWithMaxCost: maxCost [
+GncRule >> generateAstWithMaxCost: maxCost [
 
 	| result |
 	preHook ifNotNil: [
@@ -73,42 +73,42 @@ Rule >> generateAstWithMaxCost: maxCost [
 	result := fragments collect: [ :fragment |
 		          fragment generateAstWithMaxCost: maxCost ].
 	postHook ifNotNil: [ postHook value: result ].
-	^ InnerNode with: result
+	^ GncInnerNode with: result
 ]
 
 { #category : #initialization }
-Rule >> initialize [
+GncRule >> initialize [
 
 	fragments := OrderedCollection new.
 	weight := 1
 ]
 
 { #category : #translating }
-Rule >> post: postCallback [
+GncRule >> post: postCallback [
 
 	postHook := postCallback
 ]
 
 { #category : #translating }
-Rule >> pre: preCallback [
+GncRule >> pre: preCallback [
 
 	preHook := preCallback
 ]
 
 { #category : #translating }
-Rule >> reset [
+GncRule >> reset [
 
 	fragments do: [ :fragment | fragment reset ]
 ]
 
 { #category : #translating }
-Rule >> seal [
+GncRule >> seal [
 
 	fragments := fragments asArray
 ]
 
 { #category : #accessing }
-Rule >> weight [
+GncRule >> weight [
 
 	^ (weight isKindOf: BlockClosure)
 		  ifTrue: [ weight value ]
@@ -116,7 +116,7 @@ Rule >> weight [
 ]
 
 { #category : #accessing }
-Rule >> weight: aWeight [
+GncRule >> weight: aWeight [
 
 	weight := aWeight 
 ]

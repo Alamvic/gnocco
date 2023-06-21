@@ -1,6 +1,14 @@
+"
+I represent the capacity of being benchmarked (by serialization).
+
+Classes that use me should be data whose serialization is to be benchmarked. To do so, users must implement the following methods:
+
+- `dataSize` should answer an (arbitrary) measure of the underlying data to be benchmarked. This will be used to plot the result of the benchmark.
+- `serializeInto: file`: should perform a single serialization step. This is the method that will be benchmarked, so it is important that it does nothing but what you want to be measured. In particular, any setup should be performed during class initialization.
+"
 Trait {
 	#name : #TBenchmarkable,
-	#category : #Gnocco
+	#category : #'Gnocco-Fuzzing Artifact'
 }
 
 { #category : #'instance creation' }
@@ -21,19 +29,19 @@ TBenchmarkable >> benchIntoFile: file [
 	^ self dataSize -> (result / timesBenched) asFloat
 ]
 
-{ #category : #'instance creation' }
+{ #category : #accessing }
 TBenchmarkable >> dataSize [
 
 	^ self explicitRequirement
 ]
 
-{ #category : #'instance creation' }
+{ #category : #'accessing - parameters' }
 TBenchmarkable >> minBenchTime [
 
 	^ 5
 ]
 
-{ #category : #'instance creation' }
+{ #category : #'accessing - parameters' }
 TBenchmarkable >> minNumberOfRuns [
 
 	^ 3
