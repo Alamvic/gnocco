@@ -15,3 +15,7 @@ GncTerminal >> cost [
 
 	^ 0
 ]
+
+{ #category : #private }
+GncTerminal >> reset [
+]

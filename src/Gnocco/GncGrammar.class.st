@@ -4,6 +4,7 @@ I am a generative (context-free) grammar. Inspect me!
 Class {
 	#name : #GncGrammar,
 	#superclass : #Object,
+	#traits : 'TFuzzAst',
 	#classTraits : 'TFuzzAst classTrait',
 	#category : #'Gnocco-Grammar'
 }

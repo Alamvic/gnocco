@@ -1,6 +1,10 @@
+"
+I'm not sure what my purpose in life is. Maybe I'm useless, in which case I'll probably be deleted
+soon :(
+"
 Trait {
 	#name : #TFuzzText,
-	#category : #Gnocco
+	#category : #'Gnocco-Fuzzing Artifact'
 }
 
 { #category : #translating }

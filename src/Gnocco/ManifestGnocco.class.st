@@ -8,6 +8,13 @@ Class {
 }
 
 { #category : #'code-critics' }
+ManifestGnocco class >> ruleBadMessageRule2V1FalsePositive [
+
+	<ignoreForCoverage>
+	^ #(#(#(#RGMethodDefinition #(#GncRule #weight #false)) #'2023-06-21T16:39:20.507684+02:00') )
+]
+
+{ #category : #'code-critics' }
 ManifestGnocco class >> ruleEmptyExceptionHandlerRuleV1FalsePositive [
 
 	<ignoreForCoverage>
@@ -19,6 +26,13 @@ ManifestGnocco class >> ruleEqualNotUsedRuleV1FalsePositive [
 
 	<ignoreForCoverage>
 	^ #(#(#(#RGMethodDefinition #(#GncPhoneGrammar #defineGrammar #false)) #'2023-06-19T13:45:12.039781+02:00') #(#(#RGMethodDefinition #(#GncStonGrammar #defineGrammar #false)) #'2023-06-19T14:53:00.14885+02:00') )
+]
+
+{ #category : #'code-critics' }
+ManifestGnocco class >> ruleLiteralArrayContainsSuspiciousTrueFalseOrNilRuleV1FalsePositive [
+
+	<ignoreForCoverage>
+	^ #(#(#(#RGPackageDefinition #(#Gnocco)) #'2023-06-22T09:49:08.935871+02:00') )
 ]
 
 { #category : #'code-critics' }

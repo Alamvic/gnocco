@@ -6,7 +6,8 @@ Class {
 	#superclass : #GncBaseGrammar,
 	#instVars : [
 		'ntPhoneNumber',
-		'ntBlock'
+		'ntBlock',
+		'ntStartBlock'
 	],
 	#category : #'Gnocco-Grammar Library'
 }
@@ -15,7 +16,8 @@ Class {
 GncPhoneGrammar >> defineGrammar [ 
 	super defineGrammar.
 	
-	ntPhoneNumber --> ntBlock, ' ', ntBlock, ' ', ntBlock, ' ', ntBlock, ' ', ntBlock.
+	ntPhoneNumber --> ntStartBlock, ' ', ntBlock, ' ', ntBlock, ' ', ntBlock, ' ', ntBlock.
+	ntStartBlock --> '0', ($1-$7).
 	ntBlock --> ntDigit, ntDigit.
 ]
 
