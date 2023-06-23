@@ -50,6 +50,13 @@ ManifestGnocco class >> ruleThreeElementPointRuleV1FalsePositive [
 ]
 
 { #category : #'code-critics' }
+ManifestGnocco class >> ruleToDoCollectRuleV1FalsePositive [
+
+	<ignoreForCoverage>
+	^ #(#(#(#RGMethodDefinition #(#'GncObjectGraph class' #fuzz:from:to: #true)) #'2023-06-23T09:37:50.947666+02:00') )
+]
+
+{ #category : #'code-critics' }
 ManifestGnocco class >> ruleUnaryAccessingMethodWithoutReturnRuleV1FalsePositive [
 
 	<ignoreForCoverage>

@@ -40,6 +40,7 @@ GncObjectGraph class >> fuzz [
 GncObjectGraph class >> fuzz: cost [
 
 	| input data |
+	GncFuzzyClass setupFuzzyClasses: 9.
 	input := GncStonGrammar new generateWithMaxCost: cost.
 	data := STON reader
 		        on: input readStream;
