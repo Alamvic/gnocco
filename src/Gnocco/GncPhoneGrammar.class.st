@@ -13,12 +13,14 @@ Class {
 }
 
 { #category : #initialization }
-GncPhoneGrammar >> defineGrammar [ 
+GncPhoneGrammar >> defineGrammar [
+
 	super defineGrammar.
-	
-	ntPhoneNumber --> ntStartBlock, ' ', ntBlock, ' ', ntBlock, ' ', ntBlock, ' ', ntBlock.
-	ntStartBlock --> '0', ($1-$7).
-	ntBlock --> ntDigit, ntDigit.
+
+	ntPhoneNumber 
+		--> ntStartBlock, ' ', ntBlock, ' ', ntBlock, ' ', ntBlock, ' ', ntBlock.
+	ntStartBlock --> '0' , ($1 - $7).
+	ntBlock --> ntDigit , ntDigit
 ]
 
 { #category : #accessing }

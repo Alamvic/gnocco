@@ -12,32 +12,32 @@ GncFragment >> asFragment [
 	^ self
 ]
 
-{ #category : #accessing }
-GncFragment >> computeCost [
+{ #category : #translating }
+GncFragment >> generateAst: generator [
 
 	^ self subclassResponsibility
 ]
 
 { #category : #accessing }
-GncFragment >> cost [
+GncFragment >> minHeight [
 
 	^ self subclassResponsibility
 ]
 
 { #category : #accessing }
-GncFragment >> formatName: stream [
+GncFragment >> minSize [
+
+	^ self subclassResponsibility
+]
+
+{ #category : #printing }
+GncFragment >> printNameOn: stream [
 
 	^ self subclassResponsibility 
 ]
 
-{ #category : #translating }
-GncFragment >> generateAstWithMaxCost: cost [
-
-	^ self subclassResponsibility
-]
-
-{ #category : #'as yet unclassified' }
-GncFragment >> reset [
+{ #category : #accessing }
+GncFragment >> visit: visitor [
 
 	^ self subclassResponsibility
 ]

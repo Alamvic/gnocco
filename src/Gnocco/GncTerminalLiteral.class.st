@@ -18,17 +18,8 @@ GncTerminalLiteral class >> newWithLiteral: literal [
 	^ self new literal: literal
 ]
 
-{ #category : #accessing }
-GncTerminalLiteral >> formatName: stream [
-
-	stream
-		<< '''';
-		<< literal;
-		<< ''''
-]
-
 { #category : #translating }
-GncTerminalLiteral >> generateAstWithMaxCost: cost [
+GncTerminalLiteral >> generateAst: generator [
 
 	^ GncLeaf withToken: literal
 ]
@@ -39,8 +30,23 @@ GncTerminalLiteral >> generateInto: stream [
 	stream << literal 
 ]
 
+{ #category : #translating }
+GncTerminalLiteral >> generateToken: generator [
+
+	^ GncLeaf withToken: literal
+]
+
 { #category : #accessing }
 GncTerminalLiteral >> literal: data [
 
 	literal := data
+]
+
+{ #category : #printing }
+GncTerminalLiteral >> printNameOn: stream [
+
+	stream
+		<< '''';
+		<< literal;
+		<< ''''
 ]

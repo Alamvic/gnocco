@@ -37,12 +37,6 @@ GncLeaf class >> withToken: token [
 ]
 
 { #category : #translating }
-GncLeaf >> cost [
-
-	^ 0
-]
-
-{ #category : #translating }
 GncLeaf >> generateInto: stream [
 
 	stream << token
@@ -52,4 +46,16 @@ GncLeaf >> generateInto: stream [
 GncLeaf >> token: aLiteral [
 
 	token := aLiteral
+]
+
+{ #category : #translating }
+GncLeaf >> treeHeight [
+
+	^ 0
+]
+
+{ #category : #translating }
+GncLeaf >> treeSize [
+
+	^ 1
 ]

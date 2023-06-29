@@ -5,17 +5,19 @@ Class {
 }
 
 { #category : #accessing }
-GncTerminal >> computeCost [
-
-	
-]
-
-{ #category : #accessing }
-GncTerminal >> cost [
+GncTerminal >> minHeight [
 
 	^ 0
 ]
 
-{ #category : #private }
-GncTerminal >> reset [
+{ #category : #accessing }
+GncTerminal >> minSize [
+
+	^ 1
+]
+
+{ #category : #accessing }
+GncTerminal >> visit: visitor [
+
+	^ visitor visitTerminal: self
 ]

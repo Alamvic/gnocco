@@ -14,17 +14,6 @@ GncTerminalRange class >> from: from to: to [
 	^ self new from: from to: to
 ]
 
-{ #category : #accessing }
-GncTerminalRange >> formatName: stream [
-
-	stream
-		<< '[';
-		<< from;
-		<< '-';
-		<< to;
-		<< ']'.
-]
-
 { #category : #translating }
 GncTerminalRange >> from: f to: t [
 
@@ -33,9 +22,29 @@ GncTerminalRange >> from: f to: t [
 ]
 
 { #category : #translating }
-GncTerminalRange >> generateAstWithMaxCost: cost [
+GncTerminalRange >> generateAst: generator [
 
 	| offset |
 	offset := (to charCode - from charCode + 1) atRandom.
 	^ GncLeaf withToken: (from charCode + offset - 1) asCharacter
+]
+
+{ #category : #translating }
+GncTerminalRange >> generateToken: generator [
+
+	| charCode |
+	charCode := (from charCode to: to charCode) atRandom:
+		            generator random.
+	^ GncLeaf withToken: charCode asCharacter
+]
+
+{ #category : #printing }
+GncTerminalRange >> printNameOn: stream [
+
+	stream
+		<< '[';
+		<< from;
+		<< '-';
+		<< to;
+		<< ']'.
 ]

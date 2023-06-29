@@ -11,14 +11,14 @@ Trait {
 }
 
 { #category : #translating }
-TFuzzAst >> generateAstWithMaxCost: cost [
+TFuzzAst >> generate: generator [
 
-	^ self explicitRequirement 
+	^ String streamContents: [ :stream |
+		  (self generateAst: generator) generateInto: stream ]
 ]
 
 { #category : #translating }
-TFuzzAst >> generateWithMaxCost: cost [
+TFuzzAst >> generateAst: generator [
 
-	^ String streamContents: [ :stream |
-		  (self generateAstWithMaxCost: cost) generateInto: stream ]
+	^ self explicitRequirement
 ]

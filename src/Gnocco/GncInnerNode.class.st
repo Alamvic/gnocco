@@ -2,7 +2,9 @@ Class {
 	#name : #GncInnerNode,
 	#superclass : #GncAST,
 	#instVars : [
-		'children'
+		'children',
+		'treeHeight',
+		'treeSize'
 	],
 	#category : #'Gnocco-AST'
 }
@@ -16,20 +18,38 @@ GncInnerNode class >> with: children [
 { #category : #'accessing - attributes' }
 GncInnerNode >> children: someChildren [
 
-	children := someChildren
-]
+	children := someChildren.
 
-{ #category : #translating }
-GncInnerNode >> cost [
+	treeHeight := 0.
+	children do: [ :child |
+		treeHeight := treeHeight max: child treeHeight ].
+	treeHeight := treeHeight + 1.
 
-	| minCost |
-	minCost := 0.
-	children do: [ :child | minCost := minCost max: child cost ].
-	^ minCost + 1
+	treeSize := 1.
+	children do: [ :child | treeSize := treeSize + child treeSize ]
 ]
 
 { #category : #translating }
 GncInnerNode >> generateInto: stream [
 
 	children do: [ :child | child generateInto: stream ]
+]
+
+{ #category : #translating }
+GncInnerNode >> minSize [
+
+	^ ((children collect: [ :child | child minSize ]) fold: [ :i :j |
+		   i + j ]) + 1
+]
+
+{ #category : #translating }
+GncInnerNode >> treeHeight [
+
+	^ treeHeight
+]
+
+{ #category : #translating }
+GncInnerNode >> treeSize [
+
+	^ treeSize
 ]

@@ -17,7 +17,8 @@ Class {
 		'ntObject',
 		'ntObjects',
 		'availableId',
-		'ntObjectInstance'
+		'ntObjectInstance',
+		'ntClassDigit'
 	],
 	#category : #'Gnocco-Grammar'
 }
@@ -55,10 +56,10 @@ GncStonGrammar >> defineGrammar [
 ]
 
 { #category : #translating }
-GncStonGrammar >> generateAstWithMaxCost: cost [
+GncStonGrammar >> generateAst: generator [
 
 	availableId := 0.
-	^ super generateAstWithMaxCost: cost
+	^ super generateAst: generator
 ]
 
 { #category : #accessing }

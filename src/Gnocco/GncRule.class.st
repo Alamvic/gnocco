@@ -5,10 +5,11 @@ Class {
 	#classTraits : 'TFuzzAst classTrait',
 	#instVars : [
 		'fragments',
-		'cost',
 		'weight',
 		'preHook',
-		'postHook'
+		'postHook',
+		'minHeight',
+		'minSize'
 	],
 	#category : #'Gnocco-Private'
 }
@@ -29,32 +30,21 @@ GncRule >> addFragment: fragment [
 { #category : #translating }
 GncRule >> computeCost [
 
-	| minCost |
-	minCost := 0.
+	| minHeightCost minSizeCost |
+	minHeightCost := 0.
+	minSizeCost := 0.
 	fragments do: [ :fragment |
 		fragment computeCost.
-		minCost := minCost max: fragment cost ].
-	cost := minCost
+		minHeightCost := minHeightCost max: fragment minHeight.
+		minSizeCost := minSizeCost + fragment minSize ].
+	minHeight := minHeightCost.
+	minSize := minSizeCost
 ]
 
 { #category : #translating }
-GncRule >> cost [
+GncRule >> fragments [
 
-	^ cost
-]
-
-{ #category : #translating }
-GncRule >> format: stream [
-
-	fragments do: [ :fragment |
-		fragment formatName: stream.
-		stream << ' ' ].
-	stream
-		<< '(';
-		<< self cost printString;
-		<< ') [';
-		<< weight printString;
-		<< ']'
+	^ fragments
 ]
 
 { #category : #translating }
@@ -64,14 +54,14 @@ GncRule >> fragments: rule [
 ]
 
 { #category : #translating }
-GncRule >> generateAstWithMaxCost: maxCost [
+GncRule >> generateAst: generator [
 
 	| result |
 	preHook ifNotNil: [
 		result := preHook value.
 		result ifNotNil: [ ^ result ] ].
 	result := fragments collect: [ :fragment |
-		          fragment generateAstWithMaxCost: maxCost ].
+		          fragment generateAst: generator ].
 	postHook ifNotNil: [ postHook value: result ].
 	^ GncInnerNode with: result
 ]
@@ -80,7 +70,27 @@ GncRule >> generateAstWithMaxCost: maxCost [
 GncRule >> initialize [
 
 	fragments := OrderedCollection new.
-	weight := 1
+	weight := 1 asWeight.
+	minHeight := Float infinity.
+	minSize := Float infinity
+]
+
+{ #category : #translating }
+GncRule >> minHeight [
+
+	^ minHeight
+]
+
+{ #category : #translating }
+GncRule >> minHeight: cost [
+
+	minHeight := cost
+]
+
+{ #category : #translating }
+GncRule >> minSize [
+
+	^ minSize
 ]
 
 { #category : #translating }
@@ -90,9 +100,35 @@ GncRule >> post: postCallback [
 ]
 
 { #category : #translating }
+GncRule >> postHook [
+
+	^ postHook
+]
+
+{ #category : #translating }
 GncRule >> pre: preCallback [
 
 	preHook := preCallback
+]
+
+{ #category : #translating }
+GncRule >> preHook [
+
+	^ preHook
+]
+
+{ #category : #printing }
+GncRule >> printOn: stream [
+
+	fragments do: [ :fragment |
+		fragment printNameOn: stream.
+		stream << ' ' ].
+	stream
+		<< '(';
+		print: self minHeight;
+		<< ') [';
+		print: weight;
+		<< ']'
 ]
 
 { #category : #translating }
@@ -107,16 +143,26 @@ GncRule >> seal [
 	fragments := fragments asArray
 ]
 
+{ #category : #translating }
+GncRule >> visit: visitor [
+
+	^ visitor visitRule: self
+]
+
 { #category : #accessing }
 GncRule >> weight [
 
-	^ (weight isKindOf: BlockClosure)
-		  ifTrue: [ weight value ]
-		  ifFalse: [ weight ]
+	^ weight generate
 ]
 
 { #category : #accessing }
 GncRule >> weight: aWeight [
 
-	weight := aWeight 
+	weight := aWeight asWeight
+]
+
+{ #category : #accessing }
+GncRule >> weightBox [
+
+	^ weight
 ]

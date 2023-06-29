@@ -28,10 +28,10 @@ Class {
 	#instVars : [
 		'name',
 		'rules',
-		'cost',
-		'computed',
 		'preHook',
-		'postHook'
+		'postHook',
+		'minSize',
+		'minHeight'
 	],
 	#category : #'Gnocco-Grammar'
 }
@@ -77,79 +77,49 @@ GncNonTerminal >> computeCost [
 	cost := 1 + minCost.
 ]
 
-{ #category : #accessing }
-GncNonTerminal >> cost [
-
-	cost ifNotNil: [ ^ cost ].
-	"While we are computing the cost for this non terminal, it's set to infinity, so that if"
-	"the cost is asked again before this computation has ended, it means that we have encountered"
-	"a cycle, and therefore:"
-	" * either this non terminal is co-reachable, in which case there is a strictly shorter"
-	"   derivation, and so returning infinity for the cost of that expansion is fine"
-	" * or this non terminal is not co-reachable, and therefore its cost is infinity"
-	cost := Float infinity.
-	self computeCost.
-	^ cost
-]
-
-{ #category : #accessing }
-GncNonTerminal >> format: stream [
-
-	| first |
-	stream
-		<< name;
-		<< ' (';
-		<< self cost printString;
-		<< ')';
-		<< OSPlatform current lineEnding.
-	first := true.
-	rules do: [ :rule |
-		stream << '  '.
-		first
-			ifTrue: [ stream << '--> ' ]
-			ifFalse: [ stream << '  | ' ].
-		first := false.
-		rule format: stream.
-		stream << OSPlatform current lineEnding ]
-]
-
-{ #category : #accessing }
-GncNonTerminal >> formatName: stream [
-
-	^ stream << name
-]
-
 { #category : #translating }
-GncNonTerminal >> generateAstWithMaxCost: maxCost [
+GncNonTerminal >> generateAst: generator [
 
-	| totalWeight selected result |
-	self cost > maxCost ifTrue: [
-		CostIsTooLow new signal:
-			'There is no such cheap derivation, the minimum is '
-			, self cost printString , '.' ].
+	| result rule |
+	preHook ifNotNil: [ preHook value ifNotNil: [ :value | ^ value ] ].
 
-	preHook ifNotNil: [
-		result := preHook value.
-		result ifNotNil: [ ^ result ] ].
-
-	totalWeight := 0.
-	rules
-		select: [ :rule | rule cost < maxCost ]
-		thenDo: [ :rule | totalWeight := totalWeight + rule weight ].
-	selected := totalWeight atRandom.
-	rules select: [ :rule | rule cost < maxCost ] thenDo: [ :rule |
-		rule weight >= selected
-			ifTrue: [
-				result := rule generateAstWithMaxCost: maxCost - 1.
-				postHook ifNotNil: [ postHook value: result ].
-				^ result ]
-			ifFalse: [ selected := selected - rule weight ] ]
+	rule := generator selectRule: rules.
+	result := rule visit: generator withSubLevel.
+	postHook ifNotNil: [ postHook value: result ].
+	^ result.
+	
+	
 ]
 
 { #category : #initialization }
 GncNonTerminal >> initialize [
 	rules := OrderedCollection new.
-	computed := false.
+	minHeight := Float infinity.
+	minSize := Float infinity.
+]
+
+{ #category : #accessing }
+GncNonTerminal >> minHeight [
+
+	^ minHeight
+]
+
+{ #category : #accessing }
+GncNonTerminal >> minHeight: cost [
+
+	minHeight := cost
+]
+
+{ #category : #accessing }
+GncNonTerminal >> minSize [
+
+	^ minSize
+]
+
+{ #category : #accessing }
+GncNonTerminal >> minSize: size [
+
+	minSize := size
 ]
 
 { #category : #accessing }
@@ -180,17 +150,27 @@ GncNonTerminal >> post: postBlock [
 ]
 
 { #category : #accessing }
+GncNonTerminal >> postHook [
+
+	^ postHook
+]
+
+{ #category : #accessing }
 GncNonTerminal >> pre: preBlock [
 
 	preHook := preBlock
 ]
 
-{ #category : #private }
-GncNonTerminal >> reset [
+{ #category : #accessing }
+GncNonTerminal >> preHook [
 
-	computed ifFalse: [ ^ self ].
-	computed := false.
-	rules do: [ :rule | rule reset ]
+	^ preHook
+]
+
+{ #category : #printing }
+GncNonTerminal >> printNameOn: stream [
+
+	^ stream << name
 ]
 
 { #category : #accessing }
@@ -208,4 +188,10 @@ GncNonTerminal >> rules [
 GncNonTerminal >> seal [
 
 	rules do: [ :rule | rule seal ]
+]
+
+{ #category : #accessing }
+GncNonTerminal >> visit: visitor [
+
+	^ visitor visitNonTerminal: self
 ]

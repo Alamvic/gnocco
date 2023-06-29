@@ -1,0 +1,47 @@
+Class {
+	#name : #GncComputableWeight,
+	#superclass : #GncWeight,
+	#instVars : [
+		'parameter',
+		'block'
+	],
+	#category : #'Gnocco-Weight'
+}
+
+{ #category : #'instance creation' }
+GncComputableWeight class >> newWithWeight: block [
+
+	^ self new
+		  block: block;
+		  yourself
+]
+
+{ #category : #'actions api' }
+GncComputableWeight >> block: newBlock [
+
+	block := newBlock
+]
+
+{ #category : #'actions api' }
+GncComputableWeight >> generate [
+
+	^ block cull: parameter
+]
+
+{ #category : #'actions api' }
+GncComputableWeight >> get [
+
+	^ parameter
+]
+
+{ #category : #printing }
+GncComputableWeight >> printOn: stream [
+
+	stream << '<fun>'
+]
+
+{ #category : #'actions api' }
+GncComputableWeight >> set: weight [
+
+	parameter := weight
+]

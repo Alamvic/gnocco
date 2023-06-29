@@ -7,13 +7,19 @@ Class {
 }
 
 { #category : #translating }
-GncAST >> cost [
+GncAST >> generateInto: stream [
 
 	^ self subclassResponsibility
 ]
 
 { #category : #translating }
-GncAST >> generateInto: stream [
+GncAST >> treeHeight [
+
+	^ self subclassResponsibility
+]
+
+{ #category : #translating }
+GncAST >> treeSize [
 
 	^ self subclassResponsibility
 ]
