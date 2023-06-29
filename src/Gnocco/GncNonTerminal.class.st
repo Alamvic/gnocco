@@ -60,23 +60,6 @@ GncNonTerminal >> ->> fragment [
 	^ self --> fragment
 ]
 
-{ #category : #accessing }
-GncNonTerminal >> computeCost [
-	"While we are computing the cost for this non terminal, it's set to infinity, so that if"
-	"the cost is asked again before this computation has ended, it means that we have encountered"
-	"a cycle, and therefore:"
-	" * either this non terminal is co-reachable, in which case there is a strictly shorter"
-	"   derivation, and so returning infinity for the cost of that expansion is fine"
-	" * or this non terminal is not co-reachable, and therefore its cost is infinity"
-	| minCost |
-	computed ifTrue: [ ^ self ].
-	computed := true.
-	cost ifNil: [ cost := Float infinity ].
-	minCost := Float infinity.
-	rules do: [ :rule | rule computeCost. minCost := minCost min: rule cost ].
-	cost := 1 + minCost.
-]
-
 { #category : #translating }
 GncNonTerminal >> generateAst: generator [
 
@@ -171,6 +154,30 @@ GncNonTerminal >> preHook [
 GncNonTerminal >> printNameOn: stream [
 
 	^ stream << name
+]
+
+{ #category : #printing }
+GncNonTerminal >> printOn: stream [
+
+	| first |
+	stream
+		<< name;
+		<< ' (h=';
+		print: self minHeight;
+		<< ',s=';
+		print: self minSize;
+		<< ')';
+		<< OSPlatform current lineEnding.
+	first := true.
+	rules do: [ :rule |
+		stream << '  '.
+		first
+			ifTrue: [ stream << '--> ' ]
+			ifFalse: [ stream << '  | ' ].
+		first := false.
+		stream
+			print: rule;
+			<< OSPlatform current lineEnding ]
 ]
 
 { #category : #accessing }

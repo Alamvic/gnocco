@@ -34,6 +34,12 @@ GncComputableWeight >> get [
 	^ parameter
 ]
 
+{ #category : #initialization }
+GncComputableWeight >> initialize [ 
+
+	self set: 1
+]
+
 { #category : #printing }
 GncComputableWeight >> printOn: stream [
 

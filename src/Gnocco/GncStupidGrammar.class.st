@@ -7,6 +7,12 @@ Class {
 	#category : #'Gnocco-Grammar Library'
 }
 
+{ #category : #initialization }
+GncStupidGrammar >> defineGrammar [
+
+	ntStart --> 'true' | 'false'
+]
+
 { #category : #accessing }
 GncStupidGrammar >> start [
 

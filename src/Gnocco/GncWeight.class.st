@@ -4,6 +4,12 @@ Class {
 	#category : #'Gnocco-Weight'
 }
 
+{ #category : #'instance creation' }
+GncWeight class >> newWithWeight: weight [
+
+	self subclassResponsibility
+]
+
 { #category : #converting }
 GncWeight >> asWeight [
 

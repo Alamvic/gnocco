@@ -26,13 +26,14 @@ Class {
 { #category : #initialization }
 GncStonGrammar >> defineGrammar [ 
 
-	ntObjects --> ntObjectInstance @ 1
-		| ntObjectInstance, OSPlatform current lineEnding, ntObjects @ 99.
+	ntObjects --> ntObjectInstance
+		| ntObjectInstance, OSPlatform current lineEnding, ntObjects.
 		
-	ntObject --> ntPrimitive @ 0
-		| ntSymbol @ 0
-		| ntObjectInstance @ 5
-		| '@', ntId @ [ availableId isZero ifTrue: [ 0 ] ifFalse: [ 1 ] ].
+	ntObject --> ntPrimitive
+		| ntSymbol
+		| ntObjectInstance
+		| '@', ntId @ [ :weight |
+			availableId isZero ifTrue: [ 0 ] ifFalse: [ weight ] ].
 		
 	ntObjectInstance --> ntObjectTag, ' ', ntObjectBody.
 		
@@ -46,11 +47,12 @@ GncStonGrammar >> defineGrammar [
 	ntStringContent --> ntLetter, ntStringContent | ntLetter.
 	ntLetter --> ($a - $z) | ($A - $Z).
 	
-	ntObjectTag --> 'GncFuzzyClass', ($1 - $9).
+	ntObjectTag --> 'GncFuzzyClass', ntClassDigit.
+	ntClassDigit --> '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9'.
 	ntObjectTag post: [ :result | availableId := availableId + 1 ].
 	ntObjectBody --> '[ ', ntValuesOrEmpty, ' ]'.
-	ntValuesOrEmpty --> '' | ntValues @ 99.
-	ntValues --> ntObject | ntObject, ', ', ntObject @ 99.
+	ntValuesOrEmpty --> '' | ntValues.
+	ntValues --> ntObject | ntObject, ', ', ntObject.
 	
 	ntId --> '' < [ GncLeaf withToken: availableId atRandom printString ].
 ]

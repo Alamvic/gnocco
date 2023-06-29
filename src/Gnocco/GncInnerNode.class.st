@@ -36,6 +36,15 @@ GncInnerNode >> generateInto: stream [
 ]
 
 { #category : #translating }
+GncInnerNode >> minHeight [
+
+	| minCost |
+	minCost := 0.
+	children do: [ :child | minCost := minCost max: child treeHeight ].
+	^ minCost + 1
+]
+
+{ #category : #translating }
 GncInnerNode >> minSize [
 
 	^ ((children collect: [ :child | child minSize ]) fold: [ :i :j |

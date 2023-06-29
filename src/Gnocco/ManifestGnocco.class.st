@@ -29,6 +29,13 @@ ManifestGnocco class >> ruleEqualNotUsedRuleV1FalsePositive [
 ]
 
 { #category : #'code-critics' }
+ManifestGnocco class >> ruleExcessiveVariablesRuleV1FalsePositive [
+
+	<ignoreForCoverage>
+	^ #(#(#(#RGPackageDefinition #(#Gnocco)) #'2023-06-29T13:57:26.50239+02:00') )
+]
+
+{ #category : #'code-critics' }
 ManifestGnocco class >> ruleLiteralArrayContainsSuspiciousTrueFalseOrNilRuleV1FalsePositive [
 
 	<ignoreForCoverage>
