@@ -58,6 +58,18 @@ GncInnerNode >> minSize [
 		   i + j ]) + 1
 ]
 
+{ #category : #accessing }
+GncInnerNode >> tag [
+
+	^ tag
+]
+
+{ #category : #accessing }
+GncInnerNode >> tag: anObject [
+
+	tag := anObject
+]
+
 { #category : #translating }
 GncInnerNode >> treeHeight [
 
