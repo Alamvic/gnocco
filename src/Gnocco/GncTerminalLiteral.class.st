@@ -30,12 +30,6 @@ GncTerminalLiteral >> generateInto: stream [
 	stream << literal 
 ]
 
-{ #category : #translating }
-GncTerminalLiteral >> generateToken: generator [
-
-	^ GncLeaf withToken: literal
-]
-
 { #category : #accessing }
 GncTerminalLiteral >> literal: data [
 
