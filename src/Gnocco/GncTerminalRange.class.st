@@ -24,9 +24,10 @@ GncTerminalRange >> from: f to: t [
 { #category : #translating }
 GncTerminalRange >> generateAst: generator [
 
-	| offset |
-	offset := (to charCode - from charCode + 1) atRandom.
-	^ GncLeaf withToken: (from charCode + offset - 1) asCharacter
+	| charCode |
+	charCode := (from charCode to: to charCode) atRandom:
+		            generator random.
+	^ GncLeaf withToken: charCode asCharacter
 ]
 
 { #category : #translating }
