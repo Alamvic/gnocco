@@ -14,7 +14,7 @@ GncOnceVisitor >> initialize [
 ]
 
 { #category : #visiting }
-GncOnceVisitor >> temporaryValue [
+GncOnceVisitor >> temporaryValueFor: nonTerminal [
 
 	self subclassResponsibility
 ]
@@ -23,7 +23,7 @@ GncOnceVisitor >> temporaryValue [
 GncOnceVisitor >> visitNonTerminal: nonTerminal [
 
 	^ cachedVisits at: nonTerminal ifAbsentPut: [
-		  cachedVisits at: nonTerminal put: self temporaryValue.
+		  cachedVisits at: nonTerminal put: (self temporaryValueFor: nonTerminal).
 		  self visitNonTerminalOnce: nonTerminal ]
 ]
 
