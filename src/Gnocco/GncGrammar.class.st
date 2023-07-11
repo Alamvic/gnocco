@@ -51,7 +51,7 @@ GncGrammar >> generateAst: generator [
 { #category : #translating }
 GncGrammar >> generateWithMinCost [
 
-	^ self generate: (GncGenerator new)
+	^ self generate: (GncGrammarGenerator new)
 ]
 
 { #category : #initialization }
