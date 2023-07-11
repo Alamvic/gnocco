@@ -2,7 +2,6 @@ Class {
 	#name : #GncIndividual,
 	#superclass : #Object,
 	#instVars : [
-		'grammar',
 		'score',
 		'generator'
 	],
@@ -10,31 +9,29 @@ Class {
 }
 
 { #category : #'instance creation' }
-GncIndividual class >> newFrom: other [
+GncIndividual class >> newFrom: individual [
 
-	^ self new
-		grammar: other grammar veryDeepCopy;
-		generator: other generator.
+	self subclassResponsibility
 ]
 
 { #category : #accessing }
-GncIndividual >> combine: other withCrossoverRate: crossoverRate [
+GncIndividual >> combine: other withCrossoverRate: rate [
 
-	| left right |
-	left := self class newFrom: self.
-	right := self class newFrom: other.
-	crossoverRate <= (100 atRandom: generator random) ifTrue: [
-		left crossover: right ].
-	
-	^ left @ right
+	| child |
+	child := self class newFrom: self.
+	child parameters doWithIndex: [ :parameter :i |
+		rate >= (100 atRandom: generator random)
+			ifTrue: [
+				((2 atRandom: generator random) = 1) ifTrue: [
+					parameter set: (other parameters at: i) get ] ]
+			ifFalse: [ parameter atRandom: generator ] ].
+	^ child
 ]
 
 { #category : #accessing }
 GncIndividual >> computeScore [
 
-	| data |
-	data := GncObjectGraph with: (grammar generate: generator).
-	^ (data benchIntoFile: 'hello.fuel') value
+	^ self subclassResponsibility
 ]
 
 { #category : #accessing }
@@ -56,38 +53,27 @@ GncIndividual >> generator [
 ]
 
 { #category : #accessing }
-GncIndividual >> generator: aGenerator [
+GncIndividual >> generator: newGenerator [
 
-	generator := aGenerator
-]
-
-{ #category : #accessing }
-GncIndividual >> grammar [
-
-	^ grammar
-]
-
-{ #category : #accessing }
-GncIndividual >> grammar: aGrammar [
-
-	grammar := aGrammar
+	generator := newGenerator
 ]
 
 { #category : #accessing }
 GncIndividual >> mutate: mutationRate [
 
 	self parameters do: [ :parameter |
-		mutationRate >= (100 atRandom: generator random) ifTrue: [
+		mutationRate >= (100 atRandom: generator random) ifTrue: [ 
 			| curr tweak |
 			curr := parameter get.
 			tweak := (1 - curr to: curr) atRandom: generator random.
 			parameter set: curr + tweak ] ]
+
 ]
 
 { #category : #accessing }
 GncIndividual >> parameters [
 
-	^ grammar parameters
+	self subclassResponsibility
 ]
 
 { #category : #accessing }

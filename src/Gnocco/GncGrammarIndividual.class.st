@@ -1,0 +1,53 @@
+Class {
+	#name : #GncGrammarIndividual,
+	#superclass : #GncIndividual,
+	#instVars : [
+		'grammar'
+	],
+	#category : #'Gnocco-Genetic Optimization'
+}
+
+{ #category : #'instance creation' }
+GncGrammarIndividual class >> newFrom: other [
+
+	^ self new
+		grammar: other grammar veryDeepCopy;
+		generator: other generator.
+]
+
+{ #category : #accessing }
+GncGrammarIndividual >> computeScore [
+
+	| data "profiler" result |
+	"profiler := PrfMethodProfiler new.
+	profiler addPackage: #'Fuel-Core' asPackage."
+	data := GncObjectGraph with: (STON reader
+			         on: (grammar generate: generator) readStream;
+			         next).
+	result := Time millisecondClockValue.
+	data serializeInto: 'hello.fuel'.
+	result := Time millisecondsSince: result.
+	"profiler profile: [ data serializeInto: 'hello.fuel' ].
+	profiler nodes valuesDo: [ :method |
+		result := result + method timesCalled ].
+	profiler destroy."
+	^ result
+]
+
+{ #category : #accessing }
+GncGrammarIndividual >> grammar [
+
+	^ grammar
+]
+
+{ #category : #accessing }
+GncGrammarIndividual >> grammar: aGrammar [
+
+	grammar := aGrammar
+]
+
+{ #category : #accessing }
+GncGrammarIndividual >> parameters [
+
+	^ grammar parameters
+]
