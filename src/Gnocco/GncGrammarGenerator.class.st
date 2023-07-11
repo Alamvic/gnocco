@@ -1,5 +1,5 @@
 Class {
-	#name : #GncGenerator,
+	#name : #GncGrammarGenerator,
 	#superclass : #GncVisitor,
 	#instVars : [
 		'maxHeightCost',
@@ -9,38 +9,42 @@ Class {
 }
 
 { #category : #initialization }
-GncGenerator >> initialize [
+GncGrammarGenerator >> initialize [
 
-	randomGenerator := Random new.
+	randomGenerator := PMFishmanMooreRandomGenerator new.
 	maxHeightCost := 0.
 ]
 
 { #category : #'accessing - attributes' }
-GncGenerator >> maxHeightCost: cost [
+GncGrammarGenerator >> maxHeightCost: cost [
 
 	maxHeightCost := cost
 ]
 
 { #category : #'accessing - attributes' }
-GncGenerator >> offsetHeightCost: offset [
+GncGrammarGenerator >> offsetHeightCost: offset [
 
-	maxHeightCost := maxHeightCost + offset.
+	^ self clone
+		  maxHeightCost: maxHeightCost + offset;
+		  yourself
 ]
 
 { #category : #private }
-GncGenerator >> random [
+GncGrammarGenerator >> random [
 
 	^ randomGenerator
 ]
 
 { #category : #'accessing - attributes' }
-GncGenerator >> seed: seed [
+GncGrammarGenerator >> seed: seed [
 
-	randomGenerator := Random seed: seed
+	randomGenerator := randomGenerator class new
+		                   seed: seed;
+		                   yourself
 ]
 
 { #category : #private }
-GncGenerator >> selectRule: rules [
+GncGrammarGenerator >> selectRule: rules [
 
 	| totalWeight selected rulesWithWeight |
 	totalWeight := 0.
@@ -48,13 +52,13 @@ GncGenerator >> selectRule: rules [
 	For this reason, we compute the weight only once, and we store the result alongside the rule."
 	rulesWithWeight := rules
 		                   select: [ :rule |
-		                   rule minHeight <= maxHeightCost ]
+		                   rule minHeight < maxHeightCost ]
 		                   thenCollect: [ :rule | rule -> rule weight ].
 	self assert: rulesWithWeight isNotEmpty.
 	rulesWithWeight
 		do: [ :ruleAndWeight |
 		totalWeight := totalWeight + ruleAndWeight value ].
-	selected := totalWeight atRandom.
+	selected := totalWeight atRandom: self random.
 	rulesWithWeight
 		do: [ :ruleAndWeight |
 			ruleAndWeight value >= selected
@@ -64,20 +68,20 @@ GncGenerator >> selectRule: rules [
 ]
 
 { #category : #visiting }
-GncGenerator >> visitNonTerminal: nonTerminal [
+GncGrammarGenerator >> visitNonTerminal: nonTerminal [
 
 	| result rule |
-	nonTerminal preHook ifNotNil: [ :hook | hook value ifNotNil: [ :value | ^ value ] ].
+	nonTerminal preHook ifNotNil: [ :hook |
+		hook value ifNotNil: [ :value | ^ value ] ].
 
 	rule := self selectRule: nonTerminal rules.
 	result := rule visit: self withSubLevel.
 	nonTerminal postHook ifNotNil: [ :hook | hook value: result ].
-	^ result.
-	
+	^ result
 ]
 
 { #category : #visiting }
-GncGenerator >> visitRule: rule [
+GncGrammarGenerator >> visitRule: rule [
 
 	| result |
 	rule preHook ifNotNil: [ :hook | ^ hook value ].
@@ -87,13 +91,13 @@ GncGenerator >> visitRule: rule [
 ]
 
 { #category : #visiting }
-GncGenerator >> visitTerminal: terminal [
+GncGrammarGenerator >> visitTerminal: terminal [
 
-	^ terminal generateToken: self
+	^ terminal generateAst: self
 ]
 
 { #category : #private }
-GncGenerator >> withSubLevel [
+GncGrammarGenerator >> withSubLevel [
 
 	^ self clone
 		  maxHeightCost: maxHeightCost - 1;
