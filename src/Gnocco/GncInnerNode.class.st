@@ -4,7 +4,8 @@ Class {
 	#instVars : [
 		'children',
 		'treeHeight',
-		'treeSize'
+		'treeSize',
+		'tag'
 	],
 	#category : #'Gnocco-AST'
 }
@@ -13,6 +14,12 @@ Class {
 GncInnerNode class >> with: children [
 
 	^ self new children: children
+]
+
+{ #category : #translating }
+GncInnerNode >> children [
+
+	^ children
 ]
 
 { #category : #'accessing - attributes' }

@@ -37,6 +37,12 @@ GncLeaf class >> withToken: token [
 ]
 
 { #category : #translating }
+GncLeaf >> children [
+
+	#(  )
+]
+
+{ #category : #translating }
 GncLeaf >> generateInto: stream [
 
 	stream << token
