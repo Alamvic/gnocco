@@ -29,9 +29,9 @@ GncStonGrammar >> defineGrammar [
 	ntObjects --> ntObjectInstance
 		| ntObjectInstance, OSPlatform current lineEnding, ntObjects.
 		
-	ntObject --> ntPrimitive
+	ntObject --> "ntPrimitive
 		| ntSymbol
-		| ntObjectInstance
+		|" ntObjectInstance @ 99
 		| '@', ntId @ [ :weight |
 			availableId isZero ifTrue: [ 0 ] ifFalse: [ weight ] ].
 		
@@ -51,8 +51,8 @@ GncStonGrammar >> defineGrammar [
 	ntClassDigit --> '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9'.
 	ntObjectTag post: [ :result | availableId := availableId + 1 ].
 	ntObjectBody --> '[ ', ntValuesOrEmpty, ' ]'.
-	ntValuesOrEmpty --> '' | ntValues.
-	ntValues --> ntObject | ntObject, ', ', ntObject.
+	ntValuesOrEmpty --> '' | ntValues @ 99.
+	ntValues --> ntObject | ntObject, ', ', ntValues @ 99.
 	
 	ntId --> '' < [ GncLeaf withToken: availableId atRandom printString ].
 ]
