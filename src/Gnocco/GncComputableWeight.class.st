@@ -16,19 +16,19 @@ GncComputableWeight class >> newWithWeight: block [
 		  yourself
 ]
 
-{ #category : #'actions api' }
+{ #category : #'as yet unclassified' }
 GncComputableWeight >> block: newBlock [
 
 	block := newBlock
 ]
 
-{ #category : #'actions api' }
+{ #category : #'as yet unclassified' }
 GncComputableWeight >> generate [
 
 	^ block cull: parameter
 ]
 
-{ #category : #'actions api' }
+{ #category : #'as yet unclassified' }
 GncComputableWeight >> get [
 
 	^ parameter
@@ -43,10 +43,12 @@ GncComputableWeight >> initialize [
 { #category : #printing }
 GncComputableWeight >> printOn: stream [
 
-	stream << '<fun>'
+	stream
+		<< '<fun>:';
+		print: parameter
 ]
 
-{ #category : #'actions api' }
+{ #category : #'as yet unclassified' }
 GncComputableWeight >> set: weight [
 
 	parameter := weight

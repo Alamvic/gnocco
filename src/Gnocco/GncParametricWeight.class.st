@@ -15,13 +15,13 @@ GncParametricWeight class >> newWithWeight: weight [
 		  yourself
 ]
 
-{ #category : #'actions api' }
+{ #category : #'as yet unclassified' }
 GncParametricWeight >> generate [
 
 	^ self get
 ]
 
-{ #category : #'actions api' }
+{ #category : #'as yet unclassified' }
 GncParametricWeight >> get [
 
 	^ weight
@@ -33,7 +33,7 @@ GncParametricWeight >> printOn: stream [
 	stream print: weight
 ]
 
-{ #category : #'actions api' }
+{ #category : #'as yet unclassified' }
 GncParametricWeight >> set: newWeight [
 
 	weight := newWeight

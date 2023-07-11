@@ -28,7 +28,7 @@ GncParameterCollectionVisitor >> parameters: anObject [
 ]
 
 { #category : #visiting }
-GncParameterCollectionVisitor >> temporaryValue [
+GncParameterCollectionVisitor >> temporaryValueFor: nonTerminal [
 
 	^ nil
 ]
