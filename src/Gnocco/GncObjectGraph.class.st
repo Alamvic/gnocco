@@ -82,7 +82,7 @@ GncObjectGraph >> ensureCanvasIsBuilt [
 		graphNodes := nodes
 			              collect: [ :m |
 				              RSLabel new
-									  text: m className;
+									  text: m class name;
 					              model: m ]
 			              as: RSGroup.
 		canvas := RSCanvas new.
@@ -93,7 +93,7 @@ GncObjectGraph >> ensureCanvasIsBuilt [
 		eb shape color: Color gray.
 		eb withBorderAttachPoint.
 		eb canvas: canvas.
-		eb connectToAll: [ :x | x ].
+		eb connectToAll: #allVariables.
 		RSCircleLayout on: graphNodes.
 		canvas edges do: #withBorder.
 		canvas edges @ RSHighlightable red.
