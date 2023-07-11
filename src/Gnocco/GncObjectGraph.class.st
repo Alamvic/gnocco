@@ -33,15 +33,16 @@ Class {
 { #category : #'instance creation' }
 GncObjectGraph class >> fuzz [
 
-	^ self fuzz: 20 "Why 20? Why not... :|"
+	^ self fuzz: (GncGrammarGenerator new
+			   maxHeightCost: 20;
+			   yourself) "Why 20? Why not... :|"
 ]
 
 { #category : #'instance creation' }
-GncObjectGraph class >> fuzz: cost [
+GncObjectGraph class >> fuzz: generator [
 
 	| input data |
-	GncFuzzyClass setupFuzzyClasses: 9.
-	input := GncStonGrammar new generate: cost.
+	input := GncStonGrammar new generate: generator.
 	data := STON reader
 		        on: input readStream;
 		        next.
@@ -59,7 +60,7 @@ GncObjectGraph class >> fuzz: nbFuzz from: minCost to: maxCost [
 		result := stuff benchIntoFile: 'hello.fuel'.
 		input at: i put: result key.
 		output at: i put: result value ].
-	^ GncBenchmarkResult new given: input itProduces: output
+	^ GncFullBenchmarkResult new given: input itProduces: output
 ]
 
 { #category : #'instance creation' }
@@ -152,10 +153,12 @@ GncObjectGraph >> with: objects [
 	seen := Set with: data.
 	boundary := OrderedCollection with: data.
 	[ boundary isNotEmpty ] whileTrue: [
+		| neighbours |
 		current := boundary removeLast.
 		nodes add: current.
-		nbEdges := nbEdges + current size.
-		current
+		neighbours := current allVariables.
+		nbEdges := nbEdges + neighbours size.
+		neighbours
 			select: [ :next | (seen includes: next) not ]
 			thenDo: [ :next |
 				seen add: next.
