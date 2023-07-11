@@ -2,7 +2,7 @@
 I store the data collected while benchmarking _something_. Try to inspect me!
 "
 Class {
-	#name : #GncBenchmarkResult,
+	#name : #GncFullBenchmarkResult,
 	#superclass : #Object,
 	#instVars : [
 		'inData',
@@ -13,7 +13,7 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-GncBenchmarkResult >> dumpAt: file [
+GncFullBenchmarkResult >> dumpAt: file [
 	| fileStream |
 	fileStream := (FileSystem disk workingDirectory / file) writeStream.
 	inData
@@ -28,7 +28,7 @@ GncBenchmarkResult >> dumpAt: file [
 ]
 
 { #category : #'as yet unclassified' }
-GncBenchmarkResult >> ensurePlotIsBuilt [
+GncFullBenchmarkResult >> ensurePlotIsBuilt [
 
 	plot ifNil: [
 		plot := self plot.
@@ -36,13 +36,13 @@ GncBenchmarkResult >> ensurePlotIsBuilt [
 ]
 
 { #category : #'as yet unclassified' }
-GncBenchmarkResult >> given: input itProduces: output [
+GncFullBenchmarkResult >> given: input itProduces: output [
 	inData := input.
 	outData := output.
 ]
 
 { #category : #'as yet unclassified' }
-GncBenchmarkResult >> inspectorPlot [
+GncFullBenchmarkResult >> inspectorPlot [
 
 	<inspectorPresentationOrder: 0 title: 'Results'>
 	self ensurePlotIsBuilt.
@@ -52,7 +52,7 @@ GncBenchmarkResult >> inspectorPlot [
 ]
 
 { #category : #'as yet unclassified' }
-GncBenchmarkResult >> plot [
+GncFullBenchmarkResult >> plot [
 
 	| chart lineaxes |
 	chart := RSChart new.
