@@ -38,6 +38,12 @@ GncFuzzyClass class >> setupFuzzyClasses: numberOfFuzzyClasses [
 			self compiler evaluate: code ] ]
 ]
 
+{ #category : #comparing }
+GncFuzzyClass >> = other [
+
+	^ self == other
+]
+
 { #category : #accessing }
 GncFuzzyClass >> className [
 	"^ self class name allButFirst: super class name size"
