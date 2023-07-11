@@ -14,19 +14,30 @@ Trait {
 { #category : #'instance creation' }
 TBenchmarkable >> benchIntoFile: file [
 
-	| result timesBenched |
-	result := 0.
+	| timeSpentInComputation timesBenched timeSpentInGC |
+	timeSpentInComputation := 0.
+	timeSpentInGC := 0.
 	timesBenched := 0.
 	[
 	timesBenched < self minNumberOfRuns
-	| (result / 1000 asFloat < self minBenchTime) ] whileTrue: [
-		| instantBenchStarted delta |
-		instantBenchStarted := Time millisecondClockValue.
-		self serializeInto: file.
-		delta := Time millisecondsSince: instantBenchStarted.
-		result := result + delta.
-		timesBenched := timesBenched + 1 ].
-	^ self dataSize -> (result / timesBenched) asFloat
+	| (timeSpentInComputation / 1000 asFloat < self minBenchTime) ]
+		whileTrue: [
+			| instantBenchStarted timeInGCSoFar deltaTotalTime deltaTimeInGC deltaComputationTime |
+			instantBenchStarted := Time millisecondClockValue.
+			timeInGCSoFar := Smalltalk vm totalGCTime.
+			self serializeInto: file.
+			deltaTotalTime := Time millisecondsSince: instantBenchStarted.
+			deltaTimeInGC := Smalltalk vm totalGCTime - timeInGCSoFar.
+			deltaComputationTime := deltaTotalTime - deltaTimeInGC.
+			timeSpentInComputation := timeSpentInComputation
+			                          + deltaComputationTime.
+			timeSpentInGC := timeSpentInGC + deltaTimeInGC.
+			timesBenched := timesBenched + 1 ].
+	^ GncSingleBenchmarkResult new
+		  dataSize: self dataSize;
+		  time: (timeSpentInComputation / timesBenched) asFloat;
+		  gctime: (timeSpentInGC / timesBenched) asFloat;
+		  yourself
 ]
 
 { #category : #accessing }
