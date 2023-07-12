@@ -11,11 +11,20 @@ Class {
 
 { #category : #benchmarking }
 GncPoorlySerialized class >> benchFor: sizes with: data [
+
 	| result |
-	result := sizes collect: [ :size | | ps |
-		ps := self new: size with: data.
-		ps benchmark ].
-	^GncFullBenchmarkResult new given: sizes itProduces: result.
+	result := Array new: sizes size.
+	(1 to: sizes size)
+		do: [ :i |
+			| ps |
+			ps := self new: (sizes at: i) with: data.
+			result at: i put: ps benchmark ]
+		displayingProgress: [ :i |
+			'Benchmarking {1} ({2}/{3})' format: {
+					(sizes at: i).
+					(i - 1).
+					sizes size } ].
+	^ GncFullBenchmarkResult new given: sizes itProduces: result
 ]
 
 { #category : #'instance creation' }
