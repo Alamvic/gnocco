@@ -24,13 +24,21 @@ GncGrammarIndividual >> computeScore [
 	data := GncObjectGraph with: (STON reader
 			         on: (grammar generate: generator) readStream;
 			         next).
-	result := Time millisecondClockValue.
+
+	"Time-based score"
+	"result := Time millisecondClockValue.
 	data serializeInto: 'hello.fuel'.
-	result := Time millisecondsSince: result.
+	result := Time millisecondsSince: result."
+
+	"Fully-featured profiler-based score"
 	"profiler profile: [ data serializeInto: 'hello.fuel' ].
 	profiler nodes valuesDo: [ :method |
 		result := result + method timesCalled ].
 	profiler destroy."
+
+	"Custom profiled based score"
+	result := GncProfiler countMessageSentIn: [
+		          data serializeIntoStream: GncStupidStream new ].
 	^ result
 ]
 
