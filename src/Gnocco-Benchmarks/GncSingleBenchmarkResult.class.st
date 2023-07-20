@@ -6,7 +6,7 @@ Class {
 		'gctime',
 		'dataSize'
 	],
-	#category : #'Gnocco-Fuzzing Artifact'
+	#category : #'Gnocco-Benchmarks'
 }
 
 { #category : #accessing }

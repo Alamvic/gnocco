@@ -1,7 +1,7 @@
 Class {
 	#name : #GncStupidStream,
 	#superclass : #Stream,
-	#category : #'Gnocco-Fuzzing Artifact'
+	#category : #'Gnocco-Benchmarks'
 }
 
 { #category : #'instance creation' }

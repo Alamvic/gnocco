@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'randomStream'
 	],
-	#category : #'Gnocco-Genetic Optimization'
+	#category : #'Gnocco-GeneticMutation'
 }
 
 { #category : #initialization }

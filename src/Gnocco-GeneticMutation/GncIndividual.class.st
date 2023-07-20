@@ -5,7 +5,7 @@ Class {
 		'score',
 		'generator'
 	],
-	#category : #'Gnocco-Genetic Optimization'
+	#category : #'Gnocco-GeneticMutation'
 }
 
 { #category : #'instance creation' }

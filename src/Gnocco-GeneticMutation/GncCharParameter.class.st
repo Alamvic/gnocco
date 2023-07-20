@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'char'
 	],
-	#category : #'Gnocco-Genetic Optimization'
+	#category : #'Gnocco-GeneticMutation'
 }
 
 { #category : #'instance creation' }

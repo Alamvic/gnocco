@@ -4,7 +4,7 @@ soon :(
 "
 Trait {
 	#name : #TFuzzText,
-	#category : #'Gnocco-Fuzzing Artifact'
+	#category : #'Gnocco-AST'
 }
 
 { #category : #translating }
