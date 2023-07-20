@@ -10,11 +10,7 @@ Class {
 { #category : #initialization }
 GncLiteralGrammar >> defineGrammar [
 
-	ntLiteral --> 'oui'
-]
-
-{ #category : #accessing }
-GncLiteralGrammar >> start [
-
+	ntLiteral --> 'oui'.
+	
 	^ ntLiteral
 ]

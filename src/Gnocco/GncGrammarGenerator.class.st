@@ -11,8 +11,9 @@ Class {
 { #category : #initialization }
 GncGrammarGenerator >> initialize [
 
-	randomGenerator := PMFishmanMooreRandomGenerator new.
-	maxHeightCost := 0.
+	super initialize.
+	randomGenerator := GncPCGRandomGenerator new.
+	maxHeightCost := 0
 ]
 
 { #category : #'accessing - attributes' }

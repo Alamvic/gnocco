@@ -20,7 +20,7 @@ Class {
 		'ntObjectInstance',
 		'ntClassDigit'
 	],
-	#category : #'Gnocco-Grammar'
+	#category : #'Gnocco-Benchmarks'
 }
 
 { #category : #initialization }

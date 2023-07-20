@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'target'
 	],
-	#category : #'Gnocco-Tests-Genetic Optimization'
+	#category : #'Gnocco-GeneticMutation'
 }
 
 { #category : #'instance creation' }

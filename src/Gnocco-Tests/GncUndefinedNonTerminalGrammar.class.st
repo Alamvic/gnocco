@@ -11,11 +11,7 @@ Class {
 { #category : #initialization }
 GncUndefinedNonTerminalGrammar >> defineGrammar [
 
-	ntStart --> 'a'
-]
-
-{ #category : #accessing }
-GncUndefinedNonTerminalGrammar >> start [
-
+	ntStart --> 'a'.
+	
 	^ ntStart
 ]

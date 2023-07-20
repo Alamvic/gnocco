@@ -10,11 +10,6 @@ Class {
 { #category : #initialization }
 GncCodeGrammar >> defineGrammar [
 
-	ntStart --> [ 'oui' ]
-]
-
-{ #category : #accessing }
-GncCodeGrammar >> start [
-
+	ntStart --> [ 'oui' ].
 	^ ntStart
 ]
