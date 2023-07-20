@@ -12,7 +12,7 @@ Class {
 	#category : #'Gnocco-Fuzzing Artifact'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #serializing }
 GncFullBenchmarkResult >> dumpAt: file [
 	| fileStream |
 	fileStream := (FileSystem disk workingDirectory / file) writeStream.
@@ -27,7 +27,7 @@ GncFullBenchmarkResult >> dumpAt: file [
 	fileStream close.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'private - inspector accessing' }
 GncFullBenchmarkResult >> ensurePlotIsBuilt [
 
 	plot ifNil: [
@@ -35,13 +35,13 @@ GncFullBenchmarkResult >> ensurePlotIsBuilt [
 		plot build ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #initialization }
 GncFullBenchmarkResult >> given: input itProduces: output [
 	inData := input.
 	outData := output.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'private - inspector accessing' }
 GncFullBenchmarkResult >> inspectorPlot [
 
 	<inspectorPresentationOrder: 0 title: 'Results'>
@@ -51,13 +51,13 @@ GncFullBenchmarkResult >> inspectorPlot [
 		  yourself
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'private - inspector accessing' }
 GncFullBenchmarkResult >> plot [
 
 	| chart lineaxes |
 	chart := RSChart new.
-	lineaxes := RSScatterPlot new.
-	lineaxes x: inData y: outData.
+	lineaxes := RSLinePlot new.
+	lineaxes x: inData y: (outData collect: #time).
 	chart addPlot: lineaxes.
 	chart addDecoration: RSVerticalTick new.
 	chart addDecoration: (RSXLabelDecoration new

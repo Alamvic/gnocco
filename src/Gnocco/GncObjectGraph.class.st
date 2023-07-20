@@ -138,9 +138,9 @@ GncObjectGraph >> nodes [
 ]
 
 { #category : #'instance creation' }
-GncObjectGraph >> serializeInto: file [
+GncObjectGraph >> serializeIntoStream: stream [
 
-	FLSerializer serialize: data toFileNamed: file
+	FLSerializer serialize: data on: stream
 ]
 
 { #category : #'instance creation' }

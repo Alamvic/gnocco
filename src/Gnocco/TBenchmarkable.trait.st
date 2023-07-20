@@ -12,7 +12,7 @@ Trait {
 }
 
 { #category : #'instance creation' }
-TBenchmarkable >> benchIntoFile: file [
+TBenchmarkable >> benchmark [
 
 	| timeSpentInComputation timesBenched timeSpentInGC |
 	timeSpentInComputation := 0.
@@ -25,7 +25,7 @@ TBenchmarkable >> benchIntoFile: file [
 			| instantBenchStarted timeInGCSoFar deltaTotalTime deltaTimeInGC deltaComputationTime |
 			instantBenchStarted := Time millisecondClockValue.
 			timeInGCSoFar := Smalltalk vm totalGCTime.
-			self serializeInto: file.
+			self serializeIntoStream: GncStupidStream new.
 			deltaTotalTime := Time millisecondsSince: instantBenchStarted.
 			deltaTimeInGC := Smalltalk vm totalGCTime - timeInGCSoFar.
 			deltaComputationTime := deltaTotalTime - deltaTimeInGC.
@@ -59,7 +59,7 @@ TBenchmarkable >> minNumberOfRuns [
 ]
 
 { #category : #'instance creation' }
-TBenchmarkable >> serializeInto: file [
+TBenchmarkable >> serializeIntoStream: stream [
 
 	self explicitRequirement
 ]
