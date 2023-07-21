@@ -9,7 +9,7 @@ Class {
 		'outData',
 		'plot'
 	],
-	#category : #'Gnocco-Fuzzing Artifact'
+	#category : #'Gnocco-Benchmarks'
 }
 
 { #category : #serializing }

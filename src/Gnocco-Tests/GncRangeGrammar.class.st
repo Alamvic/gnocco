@@ -10,11 +10,7 @@ Class {
 { #category : #initialization }
 GncRangeGrammar >> defineGrammar [
 
-	ntStart --> ($3 - $5)
-]
-
-{ #category : #accessing }
-GncRangeGrammar >> start [
-
+	ntStart --> ($3 - $5).
+	
 	^ ntStart
 ]

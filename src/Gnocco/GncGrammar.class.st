@@ -7,7 +7,8 @@ Class {
 	#traits : 'TFuzzAst',
 	#classTraits : 'TFuzzAst classTrait',
 	#instVars : [
-		'parameters'
+		'parameters',
+		'start'
 	],
 	#category : #'Gnocco-Grammar'
 }
@@ -63,7 +64,7 @@ GncGrammar >> initialize [
 		nonTerminal := GncNonTerminal withName: name.
 		slot write: nonTerminal to: self ].
 
-	self defineGrammar.
+	start := self defineGrammar.
 	"Now, we must compute the minimum cost of expanding a non terminal, and the minimum cost of"
 	"expanding a non terminal with a certain rule. The cost constraints can be expressed with"
 	"the following, mutually recursive set of equations:"
@@ -130,8 +131,8 @@ GncGrammar >> showInInspect [
 		  yourself
 ]
 
-{ #category : #accessing }
+{ #category : #initialization }
 GncGrammar >> start [
 
-	self subclassResponsibility
+	^ start
 ]

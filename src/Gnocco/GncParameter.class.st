@@ -1,7 +1,7 @@
 Class {
 	#name : #GncParameter,
 	#superclass : #Object,
-	#category : #'Gnocco-Genetic Optimization'
+	#category : #'Gnocco-Weight'
 }
 
 { #category : #'as yet unclassified' }

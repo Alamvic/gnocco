@@ -12,11 +12,7 @@ Class {
 GncNonProductiveGrammar >> defineGrammar [
 
 	ntStart --> ntSomething.
-	ntSomething --> ntStart
-]
-
-{ #category : #accessing }
-GncNonProductiveGrammar >> start [
-
-	^ ntStart 
+	ntSomething --> ntStart.
+	
+	^ ntStart
 ]

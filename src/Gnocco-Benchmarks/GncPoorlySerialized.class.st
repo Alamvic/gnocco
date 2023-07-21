@@ -6,7 +6,7 @@ Class {
 	#instVars : [
 		'data'
 	],
-	#category : #Gnocco
+	#category : #'Gnocco-Benchmarks'
 }
 
 { #category : #benchmarking }

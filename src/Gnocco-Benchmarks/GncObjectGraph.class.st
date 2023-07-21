@@ -27,7 +27,7 @@ Class {
 		'canvas',
 		'nbEdges'
 	],
-	#category : #'Gnocco-Fuzzing Artifact'
+	#category : #'Gnocco-Benchmarks'
 }
 
 { #category : #'instance creation' }

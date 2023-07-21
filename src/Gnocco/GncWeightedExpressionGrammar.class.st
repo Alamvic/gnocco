@@ -31,10 +31,6 @@ GncWeightedExpressionGrammar >> defineGrammar [
 		| '(', ntExpression, ')' @ 50
 		| ntNumber, '.', ntNumber @ 50
 		| ntNumber @ 50.
-]
-
-{ #category : #accessing }
-GncWeightedExpressionGrammar >> start [
-
+		
 	^ ntExpression
 ]

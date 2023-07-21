@@ -1,7 +1,7 @@
 Class {
 	#name : #GncProfiler,
 	#superclass : #Object,
-	#category : #Gnocco
+	#category : #'Gnocco-GeneticMutation'
 }
 
 { #category : #'primitives - access' }

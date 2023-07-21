@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'grammarClass'
 	],
-	#category : #'Gnocco-Genetic Optimization'
+	#category : #'Gnocco-GeneticMutation'
 }
 
 { #category : #'instance creation' }

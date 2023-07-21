@@ -29,10 +29,6 @@ GncExpressionGrammar >> defineGrammar [
 		| '(', ntExpression, ')'
 		| ntNumber, '.', ntNumber
 		| ntNumber.
-]
-
-{ #category : #accessing }
-GncExpressionGrammar >> start [
-
+		
 	^ ntExpression
 ]

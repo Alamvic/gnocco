@@ -8,7 +8,7 @@ Classes that use me should be data whose serialization is to be benchmarked. To 
 "
 Trait {
 	#name : #TBenchmarkable,
-	#category : #'Gnocco-Fuzzing Artifact'
+	#category : #'Gnocco-Benchmarks'
 }
 
 { #category : #'instance creation' }

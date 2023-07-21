@@ -20,7 +20,7 @@ Class {
 		'ntObjectInstance',
 		'ntClassDigit'
 	],
-	#category : #'Gnocco-Grammar'
+	#category : #'Gnocco-Benchmarks'
 }
 
 { #category : #initialization }
@@ -55,6 +55,7 @@ GncStonGrammar >> defineGrammar [
 	ntValues --> ntObject | ntObject, ', ', ntValues @ 99.
 	
 	ntId --> '' < [ GncLeaf withToken: availableId atRandom printString ].
+	^ ntObjectInstance
 ]
 
 { #category : #translating }
@@ -62,10 +63,4 @@ GncStonGrammar >> generateAst: generator [
 
 	availableId := 0.
 	^ super generateAst: generator
-]
-
-{ #category : #accessing }
-GncStonGrammar >> start [
-
-	^ ntObjectInstance
 ]

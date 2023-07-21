@@ -14,11 +14,7 @@ GncConcatGrammar >> defineGrammar [
 
 	ntStart --> ntLiteral1 , ntLiteral2.
 	ntLiteral1 --> 'oui'.
-	ntLiteral2 --> 'non'
-]
-
-{ #category : #accessing }
-GncConcatGrammar >> start [
-
+	ntLiteral2 --> 'non'.
+	
 	^ ntStart
 ]

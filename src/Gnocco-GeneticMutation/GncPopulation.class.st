@@ -9,7 +9,7 @@ Class {
 		'crossoverRate',
 		'scores'
 	],
-	#category : #'Gnocco-Genetic Optimization'
+	#category : #'Gnocco-GeneticMutation'
 }
 
 { #category : #configuration }

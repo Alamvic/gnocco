@@ -122,11 +122,8 @@ PhoneGrammar >> defineGrammar
   ntPhoneNumber --> ntStartBlock, ' ', ntBlock, ' ', ntBlock, ' ', ntBlock, ' ', ntBlock.
   ntStartBlock --> '0', ($1-$7).
   ntBlock --> ($0-$9), ($0-$9).
-```
-We should also specify the start symbol
-```smalltalk
-PhoneGrammar >> start
-
+  
+  "Specify the start symbol"
   ^ ntPhoneNumber
 ```
 *et voilà*, the grammar is already ready to generate some phone numbers!

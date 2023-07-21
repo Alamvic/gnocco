@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'population'
 	],
-	#category : #'Gnocco-Genetic Optimization'
+	#category : #'Gnocco-GeneticMutation'
 }
 
 { #category : #'accessing - defaults' }

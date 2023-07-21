@@ -20,11 +20,7 @@ GncPhoneGrammar >> defineGrammar [
 	ntPhoneNumber 
 		--> ntStartBlock, ' ', ntBlock, ' ', ntBlock, ' ', ntBlock, ' ', ntBlock.
 	ntStartBlock --> '0' , ($1 - $7).
-	ntBlock --> ntDigit , ntDigit
-]
-
-{ #category : #accessing }
-GncPhoneGrammar >> start [
-
-	^ ntPhoneNumber 
+	ntBlock --> ntDigit , ntDigit.
+	
+	^ ntPhoneNumber
 ]
