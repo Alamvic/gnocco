@@ -132,6 +132,25 @@ PhoneGrammar new generateWithMinCost >>> '04 67 92 39 04'
 ```
 The method `generateWithMinCost` generates a string with a generator whose maximum allowed height is minimal. Please refer
 
+## Common pitfalls
+
+The alternative operator `|` is just a shorthand for defining several rules. Fragments do not compose with `|`: when you write
+```smalltalk
+ntA --> 'hello' | 'you'
+```
+it's the same as
+```smalltalk
+ntA --> 'hello'.
+ntA --> 'you'
+```
+not as the following, **which won't do what you expect it to do** (or maybe it will but then you're just weird):
+```smalltalk
+ntA --> ('hello' | 'you').
+```
+Keep in mind that this DSL is built on top of Pharo's syntax, which only knows about message sends. In Pharo, infix operators
+are left-associative (except for `:=`) and all have the same priority. This doesn't match the traditional way to parse 
+mathematical expressions, so beware.
+
 # Generators
 
 Gnocco has a lot of choices to take during the generation of a string: indeed, each time it has to expand a non-terminal, any rule
