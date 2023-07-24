@@ -36,7 +36,7 @@ GncGrammarPopulation class >> newWithGrammar: grammarClass andGenerator: generat
 GncGrammarPopulation class >> newWithGrammar: grammarClass andMaxHeight: maxHeight [
 
 	^ self newWithGrammar: grammarClass andGenerator: (GncGrammarGenerator new
-			   maxHeightCost: maxHeight;
+			   maxHeight: maxHeight;
 			   yourself)
 ]
 

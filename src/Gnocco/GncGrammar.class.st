@@ -46,13 +46,16 @@ GncGrammar >> eachNonTerminalSlot: body [
 { #category : #translating }
 GncGrammar >> generateAst: generator [
 
-	^ self start generateAst: (generator offsetHeightCost: self minHeight)
+	^ self start generateAst:
+		  (generator
+			   offsetHeightCost: self minHeight
+			   andSizeCost: self minSize)
 ]
 
 { #category : #translating }
 GncGrammar >> generateWithMinCost [
 
-	^ self generate: (GncGrammarGenerator new)
+	^ self generate: (GncGrammarGenerator newMinimal)
 ]
 
 { #category : #initialization }
@@ -103,6 +106,12 @@ GncGrammar >> initialize [
 GncGrammar >> minHeight [
 
 	^ self start minHeight
+]
+
+{ #category : #accessing }
+GncGrammar >> minSize [
+
+	^ self start minSize
 ]
 
 { #category : #initialization }

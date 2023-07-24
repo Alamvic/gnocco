@@ -33,8 +33,8 @@ Class {
 { #category : #'instance creation' }
 GncObjectGraph class >> fuzz [
 
-	^ self fuzz: (GncGrammarGenerator new
-			   maxHeightCost: 20;
+	^ self fuzz: (GncGrammarGenerator newUnbounded
+			   maxHeight: 20;
 			   yourself) "Why 20? Why not... :|"
 ]
 

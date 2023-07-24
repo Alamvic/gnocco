@@ -29,9 +29,9 @@ GncStonGrammar >> defineGrammar [
 	ntObjects --> ntObjectInstance
 		| ntObjectInstance, OSPlatform current lineEnding, ntObjects.
 		
-	ntObject --> "ntPrimitive
+	ntObject --> ntPrimitive
 		| ntSymbol
-		|" ntObjectInstance @ 99
+		| ntObjectInstance @ 99
 		| '@', ntId @ [ :weight |
 			availableId isZero ifTrue: [ 0 ] ifFalse: [ weight ] ].
 		
