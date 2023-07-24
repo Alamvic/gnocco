@@ -22,8 +22,7 @@ GncStonGrammarTestCase >> tearDown [
 GncStonGrammarTestCase >> testCanGenerateCost [
 
 	| grammar generator minimumTreeHeight ast |
-	generator := GncGrammarGenerator new
-		             maxHeightCost: 0;
+	generator := GncGrammarGenerator newMinimal
 		             seed: 17;
 		             yourself.
 	grammar := GncStonGrammar new.
@@ -41,8 +40,8 @@ GncStonGrammarTestCase >> testStonSyntax [
 	1 to: 100 do: [ :j |
 		| result |
 		result := STON reader
-			          on: (grammar generate: (GncGrammarGenerator new
-							            maxHeightCost: 20;
+			          on: (grammar generate: (GncGrammarGenerator newUnbounded
+							            maxHeight: 20;
 							            yourself)) readStream;
 			          next.
 		self assert: (result class name beginsWith: 'GncFuzzyClass') ]
