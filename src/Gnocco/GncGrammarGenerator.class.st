@@ -2,8 +2,8 @@ Class {
 	#name : #GncGrammarGenerator,
 	#superclass : #GncVisitor,
 	#instVars : [
-		'maxSize',
 		'randomGenerator',
+		'maxSize',
 		'maxHeight'
 	],
 	#category : #'Gnocco-Visitors'
@@ -32,7 +32,6 @@ GncGrammarGenerator >> initialize [
 
 	super initialize.
 	randomGenerator := GncPCGRandomGenerator new.
-	maxHeightCost := 0
 ]
 
 { #category : #'accessing - attributes' }

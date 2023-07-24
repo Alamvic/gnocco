@@ -55,7 +55,7 @@ GrammarTestCase >> testDisjunctionOui [
 	| grammar generator |
 	grammar := GncDisjunctionGrammar new.
 	generator := GncGrammarGenerator newMinimal
-		             seed: 1;
+		             seed: 3;
 		             yourself.
 	self assert: (grammar generate: generator) equals: 'oui'
 ]
@@ -99,7 +99,7 @@ GrammarTestCase >> testRange1 [
 
 	| grammar generator |
 	grammar := GncRangeGrammar new.
-	generator := GncGrammarGenerator newMinimal seed: 42; yourself.
+	generator := GncGrammarGenerator newMinimal seed: 3; yourself.
 	self assert: (grammar generate: generator) equals: '4'
 ]
 
@@ -108,7 +108,7 @@ GrammarTestCase >> testRange2 [
 
 	| grammar generator |
 	grammar := GncRangeGrammar new.
-	generator := GncGrammarGenerator newMinimal seed: 43; yourself.
+	generator := GncGrammarGenerator newMinimal seed: 2; yourself.
 	self assert: (grammar generate: generator) equals: '3'
 ]
 
@@ -117,7 +117,7 @@ GrammarTestCase >> testRange3 [
 
 	| grammar generator |
 	grammar := GncRangeGrammar new.
-	generator := GncGrammarGenerator newMinimal seed: 45; yourself.
+	generator := GncGrammarGenerator newMinimal seed: 1; yourself.
 	self assert: (grammar generate: generator) equals: '5'
 ]
 
