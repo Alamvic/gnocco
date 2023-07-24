@@ -13,7 +13,7 @@ GncTerminal >> minHeight [
 { #category : #accessing }
 GncTerminal >> minSize [
 
-	^ 1
+	^ GncLeaf treeSize
 ]
 
 { #category : #accessing }

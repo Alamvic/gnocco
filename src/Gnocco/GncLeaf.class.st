@@ -31,6 +31,12 @@ Class {
 }
 
 { #category : #'instance creation' }
+GncLeaf class >> treeSize [
+
+	^ 1
+]
+
+{ #category : #'instance creation' }
 GncLeaf class >> withToken: token [
 
 	^ self new token: token
@@ -63,5 +69,5 @@ GncLeaf >> treeHeight [
 { #category : #translating }
 GncLeaf >> treeSize [
 
-	^ 1
+	^ self class treeSize
 ]

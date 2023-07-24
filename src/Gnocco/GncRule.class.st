@@ -94,6 +94,12 @@ GncRule >> minSize [
 ]
 
 { #category : #translating }
+GncRule >> minSize: newSize [
+
+	minSize := newSize
+]
+
+{ #category : #translating }
 GncRule >> post: postCallback [
 
 	postHook := postCallback
@@ -126,6 +132,8 @@ GncRule >> printOn: stream [
 	stream
 		<< '(';
 		print: self minHeight;
+		<< '/';
+		print: self minSize;
 		<< ') [';
 		print: weight;
 		<< ']'

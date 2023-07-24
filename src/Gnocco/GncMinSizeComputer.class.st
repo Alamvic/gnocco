@@ -25,16 +25,16 @@ GncMinSizeComputer >> visitNonTerminalOnce: nonTerminal [
 { #category : #visiting }
 GncMinSizeComputer >> visitRule: rule [
 
-	| minHeight |
-	minHeight := 0.
+	| minSize |
+	minSize := 0.
 	rule fragments do: [ :fragment |
-		minHeight := minHeight + (fragment visit: self) ].
-	rule minHeight: (rule minHeight min: minHeight).
-	^ rule minHeight
+		minSize := minSize + (fragment visit: self) ].
+	rule minSize: (rule minSize min: minSize).
+	^ rule minSize
 ]
 
 { #category : #visiting }
 GncMinSizeComputer >> visitTerminal: terminal [
 
-	^ terminal minHeight
+	^ terminal minSize
 ]

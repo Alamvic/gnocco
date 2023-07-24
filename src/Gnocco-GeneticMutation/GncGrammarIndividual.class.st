@@ -2,8 +2,7 @@ Class {
 	#name : #GncGrammarIndividual,
 	#superclass : #GncIndividual,
 	#instVars : [
-		'grammar',
-		'data'
+		'grammar'
 	],
 	#category : #'Gnocco-GeneticMutation'
 }
@@ -19,7 +18,7 @@ GncGrammarIndividual class >> newFrom: other [
 { #category : #accessing }
 GncGrammarIndividual >> computeScore [
 
-	| "profiler" result |
+	| "profiler" result data |
 	"profiler := PrfMethodProfiler new.
 	profiler addPackage: #'Fuel-Core' asPackage."
 	data := GncObjectGraph with: (STON reader

@@ -12,8 +12,7 @@ GrammarTestCase >> testCanGenerateCost [
 		GncExpressionGrammar.
 		GncWeightedExpressionGrammar } do: [ :grammarClass |
 		| grammar generator minimumTreeHeight ast |
-		generator := GncGrammarGenerator new
-			             maxHeightCost: 0;
+		generator := GncGrammarGenerator newMinimal
 			             seed: 17;
 			             yourself.
 		grammar := grammarClass new.
@@ -44,7 +43,7 @@ GrammarTestCase >> testDisjunctionNon [
 
 	| grammar generator |
 	grammar := GncDisjunctionGrammar new.
-	generator := GncGrammarGenerator new
+	generator := GncGrammarGenerator newMinimal
 		             seed: 42;
 		             yourself.
 	self assert: (grammar generate: generator) equals: 'non'
@@ -55,7 +54,7 @@ GrammarTestCase >> testDisjunctionOui [
 
 	| grammar generator |
 	grammar := GncDisjunctionGrammar new.
-	generator := GncGrammarGenerator new
+	generator := GncGrammarGenerator newMinimal
 		             seed: 3;
 		             yourself.
 	self assert: (grammar generate: generator) equals: 'oui'
@@ -100,7 +99,7 @@ GrammarTestCase >> testRange1 [
 
 	| grammar generator |
 	grammar := GncRangeGrammar new.
-	generator := GncGrammarGenerator new seed: 3; yourself.
+	generator := GncGrammarGenerator newMinimal seed: 3; yourself.
 	self assert: (grammar generate: generator) equals: '4'
 ]
 
@@ -109,7 +108,7 @@ GrammarTestCase >> testRange2 [
 
 	| grammar generator |
 	grammar := GncRangeGrammar new.
-	generator := GncGrammarGenerator new seed: 2; yourself.
+	generator := GncGrammarGenerator newMinimal seed: 2; yourself.
 	self assert: (grammar generate: generator) equals: '3'
 ]
 
@@ -118,7 +117,7 @@ GrammarTestCase >> testRange3 [
 
 	| grammar generator |
 	grammar := GncRangeGrammar new.
-	generator := GncGrammarGenerator new seed: 45; yourself.
+	generator := GncGrammarGenerator newMinimal seed: 1; yourself.
 	self assert: (grammar generate: generator) equals: '5'
 ]
 
@@ -127,7 +126,7 @@ GrammarTestCase >> testWeightsNon [
 
 	| grammar generator |
 	grammar := GncDisjunctionGrammar new.
-	generator := GncGrammarGenerator new
+	generator := GncGrammarGenerator newMinimal
 		             seed: 17;
 		             yourself.
 	(grammar parameters at: 1) set: 0.
@@ -139,7 +138,7 @@ GrammarTestCase >> testWeightsOui [
 
 	| grammar generator |
 	grammar := GncDisjunctionGrammar new.
-	generator := GncGrammarGenerator new
+	generator := GncGrammarGenerator newMinimal
 		             seed: 17;
 		             yourself.
 	(grammar parameters at: 3) set: 0.
