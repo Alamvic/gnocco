@@ -17,4 +17,6 @@ GncBaseGrammar >> defineGrammar [
 
 	ntNumber --> ntDigit, ntNumber | ntDigit.
 	ntDigit --> ($0 - $9).
+	
+	^ ntNumber
 ]
