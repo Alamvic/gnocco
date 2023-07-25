@@ -7,8 +7,7 @@ Class {
 { #category : #visiting }
 GncMinSizeComputer >> temporaryValueFor: nonTerminal [
 
-	^ nonTerminal minSize ifNil: [ "if we detect a cycle, then it cannot be the smallest derivation tree"
-		  Float infinity ]
+	^ nonTerminal minSize
 ]
 
 { #category : #visiting }

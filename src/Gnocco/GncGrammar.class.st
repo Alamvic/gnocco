@@ -16,8 +16,14 @@ Class {
 { #category : #initialization }
 GncGrammar >> computeCost [
 
-	self start visit: GncMinHeightComputer new.
-	self start visit: GncMinSizeComputer new
+	| again |
+	again := false.
+	{
+		GncMinHeightComputer new.
+		GncMinSizeComputer new } do: [ :visitor |
+		self start visit: visitor.
+		again := again | visitor changed ].
+	^ again
 ]
 
 { #category : #initialization }
@@ -75,16 +81,12 @@ GncGrammar >> initialize [
 	"   where T spans over all non terminals, and T -> T_1, ..., T_n over all production rules"
 	" cost(a) = 0   where a spans over all terminals"
 	"To compute a solution to this system of equations, we note that its solutions are the"
-	"fixpoints of a monotone operator, [stuff]¸ so we iterate the operator until we find"
-	"a fixpoint."
-	"However, in this case, because we are looking for the minimum cost, we can actually iterate"
-	"only twice! This is because, in the first iteration, we will already find all the correct"
-	"costs for the terminals and non terminals, because the minimum cost will not happen in a"
-	"derivation that involves expanding the same non terminal twice in a path from the root of"
-	"the derivation tree."
-	"This means that we only need a second step, to compute the cost of the *rules*."
-	self computeCost.
-	self computeCost.
+	"fixpoints of a monotone operator over the complete lattice of A^k, where A is
+	the set of natural numbers with the addition of the infinity, ordered with the
+	opposite natural order. By the Knaster-Tarski theorem, we can iterate the
+	operator. Since A^k has no infinite chain, this will converge in a finite number
+	of steps."
+	[ self computeCost ] whileTrue.
 
 	parameters := GncParameterCollectionVisitor new
 		              visitOn: self start;
