@@ -1,5 +1,5 @@
 Class {
-	#name : #GncGrammarPopulation,
+	#name : #GncStonGrammarPopulation,
 	#superclass : #GncPopulation,
 	#instVars : [
 		'grammarClass'
@@ -8,13 +8,13 @@ Class {
 }
 
 { #category : #'instance creation' }
-GncGrammarPopulation class >> default [
+GncStonGrammarPopulation class >> default [
 
 	^ self newWithGrammar: GncStonGrammar andMaxHeight: 30
 ]
 
 { #category : #'instance creation' }
-GncGrammarPopulation class >> defaultWithSeed: seed [
+GncStonGrammarPopulation class >> defaultWithSeed: seed [
 
 	| this |
 	this := self default.
@@ -23,7 +23,7 @@ GncGrammarPopulation class >> defaultWithSeed: seed [
 ]
 
 { #category : #'instance creation' }
-GncGrammarPopulation class >> newWithGrammar: grammarClass andGenerator: generator [
+GncStonGrammarPopulation class >> newWithGrammar: grammarClass andGenerator: generator [
 
 	^ self basicNew
 		  generator: generator;
@@ -33,7 +33,7 @@ GncGrammarPopulation class >> newWithGrammar: grammarClass andGenerator: generat
 ]
 
 { #category : #'instance creation' }
-GncGrammarPopulation class >> newWithGrammar: grammarClass andMaxHeight: maxHeight [
+GncStonGrammarPopulation class >> newWithGrammar: grammarClass andMaxHeight: maxHeight [
 
 	^ self newWithGrammar: grammarClass andGenerator: (GncGrammarGenerator new
 			   maxHeight: maxHeight;
@@ -41,26 +41,26 @@ GncGrammarPopulation class >> newWithGrammar: grammarClass andMaxHeight: maxHeig
 ]
 
 { #category : #accessing }
-GncGrammarPopulation >> grammarClass: initGrammarClass [
+GncStonGrammarPopulation >> grammarClass: initGrammarClass [
 
 	grammarClass := initGrammarClass
 ]
 
 { #category : #initialization }
-GncGrammarPopulation >> initialize [
+GncStonGrammarPopulation >> initialize [
 
 	super initialize.
 	GncFuzzyClass setupFuzzyClasses: 9
 ]
 
 { #category : #'as yet unclassified' }
-GncGrammarPopulation >> newRandomIndividual [
+GncStonGrammarPopulation >> newRandomIndividual [
 
 	| grammar |
 	grammar := grammarClass new.
 	grammar parameters do: [ :parameter |
 		parameter set: (100 atRandom: generator random) ].
-	^ GncGrammarIndividual new
+	^ GncStonGrammarIndividual new
 		  grammar: grammar;
 		  generator: generator;
 		  yourself

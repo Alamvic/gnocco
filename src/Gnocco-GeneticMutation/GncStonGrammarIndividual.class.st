@@ -1,5 +1,5 @@
 Class {
-	#name : #GncGrammarIndividual,
+	#name : #GncStonGrammarIndividual,
 	#superclass : #GncIndividual,
 	#instVars : [
 		'grammar'
@@ -8,7 +8,7 @@ Class {
 }
 
 { #category : #'instance creation' }
-GncGrammarIndividual class >> newFrom: other [
+GncStonGrammarIndividual class >> newFrom: other [
 
 	^ self new
 		grammar: other grammar veryDeepCopy;
@@ -16,7 +16,7 @@ GncGrammarIndividual class >> newFrom: other [
 ]
 
 { #category : #accessing }
-GncGrammarIndividual >> computeScore [
+GncStonGrammarIndividual >> computeScore [
 
 	| "profiler" result data |
 	"profiler := PrfMethodProfiler new.
@@ -43,19 +43,19 @@ GncGrammarIndividual >> computeScore [
 ]
 
 { #category : #accessing }
-GncGrammarIndividual >> grammar [
+GncStonGrammarIndividual >> grammar [
 
 	^ grammar
 ]
 
 { #category : #accessing }
-GncGrammarIndividual >> grammar: aGrammar [
+GncStonGrammarIndividual >> grammar: aGrammar [
 
 	grammar := aGrammar
 ]
 
 { #category : #accessing }
-GncGrammarIndividual >> parameters [
+GncStonGrammarIndividual >> parameters [
 
 	^ grammar parameters
 ]
