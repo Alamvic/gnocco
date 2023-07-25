@@ -9,7 +9,7 @@ Class {
 		'outData',
 		'plot'
 	],
-	#category : #'Gnocco-Benchmarks'
+	#category : #'Gnocco-Benchmarks-Benchmark Results'
 }
 
 { #category : #serializing }

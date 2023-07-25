@@ -6,7 +6,7 @@ Class {
 		'gctime',
 		'dataSize'
 	],
-	#category : #'Gnocco-Benchmarks'
+	#category : #'Gnocco-Benchmarks-Benchmark Results'
 }
 
 { #category : #accessing }

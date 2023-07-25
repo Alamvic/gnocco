@@ -1,7 +1,7 @@
 Class {
 	#name : #GncStonGrammarTestCase,
 	#superclass : #TestCase,
-	#category : #'Gnocco-Benchmarks'
+	#category : #'Gnocco-Benchmarks-Tests'
 }
 
 { #category : #tests }
