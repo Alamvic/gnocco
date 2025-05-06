@@ -1,6 +1,6 @@
-Extension { #name : #String }
+Extension { #name : 'String' }
 
-{ #category : #'*Gnocco' }
+{ #category : '*Gnocco' }
 String >> asFragment [
 
 	^ GncTerminalLiteral newWithLiteral: self

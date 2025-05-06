@@ -1,6 +1,6 @@
-Extension { #name : #BlockClosure }
+Extension { #name : 'BlockClosure' }
 
-{ #category : #'*Gnocco' }
+{ #category : '*Gnocco' }
 BlockClosure >> asFragment [
 
 	^ GncTerminalBlock new
@@ -8,7 +8,7 @@ BlockClosure >> asFragment [
 		  yourself
 ]
 
-{ #category : #'*Gnocco' }
+{ #category : '*Gnocco' }
 BlockClosure >> asWeight [
 
 	^ GncComputableWeight newWithWeight: self

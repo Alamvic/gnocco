@@ -5,19 +5,21 @@ The only method required to be implemented is `generateAstWithMaxCost: maxCost`,
 Note that using this trait automatically provides the `TFuzzText` trait, because the generated AST is assumed to use `TFuzzText`.
 "
 Trait {
-	#name : #TFuzzAst,
+	#name : 'TFuzzAst',
 	#classTraits : 'TFuzzText classTrait',
-	#category : #'Gnocco-AST'
+	#category : 'Gnocco-AST',
+	#package : 'Gnocco',
+	#tag : 'AST'
 }
 
-{ #category : #translating }
+{ #category : 'translating' }
 TFuzzAst >> generate: generator [
 
 	^ String streamContents: [ :stream |
 		  (self generateAst: generator) generateInto: stream ]
 ]
 
-{ #category : #translating }
+{ #category : 'translating' }
 TFuzzAst >> generateAst: generator [
 
 	^ self explicitRequirement
