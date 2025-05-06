@@ -1,25 +1,27 @@
 Class {
-	#name : #GncTerminalBlock,
-	#superclass : #GncTerminal,
+	#name : 'GncTerminalBlock',
+	#superclass : 'GncTerminal',
 	#instVars : [
 		'block'
 	],
-	#category : #'Gnocco-Grammar'
+	#category : 'Gnocco-Grammar',
+	#package : 'Gnocco',
+	#tag : 'Grammar'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GncTerminalBlock >> block: anObject [
 
 	block := anObject
 ]
 
-{ #category : #translating }
+{ #category : 'translating' }
 GncTerminalBlock >> generateAst: generator [
 
 	^ GncLeaf withToken: (block cull: generator)
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 GncTerminalBlock >> printNameOn: stream [
 
 	stream << '<fun>'

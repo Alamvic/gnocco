@@ -1,33 +1,35 @@
 Class {
-	#name : #GncOnceVisitor,
-	#superclass : #GncVisitor,
+	#name : 'GncOnceVisitor',
+	#superclass : 'GncVisitor',
 	#instVars : [
 		'cachedVisits',
 		'changed'
 	],
-	#category : #'Gnocco-Visitors'
+	#category : 'Gnocco-Visitors',
+	#package : 'Gnocco',
+	#tag : 'Visitors'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GncOnceVisitor >> changed [
 
 	^ changed
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 GncOnceVisitor >> initialize [
 
 	cachedVisits := IdentityDictionary new.
 	changed := false
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 GncOnceVisitor >> temporaryValueFor: nonTerminal [
 
 	self subclassResponsibility
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 GncOnceVisitor >> visitNonTerminal: nonTerminal [
 
 	^ cachedVisits at: nonTerminal ifAbsentPut: [
@@ -39,7 +41,7 @@ GncOnceVisitor >> visitNonTerminal: nonTerminal [
 		  new ]
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 GncOnceVisitor >> visitNonTerminalOnce: nonTerminal [
 
 	self subclassResponsibility

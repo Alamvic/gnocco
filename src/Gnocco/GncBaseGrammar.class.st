@@ -3,16 +3,18 @@ I am an abstract grammar. I provide two non terminals, `ntDigit` and `ntNumber`,
 respectively, a base 10 digit and a base 10 integer.
 "
 Class {
-	#name : #GncBaseGrammar,
-	#superclass : #GncGrammar,
+	#name : 'GncBaseGrammar',
+	#superclass : 'GncGrammar',
 	#instVars : [
 		'ntNumber',
 		'ntDigit'
 	],
-	#category : #'Gnocco-Grammar Library'
+	#category : 'Gnocco-Grammar Library',
+	#package : 'Gnocco',
+	#tag : 'Grammar Library'
 }
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 GncBaseGrammar >> defineGrammar [ 
 
 	ntNumber --> ntDigit, ntNumber | ntDigit.

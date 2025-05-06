@@ -3,17 +3,19 @@ I'm not sure what my purpose in life is. Maybe I'm useless, in which case I'll p
 soon :(
 "
 Trait {
-	#name : #TFuzzText,
-	#category : #'Gnocco-AST'
+	#name : 'TFuzzText',
+	#category : 'Gnocco-AST',
+	#package : 'Gnocco',
+	#tag : 'AST'
 }
 
-{ #category : #translating }
+{ #category : 'translating' }
 TFuzzText >> generate [
 
 	^ String streamContents: [ :stream | self generateInto: stream ]
 ]
 
-{ #category : #translating }
+{ #category : 'translating' }
 TFuzzText >> generateInto: stream [
 	^ self explicitRequirement 
 ]
