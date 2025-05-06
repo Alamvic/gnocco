@@ -1,8 +1,10 @@
 Class {
-	#name : #GrammarIsNotProductive,
-	#superclass : #Error,
+	#name : 'GrammarIsNotProductive',
+	#superclass : 'Error',
 	#instVars : [
 		'grammar'
 	],
-	#category : #'Gnocco-Weight'
+	#category : 'Gnocco-Weight',
+	#package : 'Gnocco',
+	#tag : 'Weight'
 }

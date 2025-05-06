@@ -1,16 +1,18 @@
 Class {
-	#name : #GncMinHeightComputer,
-	#superclass : #GncOnceVisitor,
-	#category : #'Gnocco-Visitors'
+	#name : 'GncMinHeightComputer',
+	#superclass : 'GncOnceVisitor',
+	#category : 'Gnocco-Visitors',
+	#package : 'Gnocco',
+	#tag : 'Visitors'
 }
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 GncMinHeightComputer >> temporaryValueFor: nonTerminal [
 
 	^ nonTerminal minHeight
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 GncMinHeightComputer >> visitNonTerminalOnce: nonTerminal [
 
 	| heightCost |
@@ -21,7 +23,7 @@ GncMinHeightComputer >> visitNonTerminalOnce: nonTerminal [
 	^ nonTerminal minHeight
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 GncMinHeightComputer >> visitRule: rule [
 
 	| minHeight |
@@ -32,7 +34,7 @@ GncMinHeightComputer >> visitRule: rule [
 	^ rule minHeight
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 GncMinHeightComputer >> visitTerminal: terminal [
 
 	^ 0

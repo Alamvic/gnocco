@@ -1,27 +1,29 @@
 Class {
-	#name : #GncTerminalRange,
-	#superclass : #GncTerminal,
+	#name : 'GncTerminalRange',
+	#superclass : 'GncTerminal',
 	#instVars : [
 		'from',
 		'to'
 	],
-	#category : #'Gnocco-Grammar'
+	#category : 'Gnocco-Grammar',
+	#package : 'Gnocco',
+	#tag : 'Grammar'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 GncTerminalRange class >> from: from to: to [
 
 	^ self new from: from to: to
 ]
 
-{ #category : #translating }
+{ #category : 'translating' }
 GncTerminalRange >> from: f to: t [
 
 	from := f.
 	to := t
 ]
 
-{ #category : #translating }
+{ #category : 'translating' }
 GncTerminalRange >> generateAst: generator [
 
 	| charCode |
@@ -30,7 +32,7 @@ GncTerminalRange >> generateAst: generator [
 	^ GncLeaf withToken: charCode asCharacter
 ]
 
-{ #category : #translating }
+{ #category : 'translating' }
 GncTerminalRange >> generateToken: generator [
 
 	| charCode |
@@ -39,7 +41,7 @@ GncTerminalRange >> generateToken: generator [
 	^ GncLeaf withToken: charCode asCharacter
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 GncTerminalRange >> printNameOn: stream [
 
 	stream
