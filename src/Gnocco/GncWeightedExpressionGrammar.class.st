@@ -2,19 +2,17 @@
 I am an example grammar that produces arithmetic expressions. I am weighted to produce more seemingly natural arithmetic expression than my non-weighted counterpart, `GncExpressionGrammar`.
 "
 Class {
-	#name : 'GncWeightedExpressionGrammar',
-	#superclass : 'GncBaseGrammar',
+	#name : #GncWeightedExpressionGrammar,
+	#superclass : #GncBaseGrammar,
 	#instVars : [
 		'ntExpression',
 		'ntFactor',
 		'ntTerm'
 	],
-	#category : 'Gnocco-Grammar Library',
-	#package : 'Gnocco',
-	#tag : 'Grammar Library'
+	#category : #'Gnocco-Grammar Library'
 }
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 GncWeightedExpressionGrammar >> defineGrammar [
 
 	super defineGrammar.

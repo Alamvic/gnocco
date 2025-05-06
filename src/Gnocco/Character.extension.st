@@ -1,6 +1,6 @@
-Extension { #name : 'Character' }
+Extension { #name : #Character }
 
-{ #category : '*Gnocco' }
+{ #category : #'*Gnocco' }
 Character >> - to [
 
 	^ GncTerminalRange from: self to: to

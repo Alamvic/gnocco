@@ -1,6 +1,6 @@
-Extension { #name : 'OrderedCollection' }
+Extension { #name : #OrderedCollection }
 
-{ #category : '*Gnocco' }
+{ #category : #'*Gnocco' }
 OrderedCollection >> swapRemoveAt: index [
 	"Remove the element at index `index` in contant time, and answer it. Does not preserve the order."
 

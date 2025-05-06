@@ -2,20 +2,18 @@
 I am a generative (context-free) grammar. Inspect me!
 "
 Class {
-	#name : 'GncGrammar',
-	#superclass : 'Object',
+	#name : #GncGrammar,
+	#superclass : #Object,
 	#traits : 'TFuzzAst',
 	#classTraits : 'TFuzzAst classTrait',
 	#instVars : [
 		'parameters',
 		'start'
 	],
-	#category : 'Gnocco-Grammar',
-	#package : 'Gnocco',
-	#tag : 'Grammar'
+	#category : #'Gnocco-Grammar'
 }
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 GncGrammar >> computeCost [
 
 	| again |
@@ -28,13 +26,13 @@ GncGrammar >> computeCost [
 	^ again
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 GncGrammar >> defineGrammar [
 
 	self subclassResponsibility
 ]
 
-{ #category : 'iterating elements' }
+{ #category : #'iterating elements' }
 GncGrammar >> eachNonTerminal: body [
 
 	self eachNonTerminalSlot: [ :slot |
@@ -43,7 +41,7 @@ GncGrammar >> eachNonTerminal: body [
 		body value: nonTerminal ]
 ]
 
-{ #category : 'iterating elements' }
+{ #category : #'iterating elements' }
 GncGrammar >> eachNonTerminalSlot: body [
 
 	self class allSlots do: [ :slot |
@@ -51,7 +49,7 @@ GncGrammar >> eachNonTerminalSlot: body [
 			body value: slot ] ]
 ]
 
-{ #category : 'translating' }
+{ #category : #translating }
 GncGrammar >> generateAst: generator [
 
 	^ self start generateAst:
@@ -60,13 +58,13 @@ GncGrammar >> generateAst: generator [
 			   andSizeCost: self minSize)
 ]
 
-{ #category : 'translating' }
+{ #category : #translating }
 GncGrammar >> generateWithMinCost [
 
 	^ self generate: (GncGrammarGenerator newMinimal)
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 GncGrammar >> initialize [
 
 	self eachNonTerminalSlot: [ :slot |
@@ -106,25 +104,25 @@ GncGrammar >> initialize [
 	self start
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GncGrammar >> minHeight [
 
 	^ self start minHeight
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GncGrammar >> minSize [
 
 	^ self start minSize
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 GncGrammar >> parameters [
 
 	^ parameters
 ]
 
-{ #category : 'printing' }
+{ #category : #printing }
 GncGrammar >> printOn: stream [
 
 	self eachNonTerminal: [ :nonTerminal |
@@ -134,7 +132,7 @@ GncGrammar >> printOn: stream [
 			<< OSPlatform current lineEnding ]
 ]
 
-{ #category : 'translating' }
+{ #category : #translating }
 GncGrammar >> showInInspect [
 
 	<inspectorPresentationOrder: 0 title: 'Grammar Rules'>
@@ -144,7 +142,7 @@ GncGrammar >> showInInspect [
 		  yourself
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 GncGrammar >> start [
 
 	^ start

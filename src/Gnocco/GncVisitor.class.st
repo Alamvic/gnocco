@@ -1,30 +1,28 @@
 Class {
-	#name : 'GncVisitor',
-	#superclass : 'Object',
-	#category : 'Gnocco-Visitors',
-	#package : 'Gnocco',
-	#tag : 'Visitors'
+	#name : #GncVisitor,
+	#superclass : #Object,
+	#category : #'Gnocco-Visitors'
 }
 
-{ #category : 'visiting' }
+{ #category : #visiting }
 GncVisitor >> visitNonTerminal: nonTerminal [
 
 	self subclassResponsibility 
 ]
 
-{ #category : 'visiting' }
+{ #category : #visiting }
 GncVisitor >> visitOn: fragment [
 
 	^ fragment visit: self
 ]
 
-{ #category : 'visiting' }
+{ #category : #visiting }
 GncVisitor >> visitRule: rule [
 
 	self subclassResponsibility 
 ]
 
-{ #category : 'visiting' }
+{ #category : #visiting }
 GncVisitor >> visitTerminal: terminal [
 
 	self subclassResponsibility 

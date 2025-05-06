@@ -4,61 +4,59 @@ similar to how production rules are written in the literature, and integrates we
 Pharo.
 "
 Class {
-	#name : 'GncRuleMaker',
-	#superclass : 'Object',
+	#name : #GncRuleMaker,
+	#superclass : #Object,
 	#instVars : [
 		'rule',
 		'nonTerminal'
 	],
-	#category : 'Gnocco-Private',
-	#package : 'Gnocco',
-	#tag : 'Private'
+	#category : #'Gnocco-Private'
 }
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 GncRuleMaker class >> with: rule in: nonTerminal [
 
 	^ self new rule: rule; nonTerminal: nonTerminal; yourself
 ]
 
-{ #category : 'copying' }
+{ #category : #copying }
 GncRuleMaker >> , fragment [
 
 	rule addFragment: fragment.
 	^ self
 ]
 
-{ #category : 'copying' }
+{ #category : #copying }
 GncRuleMaker >> < preCallback [
 
 	rule pre: preCallback
 ]
 
-{ #category : 'copying' }
+{ #category : #copying }
 GncRuleMaker >> > postCallback [
 
 	rule post: postCallback
 ]
 
-{ #category : 'copying' }
+{ #category : #copying }
 GncRuleMaker >> @ weight [
 
 	rule weight: weight
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GncRuleMaker >> nonTerminal: aNonTerminal [
 
 	nonTerminal := aNonTerminal
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GncRuleMaker >> rule: aRule [
 
 	rule := aRule
 ]
 
-{ #category : 'copying' }
+{ #category : #copying }
 GncRuleMaker >> | fragment [
 
 	rule := nonTerminal newRule.

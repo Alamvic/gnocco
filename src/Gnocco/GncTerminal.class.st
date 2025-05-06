@@ -1,24 +1,22 @@
 Class {
-	#name : 'GncTerminal',
-	#superclass : 'GncFragment',
-	#category : 'Gnocco-Grammar',
-	#package : 'Gnocco',
-	#tag : 'Grammar'
+	#name : #GncTerminal,
+	#superclass : #GncFragment,
+	#category : #'Gnocco-Grammar'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GncTerminal >> minHeight [
 
 	^ 0
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GncTerminal >> minSize [
 
 	^ GncLeaf treeSize
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GncTerminal >> visit: visitor [
 
 	^ visitor visitTerminal: self

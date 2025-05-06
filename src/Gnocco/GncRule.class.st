@@ -1,6 +1,6 @@
 Class {
-	#name : 'GncRule',
-	#superclass : 'Object',
+	#name : #GncRule,
+	#superclass : #Object,
 	#traits : 'TFuzzAst',
 	#classTraits : 'TFuzzAst classTrait',
 	#instVars : [
@@ -9,30 +9,25 @@ Class {
 		'preHook',
 		'postHook',
 		'minHeight',
-		'minSize',
-		'rewards',
-		'visits',
-		'weights'
+		'minSize'
 	],
-	#category : 'Gnocco-Private',
-	#package : 'Gnocco',
-	#tag : 'Private'
+	#category : #'Gnocco-Private'
 }
 
-{ #category : 'instance creation' }
+{ #category : #'instance creation' }
 GncRule class >> newWithFragments: fragments [
 
 	^ self new fragments:
 		  (fragments collect: [ :fragment | fragment asFragment ])
 ]
 
-{ #category : 'translating' }
+{ #category : #translating }
 GncRule >> addFragment: fragment [
 
 	fragments add: fragment asFragment
 ]
 
-{ #category : 'translating' }
+{ #category : #translating }
 GncRule >> computeCost [
 
 	| minHeightCost minSizeCost |
@@ -46,19 +41,19 @@ GncRule >> computeCost [
 	minSize := minSizeCost
 ]
 
-{ #category : 'translating' }
+{ #category : #translating }
 GncRule >> fragments [
 
 	^ fragments
 ]
 
-{ #category : 'translating' }
+{ #category : #translating }
 GncRule >> fragments: rule [
 
 	fragments := rule
 ]
 
-{ #category : 'translating' }
+{ #category : #translating }
 GncRule >> generateAst: generator [
 
 	| result |
@@ -71,66 +66,64 @@ GncRule >> generateAst: generator [
 	^ GncInnerNode with: result
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 GncRule >> initialize [
 
 	fragments := OrderedCollection new.
 	weight := 1 asWeight.
 	minHeight := Float infinity.
-	minSize := Float infinity.
-	visits := Dictionary new.
-	rewards := Dictionary new.
+	minSize := Float infinity
 ]
 
-{ #category : 'translating' }
+{ #category : #translating }
 GncRule >> minHeight [
 
 	^ minHeight
 ]
 
-{ #category : 'translating' }
+{ #category : #translating }
 GncRule >> minHeight: cost [
 
 	minHeight := cost
 ]
 
-{ #category : 'translating' }
+{ #category : #translating }
 GncRule >> minSize [
 
 	^ minSize
 ]
 
-{ #category : 'translating' }
+{ #category : #translating }
 GncRule >> minSize: newSize [
 
 	minSize := newSize
 ]
 
-{ #category : 'translating' }
+{ #category : #translating }
 GncRule >> post: postCallback [
 
 	postHook := postCallback
 ]
 
-{ #category : 'translating' }
+{ #category : #translating }
 GncRule >> postHook [
 
 	^ postHook
 ]
 
-{ #category : 'translating' }
+{ #category : #translating }
 GncRule >> pre: preCallback [
 
 	preHook := preCallback
 ]
 
-{ #category : 'translating' }
+{ #category : #translating }
 GncRule >> preHook [
 
 	^ preHook
 ]
 
-{ #category : 'printing' }
+{ #category : #printing }
 GncRule >> printOn: stream [
 
 	fragments do: [ :fragment |
@@ -146,37 +139,37 @@ GncRule >> printOn: stream [
 		<< ']'
 ]
 
-{ #category : 'translating' }
+{ #category : #translating }
 GncRule >> reset [
 
 	fragments do: [ :fragment | fragment reset ]
 ]
 
-{ #category : 'translating' }
+{ #category : #translating }
 GncRule >> seal [
 
 	fragments := fragments asArray
 ]
 
-{ #category : 'translating' }
+{ #category : #translating }
 GncRule >> visit: visitor [
 
 	^ visitor visitRule: self
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GncRule >> weight [
 
 	^ weight generate
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GncRule >> weight: aWeight [
 
 	weight := aWeight asWeight
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GncRule >> weightBox [
 
 	^ weight
