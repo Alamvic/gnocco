@@ -1,13 +1,11 @@
 Class {
-	#name : 'GncFuzzyClass',
-	#superclass : 'Array',
-	#type : 'variable',
-	#category : 'Gnocco-Private',
-	#package : 'Gnocco',
-	#tag : 'Private'
+	#name : #GncFuzzyClass,
+	#superclass : #Array,
+	#type : #variable,
+	#category : #'Gnocco-Private'
 }
 
-{ #category : 'helper' }
+{ #category : #helper }
 GncFuzzyClass class >> removeFuzzyClasses: numberOfFuzzyClasses [
 	"A helper utility that allows you to remove classes created with `setupFuzzyClasses`."
 
@@ -22,7 +20,7 @@ GncFuzzyClass class >> removeFuzzyClasses: numberOfFuzzyClasses [
 			self compiler evaluate: code ] ]
 ]
 
-{ #category : 'helper' }
+{ #category : #helper }
 GncFuzzyClass class >> setupFuzzyClasses: numberOfFuzzyClasses [
 	"A helper utility that allows you to create `numberOfFuzzyClasses` that subclass this class.
 	Each of them will be named like this one, with an added number at the end, going from `1` to
@@ -40,13 +38,13 @@ GncFuzzyClass class >> setupFuzzyClasses: numberOfFuzzyClasses [
 			self compiler evaluate: code ] ]
 ]
 
-{ #category : 'comparing' }
+{ #category : #comparing }
 GncFuzzyClass >> = other [
 
 	^ self == other
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GncFuzzyClass >> className [
 	"^ self class name allButFirst: super class name size"
 	"Why this doesn't work????"
@@ -54,7 +52,7 @@ GncFuzzyClass >> className [
 	^ self class name allButFirst: self class superclass name size
 ]
 
-{ #category : 'comparing' }
+{ #category : #comparing }
 GncFuzzyClass >> hash [ 
 	
 	^ self identityHash

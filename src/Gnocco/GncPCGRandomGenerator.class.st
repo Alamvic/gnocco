@@ -50,24 +50,22 @@ xurl = """"https://www.cs.hmc.edu/tr/hmc-cs-2014-0905.pdf"""",
 }
 "
 Class {
-	#name : 'GncPCGRandomGenerator',
-	#superclass : 'Object',
+	#name : #GncPCGRandomGenerator,
+	#superclass : #Object,
 	#instVars : [
 		'state',
 		'seed'
 	],
-	#category : 'Gnocco-Grammar',
-	#package : 'Gnocco',
-	#tag : 'Grammar'
+	#category : #'Gnocco-Grammar'
 }
 
-{ #category : 'instance creation' }
+{ #category : #'instance creation' }
 GncPCGRandomGenerator class >> seed: anInteger [
 
 	^ self new seed: anInteger
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GncPCGRandomGenerator >> initialize [
 
 	super initialize.
@@ -75,40 +73,40 @@ GncPCGRandomGenerator >> initialize [
 	self useClockBasedSeed
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GncPCGRandomGenerator >> maxValue [
 
 	^ 16r7FFFFFFF
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GncPCGRandomGenerator >> next [
 	"Answer a random Float in the interval [0 to 1)."
 
 	^ (self privateNextValue / (self maxValue + 1)) asFloat
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GncPCGRandomGenerator >> next: anInteger [
 
 	^ self next: anInteger into: (Array new: anInteger)
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GncPCGRandomGenerator >> next: anInteger into: anArray [
 
 	1 to: anInteger do: [ :index | anArray at: index put: self next ].
 	^ anArray
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GncPCGRandomGenerator >> nextBetween: lowerBound and: higherBound [
 	"Answer a random float number from the range [lowerBound, higherBound)"
 
 	^ lowerBound + (self next * (higherBound - lowerBound))
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GncPCGRandomGenerator >> nextInteger: anInteger [
 	"Answer a random integer in the interval [1, anInteger].
 	Handle large numbers too (for cryptography)."
@@ -120,14 +118,14 @@ GncPCGRandomGenerator >> nextInteger: anInteger [
 	  + 1
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GncPCGRandomGenerator >> nextIntegerBetween: lowerBound and: higherBound [
 	"Answer a random integer number from the inclusive range [lowerBound, higherBound]"
 
 	^ lowerBound + (self nextInteger: higherBound - lowerBound + 1) - 1
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GncPCGRandomGenerator >> primitiveRandomNumber: stateArray [
 	"Answer a random Float in the interval [0 to 1)."
 
@@ -149,14 +147,14 @@ GncPCGRandomGenerator >> primitiveRandomNumber: stateArray [
 		   returnValue << (count negated bitAnd: 31)) bitAnd: 16r7FFFFFFF
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GncPCGRandomGenerator >> privateNextValue [
 	"Answer a random Float in the interval [0 to 1)."
 
 	^ self primitiveRandomNumber: state
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GncPCGRandomGenerator >> seed [
 	"Since [1] says...
 	    'After initialization the ideal solution is to hide seed from the user'
@@ -165,7 +163,7 @@ GncPCGRandomGenerator >> seed [
 	^ seed
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GncPCGRandomGenerator >> seed: aNumber [
 	"Refer #privateNextSeed and [1], seed should be positive and less than m"
 
@@ -173,20 +171,20 @@ GncPCGRandomGenerator >> seed: aNumber [
 	self setStateFromSeed
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GncPCGRandomGenerator >> setStateFromSeed [
 
 	state at: 1 put: seed + 1442695040888963407.
 	self primitiveRandomNumber: state
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GncPCGRandomGenerator >> state [
 
 	^ state
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GncPCGRandomGenerator >> useClockBasedSeed [
 	"Set a reasonable Park-Miller starting seed [1] based on the ms clock."
 
@@ -198,7 +196,7 @@ GncPCGRandomGenerator >> useClockBasedSeed [
 	self setStateFromSeed
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GncPCGRandomGenerator >> useUnixRandomGeneratorSeed [
 	"Try to seed the receiver using random bytes from a Unix OS' /dev/random.
 	Return true if we succeeded, false otherwise.

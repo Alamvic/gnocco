@@ -23,8 +23,8 @@ Internal Representation and Key Implementation Points.
     Implementation Points
 "
 Class {
-	#name : 'GncNonTerminal',
-	#superclass : 'GncFragment',
+	#name : #GncNonTerminal,
+	#superclass : #GncFragment,
 	#instVars : [
 		'name',
 		'rules',
@@ -33,18 +33,16 @@ Class {
 		'minSize',
 		'minHeight'
 	],
-	#category : 'Gnocco-Grammar',
-	#package : 'Gnocco',
-	#tag : 'Grammar'
+	#category : #'Gnocco-Grammar'
 }
 
-{ #category : 'construction' }
+{ #category : #construction }
 GncNonTerminal class >> withName: aName [
 
 	^ self new name: aName
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GncNonTerminal >> --> fragment [
 	"Add a new definition of a non terminal, keeping the old ones."
 
@@ -54,7 +52,7 @@ GncNonTerminal >> --> fragment [
 	^ GncRuleMaker with: currentRule in: self
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GncNonTerminal >> ->> fragment [
 	"Add new definition of a non terminal, overwriting the previous ones."
 
@@ -62,7 +60,7 @@ GncNonTerminal >> ->> fragment [
 	^ self --> fragment
 ]
 
-{ #category : 'translating' }
+{ #category : #translating }
 GncNonTerminal >> generateAst: generator [
 
 	| result rule |
@@ -76,50 +74,50 @@ GncNonTerminal >> generateAst: generator [
 	
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 GncNonTerminal >> initialize [
 	rules := OrderedCollection new.
 	minHeight := Float infinity.
 	minSize := Float infinity.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GncNonTerminal >> minHeight [
 
 	^ minHeight
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GncNonTerminal >> minHeight: cost [
 
 	minHeight := cost
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GncNonTerminal >> minSize [
 
 	^ minSize
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GncNonTerminal >> minSize: size [
 
 	minSize := size
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GncNonTerminal >> name [
 
 	^ name
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GncNonTerminal >> name: string [
 
 	name := string
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GncNonTerminal >> newRule [
 
 	| rule |
@@ -128,37 +126,37 @@ GncNonTerminal >> newRule [
 	^ rule
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GncNonTerminal >> post: postBlock [
 
 	postHook := postBlock
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GncNonTerminal >> postHook [
 
 	^ postHook
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GncNonTerminal >> pre: preBlock [
 
 	preHook := preBlock
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GncNonTerminal >> preHook [
 
 	^ preHook
 ]
 
-{ #category : 'printing' }
+{ #category : #printing }
 GncNonTerminal >> printNameOn: stream [
 
 	^ stream << name
 ]
 
-{ #category : 'printing' }
+{ #category : #printing }
 GncNonTerminal >> printOn: stream [
 
 	| first |
@@ -182,24 +180,24 @@ GncNonTerminal >> printOn: stream [
 			<< OSPlatform current lineEnding ]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GncNonTerminal >> rule: rule [
 	rules add: (GncRule newWithFragments: rule)
 ]
 
-{ #category : 'private' }
+{ #category : #private }
 GncNonTerminal >> rules [
 
 	^ rules
 ]
 
-{ #category : 'private' }
+{ #category : #private }
 GncNonTerminal >> seal [
 
 	rules do: [ :rule | rule seal ]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GncNonTerminal >> visit: visitor [
 
 	^ visitor visitNonTerminal: self

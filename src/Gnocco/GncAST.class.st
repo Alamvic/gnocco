@@ -1,29 +1,24 @@
 Class {
-	#name : 'GncAST',
-	#superclass : 'Object',
+	#name : #GncAST,
+	#superclass : #Object,
 	#traits : 'TFuzzText',
 	#classTraits : 'TFuzzText classTrait',
-	#instVars : [
-		'grammarRule'
-	],
-	#category : 'Gnocco-AST',
-	#package : 'Gnocco',
-	#tag : 'AST'
+	#category : #'Gnocco-AST'
 }
 
-{ #category : 'translating' }
+{ #category : #translating }
 GncAST >> children [
 
 	self subclassResponsibility
 ]
 
-{ #category : 'translating' }
+{ #category : #translating }
 GncAST >> generateInto: stream [
 
 	^ self subclassResponsibility
 ]
 
-{ #category : 'inspecting' }
+{ #category : #inspecting }
 GncAST >> inspectorTreeBuilder [
 
 	<inspectorPresentationOrder: 1 title: 'Tree'>
@@ -34,13 +29,13 @@ GncAST >> inspectorTreeBuilder [
 		  yourself
 ]
 
-{ #category : 'translating' }
+{ #category : #translating }
 GncAST >> treeHeight [
 
 	^ self subclassResponsibility
 ]
 
-{ #category : 'translating' }
+{ #category : #translating }
 GncAST >> treeSize [
 
 	^ self subclassResponsibility

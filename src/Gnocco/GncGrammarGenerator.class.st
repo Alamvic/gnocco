@@ -1,17 +1,15 @@
 Class {
-	#name : 'GncGrammarGenerator',
-	#superclass : 'GncVisitor',
+	#name : #GncGrammarGenerator,
+	#superclass : #GncVisitor,
 	#instVars : [
 		'randomGenerator',
 		'maxSize',
 		'maxHeight'
 	],
-	#category : 'Gnocco-Visitors',
-	#package : 'Gnocco',
-	#tag : 'Visitors'
+	#category : #'Gnocco-Visitors'
 }
 
-{ #category : 'instance creation' }
+{ #category : #'instance creation' }
 GncGrammarGenerator class >> newMinimal [
 
 	^ self new
@@ -20,7 +18,7 @@ GncGrammarGenerator class >> newMinimal [
 		  yourself
 ]
 
-{ #category : 'instance creation' }
+{ #category : #'instance creation' }
 GncGrammarGenerator class >> newUnbounded [
 
 	^ self new
@@ -29,26 +27,26 @@ GncGrammarGenerator class >> newUnbounded [
 		  yourself
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 GncGrammarGenerator >> initialize [
 
 	super initialize.
 	randomGenerator := GncPCGRandomGenerator new.
 ]
 
-{ #category : 'accessing - attributes' }
+{ #category : #'accessing - attributes' }
 GncGrammarGenerator >> maxHeight: cost [
 
 	maxHeight := cost
 ]
 
-{ #category : 'accessing - attributes' }
+{ #category : #'accessing - attributes' }
 GncGrammarGenerator >> maxSize: cost [
 
 	maxSize := cost
 ]
 
-{ #category : 'accessing - attributes' }
+{ #category : #'accessing - attributes' }
 GncGrammarGenerator >> offsetHeightCost: offset [
 
 	^ self clone
@@ -56,7 +54,7 @@ GncGrammarGenerator >> offsetHeightCost: offset [
 		  yourself
 ]
 
-{ #category : 'accessing - attributes' }
+{ #category : #'accessing - attributes' }
 GncGrammarGenerator >> offsetHeightCost: offset andSizeCost: size [
 
 	^ self clone
@@ -65,7 +63,7 @@ GncGrammarGenerator >> offsetHeightCost: offset andSizeCost: size [
 		  yourself
 ]
 
-{ #category : 'accessing - attributes' }
+{ #category : #'accessing - attributes' }
 GncGrammarGenerator >> offsetSizeCost: offset [
 
 	^ self clone
@@ -73,13 +71,13 @@ GncGrammarGenerator >> offsetSizeCost: offset [
 		  yourself
 ]
 
-{ #category : 'private' }
+{ #category : #private }
 GncGrammarGenerator >> random [
 
 	^ randomGenerator
 ]
 
-{ #category : 'accessing - attributes' }
+{ #category : #'accessing - attributes' }
 GncGrammarGenerator >> seed: seed [
 
 	randomGenerator := randomGenerator class new
@@ -87,7 +85,7 @@ GncGrammarGenerator >> seed: seed [
 		                   yourself
 ]
 
-{ #category : 'private' }
+{ #category : #private }
 GncGrammarGenerator >> selectRule: rules [
 
 	| totalWeight selected rulesWithWeight |
@@ -111,7 +109,7 @@ GncGrammarGenerator >> selectRule: rules [
 	Error signal: 'what?'
 ]
 
-{ #category : 'visiting' }
+{ #category : #visiting }
 GncGrammarGenerator >> visitNonTerminal: nonTerminal [
 
 	| result rule |
@@ -124,7 +122,7 @@ GncGrammarGenerator >> visitNonTerminal: nonTerminal [
 	^ result
 ]
 
-{ #category : 'visiting' }
+{ #category : #visiting }
 GncGrammarGenerator >> visitRule: rule [
 
 	| result availableSize |
@@ -150,14 +148,14 @@ GncGrammarGenerator >> visitRule: rule [
 	^ GncInnerNode with: result
 ]
 
-{ #category : 'visiting' }
+{ #category : #visiting }
 GncGrammarGenerator >> visitTerminal: terminal [
 
 	maxSize update: [ :size | size - 1 ].
 	^ terminal generateAst: self
 ]
 
-{ #category : 'private' }
+{ #category : #private }
 GncGrammarGenerator >> withSize: size [
 
 	^ self clone
@@ -165,7 +163,7 @@ GncGrammarGenerator >> withSize: size [
 		  yourself
 ]
 
-{ #category : 'private' }
+{ #category : #private }
 GncGrammarGenerator >> withSubLevel [
 
 	^ self clone

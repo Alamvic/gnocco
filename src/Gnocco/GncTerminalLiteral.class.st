@@ -1,44 +1,42 @@
 Class {
-	#name : 'GncTerminalLiteral',
-	#superclass : 'GncTerminal',
+	#name : #GncTerminalLiteral,
+	#superclass : #GncTerminal,
 	#instVars : [
 		'literal'
 	],
-	#category : 'Gnocco-Grammar',
-	#package : 'Gnocco',
-	#tag : 'Grammar'
+	#category : #'Gnocco-Grammar'
 }
 
-{ #category : 'translating' }
+{ #category : #translating }
 GncTerminalLiteral class >> generateInto: aWriteStream [ 
 	self shouldBeImplemented.
 ]
 
-{ #category : 'instance creation' }
+{ #category : #'instance creation' }
 GncTerminalLiteral class >> newWithLiteral: literal [
 
 	^ self new literal: literal
 ]
 
-{ #category : 'translating' }
+{ #category : #translating }
 GncTerminalLiteral >> generateAst: generator [
 
 	^ GncLeaf withToken: literal
 ]
 
-{ #category : 'translating' }
+{ #category : #translating }
 GncTerminalLiteral >> generateInto: stream [
 	
 	stream << literal 
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 GncTerminalLiteral >> literal: data [
 
 	literal := data
 ]
 
-{ #category : 'printing' }
+{ #category : #printing }
 GncTerminalLiteral >> printNameOn: stream [
 
 	stream

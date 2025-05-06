@@ -22,53 +22,51 @@ Internal Representation and Key Implementation Points.
     Implementation Points
 "
 Class {
-	#name : 'GncLeaf',
-	#superclass : 'GncAST',
+	#name : #GncLeaf,
+	#superclass : #GncAST,
 	#instVars : [
 		'token'
 	],
-	#category : 'Gnocco-AST',
-	#package : 'Gnocco',
-	#tag : 'AST'
+	#category : #'Gnocco-AST'
 }
 
-{ #category : 'instance creation' }
+{ #category : #'instance creation' }
 GncLeaf class >> treeSize [
 
 	^ 1
 ]
 
-{ #category : 'instance creation' }
+{ #category : #'instance creation' }
 GncLeaf class >> withToken: token [
 
 	^ self new token: token
 ]
 
-{ #category : 'translating' }
+{ #category : #translating }
 GncLeaf >> children [
 
 	#(  )
 ]
 
-{ #category : 'translating' }
+{ #category : #translating }
 GncLeaf >> generateInto: stream [
 
 	stream << token
 ]
 
-{ #category : 'accessing - attributes' }
+{ #category : #'accessing - attributes' }
 GncLeaf >> token: aLiteral [
 
 	token := aLiteral
 ]
 
-{ #category : 'translating' }
+{ #category : #translating }
 GncLeaf >> treeHeight [
 
 	^ 0
 ]
 
-{ #category : 'translating' }
+{ #category : #translating }
 GncLeaf >> treeSize [
 
 	^ self class treeSize
