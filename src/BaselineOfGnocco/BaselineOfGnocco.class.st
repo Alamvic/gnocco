@@ -1,10 +1,11 @@
 Class {
-	#name : #BaselineOfGnocco,
-	#superclass : #BaselineOf,
-	#category : #BaselineOfGnocco
+	#name : 'BaselineOfGnocco',
+	#superclass : 'BaselineOf',
+	#category : 'BaselineOfGnocco',
+	#package : 'BaselineOfGnocco'
 }
 
-{ #category : #baseline }
+{ #category : 'baseline' }
 BaselineOfGnocco >> baseline: spec [
 
 	<baseline>
@@ -17,5 +18,5 @@ BaselineOfGnocco >> baseline: spec [
 				with: [ spec requires: #( 'Gnocco-Benchmarks' ) ];
 			package: 'Gnocco-Tests' with: [ spec requires: #( 'Gnocco' ) ];
 			group: 'default'
-				with: #( 'Gnocco' 'Gnocco-Tests' ) ]
+				with: #( 'Gnocco' 'Gnocco-Tests' 'Gnocco-Benchmarks' ) ]
 ]
