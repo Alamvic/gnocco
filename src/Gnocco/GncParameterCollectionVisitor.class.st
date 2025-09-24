@@ -1,13 +1,15 @@
 Class {
-	#name : #GncParameterCollectionVisitor,
-	#superclass : #GncOnceVisitor,
+	#name : 'GncParameterCollectionVisitor',
+	#superclass : 'GncOnceVisitor',
 	#instVars : [
 		'parameters'
 	],
-	#category : #'Gnocco-Visitors'
+	#category : 'Gnocco-Visitors',
+	#package : 'Gnocco',
+	#tag : 'Visitors'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 GncParameterCollectionVisitor class >> new [
 
 	^ super new
@@ -15,37 +17,37 @@ GncParameterCollectionVisitor class >> new [
 		  yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GncParameterCollectionVisitor >> parameters [
 
 	^ parameters
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GncParameterCollectionVisitor >> parameters: anObject [
 
 	parameters := anObject
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 GncParameterCollectionVisitor >> temporaryValueFor: nonTerminal [
 
 	^ nil
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 GncParameterCollectionVisitor >> visitNonTerminalOnce: nonTerminal [
 
 	nonTerminal rules do: [ :rule | rule visit: self ]
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 GncParameterCollectionVisitor >> visitRule: rule [
 
 	parameters add: rule weightBox.
 	rule fragments do: [ :fragment | fragment visit: self ]
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 GncParameterCollectionVisitor >> visitTerminal: terminal [
 ]

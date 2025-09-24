@@ -1,16 +1,18 @@
 Class {
-	#name : #GncMinSizeComputer,
-	#superclass : #GncOnceVisitor,
-	#category : #'Gnocco-Visitors'
+	#name : 'GncMinSizeComputer',
+	#superclass : 'GncOnceVisitor',
+	#category : 'Gnocco-Visitors',
+	#package : 'Gnocco',
+	#tag : 'Visitors'
 }
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 GncMinSizeComputer >> temporaryValueFor: nonTerminal [
 
 	^ nonTerminal minSize
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 GncMinSizeComputer >> visitNonTerminalOnce: nonTerminal [
 
 	| minSize |
@@ -21,7 +23,7 @@ GncMinSizeComputer >> visitNonTerminalOnce: nonTerminal [
 	^ nonTerminal minSize
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 GncMinSizeComputer >> visitRule: rule [
 
 	| minSize |
@@ -32,7 +34,7 @@ GncMinSizeComputer >> visitRule: rule [
 	^ rule minSize
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 GncMinSizeComputer >> visitTerminal: terminal [
 
 	^ terminal minSize

@@ -1,14 +1,16 @@
 Class {
-	#name : #GncComputableWeight,
-	#superclass : #GncWeight,
+	#name : 'GncComputableWeight',
+	#superclass : 'GncWeight',
 	#instVars : [
 		'parameter',
 		'block'
 	],
-	#category : #'Gnocco-Weight'
+	#category : 'Gnocco-Weight',
+	#package : 'Gnocco',
+	#tag : 'Weight'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 GncComputableWeight class >> newWithWeight: block [
 
 	^ self new
@@ -16,31 +18,31 @@ GncComputableWeight class >> newWithWeight: block [
 		  yourself
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 GncComputableWeight >> block: newBlock [
 
 	block := newBlock
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 GncComputableWeight >> generate [
 
 	^ block cull: parameter
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 GncComputableWeight >> get [
 
 	^ parameter
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 GncComputableWeight >> initialize [ 
 
 	self set: 1
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 GncComputableWeight >> printOn: stream [
 
 	stream
@@ -48,7 +50,7 @@ GncComputableWeight >> printOn: stream [
 		print: parameter
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 GncComputableWeight >> set: weight [
 
 	parameter := weight

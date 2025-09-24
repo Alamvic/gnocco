@@ -1,12 +1,12 @@
-Extension { #name : #Integer }
+Extension { #name : 'Integer' }
 
-{ #category : #'*Gnocco' }
+{ #category : '*Gnocco' }
 Integer >> asWeight [
 
 	^ GncParametricWeight newWithWeight: self
 ]
 
-{ #category : #'*Gnocco' }
+{ #category : '*Gnocco' }
 Integer >> isFinite [
 
 	^ true
