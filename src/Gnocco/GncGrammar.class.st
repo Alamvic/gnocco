@@ -149,3 +149,12 @@ GncGrammar >> start [
 
 	^ start
 ]
+
+{ #category : 'as yet unclassified' }
+GncGrammar >> terminals [
+
+	| n |
+	n := Set new.
+	self eachNonTerminal: [ :e | n addAll: e terminals ].
+	^ n
+]

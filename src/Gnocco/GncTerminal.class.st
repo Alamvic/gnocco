@@ -18,6 +18,12 @@ GncTerminal >> minSize [
 	^ GncLeaf treeSize
 ]
 
+{ #category : 'as yet unclassified' }
+GncTerminal >> terminals [ 
+
+	^ { self }
+]
+
 { #category : 'accessing' }
 GncTerminal >> visit: visitor [
 

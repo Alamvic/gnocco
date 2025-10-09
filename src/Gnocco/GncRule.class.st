@@ -157,6 +157,12 @@ GncRule >> seal [
 	fragments := fragments asArray
 ]
 
+{ #category : 'as yet unclassified' }
+GncRule >> terminals [
+
+	^ self fragments select: #isTerminal
+]
+
 { #category : 'translating' }
 GncRule >> visit: visitor [
 

@@ -20,6 +20,13 @@ GncTerminalLiteral class >> newWithLiteral: literal [
 	^ self new literal: literal
 ]
 
+{ #category : 'comparing' }
+GncTerminalLiteral >> = anotherTerminal [
+
+	anotherTerminal class = self class ifFalse: [ ^ false ].
+	^ literal = anotherTerminal literal
+]
+
 { #category : 'translating' }
 GncTerminalLiteral >> generateAst: generator [
 
@@ -30,6 +37,18 @@ GncTerminalLiteral >> generateAst: generator [
 GncTerminalLiteral >> generateInto: stream [
 	
 	stream << literal 
+]
+
+{ #category : 'comparing' }
+GncTerminalLiteral >> hash [
+
+	^ literal hash
+]
+
+{ #category : 'accessing' }
+GncTerminalLiteral >> literal [
+
+	^ literal
 ]
 
 { #category : 'accessing' }

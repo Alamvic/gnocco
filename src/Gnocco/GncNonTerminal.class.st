@@ -199,6 +199,12 @@ GncNonTerminal >> seal [
 	rules do: [ :rule | rule seal ]
 ]
 
+{ #category : 'as yet unclassified' }
+GncNonTerminal >> terminals [
+
+		^ self rules flatCollect: #terminals
+]
+
 { #category : 'accessing' }
 GncNonTerminal >> visit: visitor [
 
