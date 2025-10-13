@@ -16,6 +16,23 @@ GncTerminalRange class >> from: from to: to [
 	^ self new from: from to: to
 ]
 
+{ #category : 'visiting' }
+GncTerminalRange >> accept: string [
+
+	1 halt.
+]
+
+{ #category : 'as yet unclassified' }
+GncTerminalRange >> consume: word [
+
+	| satisfy |
+	satisfy := self values anySatisfy: [ :ch | ch = word first asString ].
+	
+	^ {
+		satisfy ifTrue: [ word allButFirst ] ifFalse: [ nil ]
+	}
+]
+
 { #category : 'translating' }
 GncTerminalRange >> from: f to: t [
 

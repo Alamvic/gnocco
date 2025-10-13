@@ -1,14 +1,16 @@
 Class {
-	#name : #GncNonProductiveGrammar,
-	#superclass : #GncGrammar,
+	#name : 'GncNonProductiveGrammar',
+	#superclass : 'GncGrammar',
 	#instVars : [
 		'ntStart',
 		'ntSomething'
 	],
-	#category : #'Gnocco-Tests-Grammar'
+	#category : 'Gnocco-Tests-Grammar',
+	#package : 'Gnocco-Tests',
+	#tag : 'Grammar'
 }
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 GncNonProductiveGrammar >> defineGrammar [
 
 	ntStart --> ntSomething.

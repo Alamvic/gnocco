@@ -62,6 +62,18 @@ GncNonTerminal >> ->> fragment [
 	^ self --> fragment
 ]
 
+{ #category : 'visiting' }
+GncNonTerminal >> accept: word [
+
+	^ rules anySatisfy: [ :rule | rule accept: word ]
+]
+
+{ #category : 'as yet unclassified' }
+GncNonTerminal >> consume: word [
+
+	^ rules flatCollect: [ :rule | rule consume: word ]
+]
+
 { #category : 'translating' }
 GncNonTerminal >> generateAst: generator [
 

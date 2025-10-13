@@ -9,10 +9,22 @@ Class {
 	#tag : 'Grammar'
 }
 
+{ #category : 'visiting' }
+GncTerminalBlock >> accept: string [
+
+	1 halt.
+]
+
 { #category : 'accessing' }
 GncTerminalBlock >> block: anObject [
 
 	block := anObject
+]
+
+{ #category : 'as yet unclassified' }
+GncTerminalBlock >> consume: word [
+
+	1 halt.
 ]
 
 { #category : 'translating' }

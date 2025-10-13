@@ -27,6 +27,20 @@ GncTerminalLiteral >> = anotherTerminal [
 	^ literal = anotherTerminal literal
 ]
 
+{ #category : 'visiting' }
+GncTerminalLiteral >> accept: string [
+
+	1 halt.
+]
+
+{ #category : 'as yet unclassified' }
+GncTerminalLiteral >> consume: word [
+
+	^ { (literal ~= word first asString
+		   ifTrue: [ nil ]
+		   ifFalse: [ word allButFirst ]) }
+]
+
 { #category : 'translating' }
 GncTerminalLiteral >> generateAst: generator [
 

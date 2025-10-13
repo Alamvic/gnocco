@@ -8,10 +8,22 @@ Class {
 	#tag : 'Grammar'
 }
 
+{ #category : 'visiting' }
+GncFragment >> accept: string [
+
+	self subclassResponsibility 
+]
+
 { #category : 'accessing' }
 GncFragment >> asFragment [
 
 	^ self
+]
+
+{ #category : 'as yet unclassified' }
+GncFragment >> consume: word [
+
+	self subclassResponsibility 
 ]
 
 { #category : 'translating' }

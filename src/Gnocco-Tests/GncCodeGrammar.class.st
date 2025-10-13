@@ -1,13 +1,15 @@
 Class {
-	#name : #GncCodeGrammar,
-	#superclass : #GncGrammar,
+	#name : 'GncCodeGrammar',
+	#superclass : 'GncGrammar',
 	#instVars : [
 		'ntStart'
 	],
-	#category : #'Gnocco-Tests-Grammar'
+	#category : 'Gnocco-Tests-Grammar',
+	#package : 'Gnocco-Tests',
+	#tag : 'Grammar'
 }
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 GncCodeGrammar >> defineGrammar [
 
 	ntStart --> [ 'oui' ].

@@ -1,10 +1,12 @@
 Class {
-	#name : #GrammarTestCase,
-	#superclass : #TestCase,
-	#category : #'Gnocco-Tests-Grammar'
+	#name : 'GrammarTestCase',
+	#superclass : 'TestCase',
+	#category : 'Gnocco-Tests-Grammar',
+	#package : 'Gnocco-Tests',
+	#tag : 'Grammar'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 GrammarTestCase >> testCanGenerateCost [
 
 	{
@@ -22,7 +24,7 @@ GrammarTestCase >> testCanGenerateCost [
 		self assert: ast minHeight equals: minimumTreeHeight ]
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 GrammarTestCase >> testCode [
 
 	| grammar |
@@ -30,7 +32,7 @@ GrammarTestCase >> testCode [
 	self assert: grammar generateWithMinCost equals: 'oui'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 GrammarTestCase >> testConcat [
 
 	| grammar |
@@ -38,7 +40,7 @@ GrammarTestCase >> testConcat [
 	self assert: grammar generateWithMinCost equals: 'ouinon'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 GrammarTestCase >> testDisjunctionNon [
 
 	| grammar generator |
@@ -49,7 +51,7 @@ GrammarTestCase >> testDisjunctionNon [
 	self assert: (grammar generate: generator) equals: 'non'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 GrammarTestCase >> testDisjunctionOui [
 
 	| grammar generator |
@@ -60,7 +62,7 @@ GrammarTestCase >> testDisjunctionOui [
 	self assert: (grammar generate: generator) equals: 'oui'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 GrammarTestCase >> testGrammarWithUndefinedNonTerminals [
 
 	self
@@ -68,7 +70,7 @@ GrammarTestCase >> testGrammarWithUndefinedNonTerminals [
 		raise: UndefinedNonTerminal
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 GrammarTestCase >> testLiteral [
 
 	| grammar |
@@ -76,7 +78,7 @@ GrammarTestCase >> testLiteral [
 	self assert: grammar generateWithMinCost equals: 'oui'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 GrammarTestCase >> testNonProductiveGrammar [
 
 	self
@@ -84,7 +86,7 @@ GrammarTestCase >> testNonProductiveGrammar [
 		raise: GrammarIsNotProductive
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 GrammarTestCase >> testPhoneNumbers [
 
 	| grammar phoneNumber |
@@ -94,7 +96,7 @@ GrammarTestCase >> testPhoneNumbers [
 		(phoneNumber matchesRegex: '0[1-7] \d{2} \d{2} \d{2} \d{2}')
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 GrammarTestCase >> testRange1 [
 
 	| grammar generator |
@@ -103,7 +105,7 @@ GrammarTestCase >> testRange1 [
 	self assert: (grammar generate: generator) equals: '4'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 GrammarTestCase >> testRange2 [
 
 	| grammar generator |
@@ -112,7 +114,7 @@ GrammarTestCase >> testRange2 [
 	self assert: (grammar generate: generator) equals: '3'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 GrammarTestCase >> testRange3 [
 
 	| grammar generator |
@@ -121,7 +123,7 @@ GrammarTestCase >> testRange3 [
 	self assert: (grammar generate: generator) equals: '5'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 GrammarTestCase >> testWeightsNon [
 
 	| grammar generator |
@@ -133,7 +135,7 @@ GrammarTestCase >> testWeightsNon [
 	self assert: (grammar generate: generator) equals: 'non'.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 GrammarTestCase >> testWeightsOui [
 
 	| grammar generator |

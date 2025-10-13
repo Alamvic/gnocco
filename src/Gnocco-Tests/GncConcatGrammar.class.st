@@ -1,15 +1,17 @@
 Class {
-	#name : #GncConcatGrammar,
-	#superclass : #GncGrammar,
+	#name : 'GncConcatGrammar',
+	#superclass : 'GncGrammar',
 	#instVars : [
 		'ntStart',
 		'ntLiteral1',
 		'ntLiteral2'
 	],
-	#category : #'Gnocco-Tests-Grammar'
+	#category : 'Gnocco-Tests-Grammar',
+	#package : 'Gnocco-Tests',
+	#tag : 'Grammar'
 }
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 GncConcatGrammar >> defineGrammar [
 
 	ntStart --> ntLiteral1 , ntLiteral2.

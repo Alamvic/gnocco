@@ -1,15 +1,17 @@
 Class {
-	#name : #GncDisjunctionGrammar,
-	#superclass : #GncGrammar,
+	#name : 'GncDisjunctionGrammar',
+	#superclass : 'GncGrammar',
 	#instVars : [
 		'ntStart',
 		'ntLiteral1',
 		'ntLiteral2'
 	],
-	#category : #'Gnocco-Tests-Grammar'
+	#category : 'Gnocco-Tests-Grammar',
+	#package : 'Gnocco-Tests',
+	#tag : 'Grammar'
 }
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 GncDisjunctionGrammar >> defineGrammar [
 
 	ntStart --> ntLiteral1 | ntLiteral2.

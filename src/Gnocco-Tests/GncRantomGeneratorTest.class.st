@@ -2,21 +2,22 @@
 SUnit tests for random generator
 "
 Class {
-	#name : #GncRantomGeneratorTest,
-	#superclass : #ClassTestCase,
+	#name : 'GncRantomGeneratorTest',
+	#superclass : 'ClassTestCase',
 	#instVars : [
 		'gen'
 	],
-	#category : #'Gnocco-Tests'
+	#category : 'Gnocco-Tests',
+	#package : 'Gnocco-Tests'
 }
 
-{ #category : #coverage }
+{ #category : 'coverage' }
 GncRantomGeneratorTest >> classToBeTested [
 
 	^ Random
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 GncRantomGeneratorTest >> generateNewSequenceOfSize: aNumber withGenerator: aRandom [
 
 	| results |
@@ -28,14 +29,14 @@ GncRantomGeneratorTest >> generateNewSequenceOfSize: aNumber withGenerator: aRan
 	^ results asArray
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 GncRantomGeneratorTest >> setUp [
 
 	super setUp.
 	gen := GncPCGRandomGenerator seed: 112629
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 GncRantomGeneratorTest >> testDistribution [
 	| results occurrences generator |
 	1 to: 100 do: [ :i |
@@ -51,7 +52,7 @@ GncRantomGeneratorTest >> testDistribution [
 		self assert: occurrences stdev < 10]
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 GncRantomGeneratorTest >> testNext [
 
 	10000 timesRepeat: [
@@ -62,7 +63,7 @@ GncRantomGeneratorTest >> testNext [
 	]
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 GncRantomGeneratorTest >> testNextBetweenAnd [
 
 	10000 timesRepeat: [
@@ -72,7 +73,7 @@ GncRantomGeneratorTest >> testNextBetweenAnd [
 		self assert: (next < 5) ]
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 GncRantomGeneratorTest >> testNextInteger [
 	| int |
 	int := gen nextInteger: 256.
@@ -80,7 +81,7 @@ GncRantomGeneratorTest >> testNextInteger [
 	self assert: (int between: 1 and: 256)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 GncRantomGeneratorTest >> testNextIntegerBetweenAnd [
 
 	10000 timesRepeat: [
@@ -90,7 +91,7 @@ GncRantomGeneratorTest >> testNextIntegerBetweenAnd [
 		self assert: (next between: -3 and: 5) ]
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 GncRantomGeneratorTest >> testNextInto [
 	| array |
 	array := Array new: 8.
@@ -98,7 +99,7 @@ GncRantomGeneratorTest >> testNextInto [
 	self assert: (array allSatisfy: [ :each | each isFloat and: [ each >= 0 and: [ each < 1 ] ] ])
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 GncRantomGeneratorTest >> testPrimitiveRandomGeneration1 [
 
 	self
@@ -124,7 +125,7 @@ GncRantomGeneratorTest >> testPrimitiveRandomGeneration1 [
 			   391109809 395500445 774308967 509549754 1714383213 1069569682 )
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 GncRantomGeneratorTest >> testPrimitiveRandomGeneration2 [
 
 	self
@@ -151,7 +152,7 @@ GncRantomGeneratorTest >> testPrimitiveRandomGeneration2 [
 			   1267254030 2056734050 1359495350 1088203006 1024528242 )
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 GncRantomGeneratorTest >> testPrimitiveRandomGeneration3 [
 
 	self
@@ -179,7 +180,7 @@ GncRantomGeneratorTest >> testPrimitiveRandomGeneration3 [
 			   498333902 399158151 832415416 1705443437 )
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 GncRantomGeneratorTest >> testUnixRandomGeneratorSeed [
 	"the test is very slow on the CI (>2 minutes)"
 	self skipOnPharoCITestingEnvironment.

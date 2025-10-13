@@ -1,14 +1,16 @@
 Class {
-	#name : #GncUndefinedNonTerminalGrammar,
-	#superclass : #GncGrammar,
+	#name : 'GncUndefinedNonTerminalGrammar',
+	#superclass : 'GncGrammar',
 	#instVars : [
 		'ntStart',
 		'ntNonProductive'
 	],
-	#category : #'Gnocco-Tests-Grammar'
+	#category : 'Gnocco-Tests-Grammar',
+	#package : 'Gnocco-Tests',
+	#tag : 'Grammar'
 }
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 GncUndefinedNonTerminalGrammar >> defineGrammar [
 
 	ntStart --> 'a'.

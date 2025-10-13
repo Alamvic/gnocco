@@ -1,13 +1,15 @@
 Class {
-	#name : #GncRangeGrammar,
-	#superclass : #GncGrammar,
+	#name : 'GncRangeGrammar',
+	#superclass : 'GncGrammar',
 	#instVars : [
 		'ntStart'
 	],
-	#category : #'Gnocco-Tests-Grammar'
+	#category : 'Gnocco-Tests-Grammar',
+	#package : 'Gnocco-Tests',
+	#tag : 'Grammar'
 }
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 GncRangeGrammar >> defineGrammar [
 
 	ntStart --> ($3 - $5).

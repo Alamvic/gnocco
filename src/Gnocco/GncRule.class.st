@@ -25,6 +25,12 @@ GncRule class >> newWithFragments: fragments [
 		  (fragments collect: [ :fragment | fragment asFragment ])
 ]
 
+{ #category : 'visiting' }
+GncRule >> accept: word [
+
+	^ (self consume: word) isEmpty
+]
+
 { #category : 'translating' }
 GncRule >> addFragment: fragment [
 
@@ -43,6 +49,16 @@ GncRule >> computeCost [
 		minSizeCost := minSizeCost + fragment minSize ].
 	minHeight := minHeightCost.
 	minSize := minSizeCost
+]
+
+{ #category : 'as yet unclassified' }
+GncRule >> consume: word [
+1 halt.
+	^ fragments inject: { word } into: [ :options :fragment |
+		options flatCollectAsSet: [ :currWord |
+			fragment consume: currWord.
+		]
+	]
 ]
 
 { #category : 'translating' }
