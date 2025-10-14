@@ -35,11 +35,11 @@ GncTerminalLiteral >> accept: string [
 
 { #category : 'as yet unclassified' }
 GncTerminalLiteral >> consume: word [
-
 	"TODO: return the character that could consume from the input"
-	^ (literal ~= word first asString
-		   ifTrue: [ '' ]
-		   ifFalse: [ word allButFirst ])
+
+	word size < literal size ifTrue: [ ^ nil ].
+	
+	^ literal = (word first: literal size) ifTrue: [ literal ]
 ]
 
 { #category : 'translating' }

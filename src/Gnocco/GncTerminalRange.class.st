@@ -24,12 +24,10 @@ GncTerminalRange >> accept: string [
 
 { #category : 'as yet unclassified' }
 GncTerminalRange >> consume: word [
-
-	| satisfy |
-
-	satisfy := self values anySatisfy: [ :ch | ch = word first asString ].
 	
-	^ satisfy ifTrue: [ word allButFirst ] ifFalse: [ '' ]
+	word ifEmpty: [ ^nil ].
+	
+	^ self values detect: [ :ch | ch = word first asString ] ifNone: [ nil ]
 ]
 
 { #category : 'translating' }
