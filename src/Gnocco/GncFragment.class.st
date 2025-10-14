@@ -44,6 +44,12 @@ GncFragment >> minSize [
 	^ self subclassResponsibility
 ]
 
+{ #category : 'parsing' }
+GncFragment >> parse: string with: generator [
+
+	self subclassResponsibility 
+]
+
 { #category : 'printing' }
 GncFragment >> printNameOn: stream [
 

@@ -70,7 +70,7 @@ GncNonTerminal >> accept: word [
 
 { #category : 'as yet unclassified' }
 GncNonTerminal >> consume: word [
-
+1 halt.
 	^ rules flatCollect: [ :rule | rule consume: word ]
 ]
 
@@ -138,6 +138,12 @@ GncNonTerminal >> newRule [
 	rule := GncRule new.
 	rules add: rule.
 	^ rule
+]
+
+{ #category : 'parsing' }
+GncNonTerminal >> parse: string with: generator [
+
+	^ generator parseNonTerminal: string from: self 
 ]
 
 { #category : 'accessing' }

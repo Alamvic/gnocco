@@ -18,6 +18,12 @@ GncTerminal >> minSize [
 	^ GncLeaf treeSize
 ]
 
+{ #category : 'parsing' }
+GncTerminal >> parse: string with: generator [
+
+	^ generator parseTerminal: string from: self
+]
+
 { #category : 'as yet unclassified' }
 GncTerminal >> terminals [ 
 

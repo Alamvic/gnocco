@@ -26,11 +26,10 @@ GncTerminalRange >> accept: string [
 GncTerminalRange >> consume: word [
 
 	| satisfy |
+
 	satisfy := self values anySatisfy: [ :ch | ch = word first asString ].
 	
-	^ {
-		satisfy ifTrue: [ word allButFirst ] ifFalse: [ nil ]
-	}
+	^ satisfy ifTrue: [ word allButFirst ] ifFalse: [ '' ]
 ]
 
 { #category : 'translating' }
