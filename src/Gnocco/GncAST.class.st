@@ -34,6 +34,12 @@ GncAST >> inspectorTreeBuilder [
 		  yourself
 ]
 
+{ #category : 'testing' }
+GncAST >> isLeaf [
+
+	self subclassResponsibility 
+]
+
 { #category : 'translating' }
 GncAST >> treeHeight [
 

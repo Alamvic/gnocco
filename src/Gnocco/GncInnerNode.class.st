@@ -44,6 +44,12 @@ GncInnerNode >> generateInto: stream [
 	children do: [ :child | child generateInto: stream ]
 ]
 
+{ #category : 'testing' }
+GncInnerNode >> isLeaf [
+
+	^ false
+]
+
 { #category : 'translating' }
 GncInnerNode >> minHeight [
 

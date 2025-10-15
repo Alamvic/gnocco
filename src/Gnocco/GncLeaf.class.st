@@ -56,6 +56,12 @@ GncLeaf >> generateInto: stream [
 	stream << token
 ]
 
+{ #category : 'testing' }
+GncLeaf >> isLeaf [
+
+	^ true
+]
+
 { #category : 'accessing - attributes' }
 GncLeaf >> token: aLiteral [
 
