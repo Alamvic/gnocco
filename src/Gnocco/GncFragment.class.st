@@ -26,6 +26,12 @@ GncFragment >> consume: word [
 	self subclassResponsibility 
 ]
 
+{ #category : 'as yet unclassified' }
+GncFragment >> consume: word from: index [
+
+	self subclassResponsibility 
+]
+
 { #category : 'translating' }
 GncFragment >> generateAst: generator [
 
@@ -42,6 +48,12 @@ GncFragment >> minHeight [
 GncFragment >> minSize [
 
 	^ self subclassResponsibility
+]
+
+{ #category : 'parsing' }
+GncFragment >> parse: input from: currentIndex with: generator [
+
+	self subclassResponsibility 
 ]
 
 { #category : 'parsing' }

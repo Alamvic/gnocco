@@ -42,6 +42,18 @@ GncTerminalLiteral >> consume: word [
 	^ literal = (word first: literal size) ifTrue: [ literal ]
 ]
 
+{ #category : 'as yet unclassified' }
+GncTerminalLiteral >> consume: input from: index [
+	"TODO: return the character that could consume from the input"
+
+	| word |
+
+	word := input allButFirst: index.
+	word size < literal size ifTrue: [ ^ nil ].
+	
+	^ literal = (word first: literal size) ifTrue: [ literal ]
+]
+
 { #category : 'translating' }
 GncTerminalLiteral >> generateAst: generator [
 

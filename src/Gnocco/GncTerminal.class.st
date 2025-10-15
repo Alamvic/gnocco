@@ -19,6 +19,12 @@ GncTerminal >> minSize [
 ]
 
 { #category : 'parsing' }
+GncTerminal >> parse: input from: currentIndex with: generator [
+
+	^ generator parseTerminal: self on: input from: currentIndex
+]
+
+{ #category : 'parsing' }
 GncTerminal >> parse: string with: generator [
 
 	^ generator parseTerminal: string from: self

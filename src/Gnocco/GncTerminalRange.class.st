@@ -30,6 +30,16 @@ GncTerminalRange >> consume: word [
 	^ self values detect: [ :ch | ch = word first asString ] ifNone: [ nil ]
 ]
 
+{ #category : 'as yet unclassified' }
+GncTerminalRange >> consume: input from: index [
+	
+	| word |
+	word := input allButFirst: index.
+	word ifEmpty: [ ^ nil ].
+	
+	^ self values detect: [ :ch | ch = word first asString ] ifNone: [ nil ]
+]
+
 { #category : 'translating' }
 GncTerminalRange >> from: f to: t [
 
