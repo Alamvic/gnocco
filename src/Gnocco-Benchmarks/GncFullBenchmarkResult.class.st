@@ -2,17 +2,19 @@
 I store the data collected while benchmarking _something_. Try to inspect me!
 "
 Class {
-	#name : #GncFullBenchmarkResult,
-	#superclass : #Object,
+	#name : 'GncFullBenchmarkResult',
+	#superclass : 'Object',
 	#instVars : [
 		'inData',
 		'outData',
 		'plot'
 	],
-	#category : #'Gnocco-Benchmarks-Benchmark Results'
+	#category : 'Gnocco-Benchmarks-Benchmark Results',
+	#package : 'Gnocco-Benchmarks',
+	#tag : 'Benchmark Results'
 }
 
-{ #category : #serializing }
+{ #category : 'serializing' }
 GncFullBenchmarkResult >> dumpAt: file [
 	| fileStream |
 	fileStream := (FileSystem disk workingDirectory / file) writeStream.
@@ -27,7 +29,7 @@ GncFullBenchmarkResult >> dumpAt: file [
 	fileStream close.
 ]
 
-{ #category : #'private - inspector accessing' }
+{ #category : 'private - inspector accessing' }
 GncFullBenchmarkResult >> ensurePlotIsBuilt [
 
 	plot ifNil: [
@@ -35,13 +37,13 @@ GncFullBenchmarkResult >> ensurePlotIsBuilt [
 		plot build ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 GncFullBenchmarkResult >> given: input itProduces: output [
 	inData := input.
 	outData := output.
 ]
 
-{ #category : #'private - inspector accessing' }
+{ #category : 'private - inspector accessing' }
 GncFullBenchmarkResult >> inspectorPlot [
 
 	<inspectorPresentationOrder: 0 title: 'Results'>
@@ -51,7 +53,7 @@ GncFullBenchmarkResult >> inspectorPlot [
 		  yourself
 ]
 
-{ #category : #'private - inspector accessing' }
+{ #category : 'private - inspector accessing' }
 GncFullBenchmarkResult >> plot [
 
 	| chart lineaxes |

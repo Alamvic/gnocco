@@ -27,6 +27,8 @@ GncInnerNode >> children [
 { #category : 'accessing - attributes' }
 GncInnerNode >> children: someChildren [
 
+	inputSize := nil.
+	
 	children := someChildren.
 
 	treeHeight := 0.

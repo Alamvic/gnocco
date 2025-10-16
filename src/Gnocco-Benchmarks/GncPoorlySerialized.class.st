@@ -1,15 +1,16 @@
 Class {
-	#name : #GncPoorlySerialized,
-	#superclass : #Object,
+	#name : 'GncPoorlySerialized',
+	#superclass : 'Object',
 	#traits : 'TBenchmarkable',
 	#classTraits : 'TBenchmarkable classTrait',
 	#instVars : [
 		'data'
 	],
-	#category : #'Gnocco-Benchmarks'
+	#category : 'Gnocco-Benchmarks',
+	#package : 'Gnocco-Benchmarks'
 }
 
-{ #category : #benchmarking }
+{ #category : 'benchmarking' }
 GncPoorlySerialized class >> benchFor: sizes with: data [
 
 	| result |
@@ -27,7 +28,7 @@ GncPoorlySerialized class >> benchFor: sizes with: data [
 	^ GncFullBenchmarkResult new given: sizes itProduces: result
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 GncPoorlySerialized class >> new: size with: content [
 
 	| data |
@@ -37,30 +38,30 @@ GncPoorlySerialized class >> new: size with: content [
 		  yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GncPoorlySerialized >> data: givenData [
 	data := givenData.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GncPoorlySerialized >> dataSize [
 
 	^ data size
 ]
 
-{ #category : #'accessing - parameters' }
+{ #category : 'accessing - parameters' }
 GncPoorlySerialized >> minBenchTime [
 
 	^ 5
 ]
 
-{ #category : #'accessing - parameters' }
+{ #category : 'accessing - parameters' }
 GncPoorlySerialized >> minNumberOfRuns [
 
 	^ 3
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 GncPoorlySerialized >> serializeIntoStream: stream [
 
 	FLSerializer serialize: self on: stream

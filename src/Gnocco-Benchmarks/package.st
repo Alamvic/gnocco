@@ -1,1 +1,1 @@
-Package { #name : #'Gnocco-Benchmarks' }
+Package { #name : 'Gnocco-Benchmarks' }

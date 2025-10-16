@@ -65,6 +65,7 @@ GncLeaf >> isLeaf [
 { #category : 'accessing - attributes' }
 GncLeaf >> token: aLiteral [
 
+	inputSize := nil.
 	token := aLiteral
 ]
 

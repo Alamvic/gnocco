@@ -4,7 +4,8 @@ Class {
 	#traits : 'TFuzzText',
 	#classTraits : 'TFuzzText classTrait',
 	#instVars : [
-		'grammarRule'
+		'grammarRule',
+		'inputSize'
 	],
 	#category : 'Gnocco-AST',
 	#package : 'Gnocco',
@@ -21,6 +22,14 @@ GncAST >> children [
 GncAST >> generateInto: stream [
 
 	^ self subclassResponsibility
+]
+
+{ #category : 'accessing' }
+GncAST >> inputSize [
+
+	inputSize ifNil: [ inputSize := self generate size ].
+
+	^ inputSize
 ]
 
 { #category : 'inspecting' }

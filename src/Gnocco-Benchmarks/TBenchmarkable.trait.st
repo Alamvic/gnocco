@@ -7,11 +7,12 @@ Classes that use me should be data whose serialization is to be benchmarked. To 
 - `serializeInto: file`: should perform a single serialization step. This is the method that will be benchmarked, so it is important that it does nothing but what you want to be measured. In particular, any setup should be performed during class initialization.
 "
 Trait {
-	#name : #TBenchmarkable,
-	#category : #'Gnocco-Benchmarks'
+	#name : 'TBenchmarkable',
+	#category : 'Gnocco-Benchmarks',
+	#package : 'Gnocco-Benchmarks'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 TBenchmarkable >> benchmark [
 
 	| timeSpentInComputation timesBenched timeSpentInGC |
@@ -40,25 +41,25 @@ TBenchmarkable >> benchmark [
 		  yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 TBenchmarkable >> dataSize [
 
 	^ self explicitRequirement
 ]
 
-{ #category : #'accessing - parameters' }
+{ #category : 'accessing - parameters' }
 TBenchmarkable >> minBenchTime [
 
 	^ 5
 ]
 
-{ #category : #'accessing - parameters' }
+{ #category : 'accessing - parameters' }
 TBenchmarkable >> minNumberOfRuns [
 
 	^ 3
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 TBenchmarkable >> serializeIntoStream: stream [
 
 	self explicitRequirement

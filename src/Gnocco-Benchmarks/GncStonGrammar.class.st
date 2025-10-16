@@ -1,6 +1,6 @@
 Class {
-	#name : #GncStonGrammar,
-	#superclass : #GncGrammar,
+	#name : 'GncStonGrammar',
+	#superclass : 'GncGrammar',
 	#instVars : [
 		'ntId',
 		'ntPrimitive',
@@ -20,10 +20,12 @@ Class {
 		'ntObjectInstance',
 		'ntClassDigit'
 	],
-	#category : #'Gnocco-Benchmarks-Grammar'
+	#category : 'Gnocco-Benchmarks-Grammar',
+	#package : 'Gnocco-Benchmarks',
+	#tag : 'Grammar'
 }
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 GncStonGrammar >> defineGrammar [ 
 
 	ntObjects --> ntObjectInstance
@@ -58,7 +60,7 @@ GncStonGrammar >> defineGrammar [
 	^ ntObjectInstance
 ]
 
-{ #category : #translating }
+{ #category : 'translating' }
 GncStonGrammar >> generateAst: generator [
 
 	availableId := 0.

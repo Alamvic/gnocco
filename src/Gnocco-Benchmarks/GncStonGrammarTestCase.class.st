@@ -1,24 +1,26 @@
 Class {
-	#name : #GncStonGrammarTestCase,
-	#superclass : #TestCase,
-	#category : #'Gnocco-Benchmarks-Tests'
+	#name : 'GncStonGrammarTestCase',
+	#superclass : 'TestCase',
+	#category : 'Gnocco-Benchmarks-Tests',
+	#package : 'Gnocco-Benchmarks',
+	#tag : 'Tests'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 GncStonGrammarTestCase >> setUp [
 
 	super setUp.
 	GncFuzzyClass setupFuzzyClasses: 9
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 GncStonGrammarTestCase >> tearDown [
 
 	GncFuzzyClass removeFuzzyClasses: 9.
 	super tearDown
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 GncStonGrammarTestCase >> testCanGenerateCost [
 
 	| grammar generator minimumTreeHeight ast |
@@ -32,7 +34,7 @@ GncStonGrammarTestCase >> testCanGenerateCost [
 	self assert: ast minHeight equals: minimumTreeHeight
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 GncStonGrammarTestCase >> testStonSyntax [
 
 	| grammar |

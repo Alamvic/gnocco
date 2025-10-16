@@ -1,6 +1,6 @@
 Class {
-	#name : #GncRegexGrammar,
-	#superclass : #GncGrammar,
+	#name : 'GncRegexGrammar',
+	#superclass : 'GncGrammar',
 	#instVars : [
 		'ntRegex',
 		'ntConcat',
@@ -10,10 +10,12 @@ Class {
 		'ntNonEmptyRegex',
 		'ntNonEmptyConcat'
 	],
-	#category : #'Gnocco-Benchmarks-Grammar'
+	#category : 'Gnocco-Benchmarks-Grammar',
+	#package : 'Gnocco-Benchmarks',
+	#tag : 'Grammar'
 }
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 GncRegexGrammar >> defineGrammar [
 
 	ntRegex --> ntConcat
@@ -27,7 +29,8 @@ GncRegexGrammar >> defineGrammar [
 	ntPure --> 'a'
 	         | 'b' @ 0
 	         | 'c' @ 0
-	         | '.' @ 0 
+	         | '.' @ 0
+				| '()'
 	         | '(', ntRegex, ')' @ 0.
 	ntNonEmptyPure --> 'a'
 	                 | 'b'

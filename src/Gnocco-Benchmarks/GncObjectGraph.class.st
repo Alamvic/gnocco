@@ -16,9 +16,9 @@ Public API and Key Messages
 - `GncObjectGraph >> #serializeInto: file`
 "
 Class {
-	#name : #GncObjectGraph,
-	#superclass : #Object,
-	#type : #variable,
+	#name : 'GncObjectGraph',
+	#superclass : 'Object',
+	#type : 'variable',
 	#traits : 'TBenchmarkable',
 	#classTraits : 'TBenchmarkable classTrait',
 	#instVars : [
@@ -27,10 +27,11 @@ Class {
 		'canvas',
 		'nbEdges'
 	],
-	#category : #'Gnocco-Benchmarks'
+	#category : 'Gnocco-Benchmarks',
+	#package : 'Gnocco-Benchmarks'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 GncObjectGraph class >> fuzz [
 
 	^ self fuzz: (GncGrammarGenerator newUnbounded
@@ -38,7 +39,7 @@ GncObjectGraph class >> fuzz [
 			   yourself) "Why 20? Why not... :|"
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 GncObjectGraph class >> fuzz: generator [
 
 	| input data |
@@ -49,7 +50,7 @@ GncObjectGraph class >> fuzz: generator [
 	^ self with: data
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 GncObjectGraph class >> fuzz: nbFuzz from: minCost to: maxCost [
 
 	| input output stuff result |
@@ -63,19 +64,19 @@ GncObjectGraph class >> fuzz: nbFuzz from: minCost to: maxCost [
 	^ GncFullBenchmarkResult new given: input itProduces: output
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 GncObjectGraph class >> with: objects [
 
 	^ self new with: objects
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GncObjectGraph >> dataSize [
 
 	^ self nbNodes + self nbEdges
 ]
 
-{ #category : #'private - lazy initialization' }
+{ #category : 'private - lazy initialization' }
 GncObjectGraph >> ensureCanvasIsBuilt [
 
 	| graphNodes eb |
@@ -103,7 +104,7 @@ GncObjectGraph >> ensureCanvasIsBuilt [
 		canvas @ RSCanvasController ].
 ]
 
-{ #category : #inspector }
+{ #category : 'inspector' }
 GncObjectGraph >> inspectGraph [
 
 	<inspectorPresentationOrder: 0 title: 'Graph'>
@@ -113,37 +114,37 @@ GncObjectGraph >> inspectGraph [
 		  yourself
 ]
 
-{ #category : #'accessing - parameters' }
+{ #category : 'accessing - parameters' }
 GncObjectGraph >> minNumberOfRuns [
 
 	^ 1
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 GncObjectGraph >> nbEdges [
 
 	^ nbEdges
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 GncObjectGraph >> nbNodes [
 
 	^ nodes size
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 GncObjectGraph >> nodes [
 
 	^ nodes
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 GncObjectGraph >> serializeIntoStream: stream [
 
 	FLSerializer serialize: data on: stream
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 GncObjectGraph >> with: objects [
 
 	| seen boundary current |

@@ -1,45 +1,47 @@
 Class {
-	#name : #GncSingleBenchmarkResult,
-	#superclass : #Object,
+	#name : 'GncSingleBenchmarkResult',
+	#superclass : 'Object',
 	#instVars : [
 		'time',
 		'gctime',
 		'dataSize'
 	],
-	#category : #'Gnocco-Benchmarks-Benchmark Results'
+	#category : 'Gnocco-Benchmarks-Benchmark Results',
+	#package : 'Gnocco-Benchmarks',
+	#tag : 'Benchmark Results'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GncSingleBenchmarkResult >> dataSize [
 
 	^ dataSize
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GncSingleBenchmarkResult >> dataSize: anObject [
 
 	dataSize := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GncSingleBenchmarkResult >> gctime [
 
 	^ gctime
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GncSingleBenchmarkResult >> gctime: anObject [
 
 	gctime := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GncSingleBenchmarkResult >> time [
 
 	^ time
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GncSingleBenchmarkResult >> time: anObject [
 
 	time := anObject
