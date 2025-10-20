@@ -5,12 +5,19 @@ Class {
 	#classTraits : 'TFuzzText classTrait',
 	#instVars : [
 		'grammarRule',
-		'inputSize'
+		'inputSize',
+		'parent'
 	],
 	#category : 'Gnocco-AST',
 	#package : 'Gnocco',
 	#tag : 'AST'
 }
+
+{ #category : 'accessing' }
+GncAST >> at: index [
+
+	self subclassResponsibility 
+]
 
 { #category : 'translating' }
 GncAST >> children [
@@ -47,6 +54,18 @@ GncAST >> inspectorTreeBuilder [
 GncAST >> isLeaf [
 
 	self subclassResponsibility 
+]
+
+{ #category : 'accessing' }
+GncAST >> parent [
+
+	^ parent
+]
+
+{ #category : 'accessing' }
+GncAST >> parent: myParent [
+
+	parent := myParent
 ]
 
 { #category : 'translating' }

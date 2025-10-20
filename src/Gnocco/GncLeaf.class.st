@@ -44,6 +44,14 @@ GncLeaf class >> withToken: token [
 	^ self new token: token
 ]
 
+{ #category : 'accessing' }
+GncLeaf >> at: index [
+
+	(index ~= 1) ifTrue: [ 1 halt. ].
+
+	^ self
+]
+
 { #category : 'translating' }
 GncLeaf >> children [
 
