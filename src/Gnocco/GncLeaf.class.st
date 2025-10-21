@@ -82,6 +82,12 @@ GncLeaf >> isLeaf [
 	^ true
 ]
 
+{ #category : 'accessing' }
+GncLeaf >> shape [
+
+	^ RSComposite new draggable; model: self; shapes: { self asLabel }
+]
+
 { #category : 'rendering' }
 GncLeaf >> shapes [
 

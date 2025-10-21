@@ -27,7 +27,10 @@ GncInnerNode >> aLeaf [
 { #category : 'rendering' }
 GncInnerNode >> asLabel [
 	
-	^ RSLabel new text: tag; color: Color blue.
+	| color |
+	
+	color := RSColorPalette sequential blues3 range third.
+	^ RSLabel new text: tag; color: color.
 ]
 
 { #category : 'accessing' }

@@ -84,16 +84,16 @@ GncAST >> parent: myParent [
 { #category : 'rendering' }
 GncAST >> render [
 
-	| canvas shapes eb |
+	| canvas shapes |
 	shapes := self shapes.
 	canvas := RSCanvas new.
 	canvas edges do: #withBorder.
 	canvas addAll: shapes.
-	eb := RSLineBuilder arrowedLine.
-	eb allowRepetition; beDirectional; color: Color black.
-	eb canvas: canvas.
-	eb connectFrom: #parent.
 	
+	RSLineBuilder arrowedLine
+		withBorderAttachPoint;
+		canvas: canvas;
+		connectFrom: #parent.
 	RSTreeLayout on: shapes.
 	shapes do: [ :e | e translateBy: 0 @ 0 ].
 	canvas @ RSCanvasController.
@@ -104,11 +104,11 @@ GncAST >> render [
 { #category : 'accessing' }
 GncAST >> shape [
 
-	| label box |
+	| label circle color |
 	label := self asLabel.
-
-	box := RSBox new extent: label extent + 10; color: Color lightBlue .
-	^ RSComposite new draggable; model: self; shapes: (RSGroup with: box with: label)
+	color := RSColorPalette sequential blues3 range first.
+	circle := RSEllipse new extent: label extent + 10; color: color.
+	^ RSComposite new draggable; model: self; shapes: (RSGroup with: circle with: label)
 ]
 
 { #category : 'rendering' }
