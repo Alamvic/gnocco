@@ -102,9 +102,9 @@ GncAST >> render [
 GncAST >> shape [
 
 	| label box |
-	label := RSLabel new text: self asLabel.
+	label := self asLabel.
 
-	box := RSBox new size: label textWidth; model: self; draggable; withBorder.
+	box := RSBox new extent: label extent + 10; color: Color lightBlue .
 	^ RSComposite new draggable; model: self; shapes: (RSGroup with: box with: label)
 ]
 

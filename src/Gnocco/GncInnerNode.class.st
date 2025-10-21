@@ -27,7 +27,7 @@ GncInnerNode >> aLeaf [
 { #category : 'rendering' }
 GncInnerNode >> asLabel [
 	
-	^ tag
+	^ RSLabel new text: tag; color: Color blue.
 ]
 
 { #category : 'accessing' }

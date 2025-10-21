@@ -52,8 +52,8 @@ GncLeaf >> aLeaf [
 
 { #category : 'converting' }
 GncLeaf >> asLabel [
-
-	^ token
+	
+	^ RSLabel new text: token; color: Color black.
 ]
 
 { #category : 'accessing' }
