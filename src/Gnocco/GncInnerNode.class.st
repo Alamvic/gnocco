@@ -19,6 +19,18 @@ GncInnerNode class >> with: children [
 ]
 
 { #category : 'accessing' }
+GncInnerNode >> aLeaf [
+
+	^ children atRandom aLeaf 
+]
+
+{ #category : 'rendering' }
+GncInnerNode >> asLabel [
+	
+	^ tag
+]
+
+{ #category : 'accessing' }
 GncInnerNode >> at: index [
 
 	| remaining |
@@ -85,6 +97,12 @@ GncInnerNode >> minSize [
 
 	^ ((children collect: [ :child | child minSize ]) fold: [ :i :j |
 		   i + j ]) + 1
+]
+
+{ #category : 'rendering' }
+GncInnerNode >> shapes [
+
+	^ { self shape }, (children flatCollect: #shapes)
 ]
 
 { #category : 'accessing' }

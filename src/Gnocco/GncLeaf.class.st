@@ -45,6 +45,18 @@ GncLeaf class >> withToken: token [
 ]
 
 { #category : 'accessing' }
+GncLeaf >> aLeaf [
+
+	^ self
+]
+
+{ #category : 'converting' }
+GncLeaf >> asLabel [
+
+	^ token
+]
+
+{ #category : 'accessing' }
 GncLeaf >> at: index [
 
 	(index ~= 1) ifTrue: [ 1 halt. ].
@@ -68,6 +80,12 @@ GncLeaf >> generateInto: stream [
 GncLeaf >> isLeaf [
 
 	^ true
+]
+
+{ #category : 'rendering' }
+GncLeaf >> shapes [
+
+	^ { self shape }
 ]
 
 { #category : 'accessing - attributes' }

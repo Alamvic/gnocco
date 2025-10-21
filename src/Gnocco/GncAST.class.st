@@ -14,6 +14,19 @@ Class {
 }
 
 { #category : 'accessing' }
+GncAST >> aLeaf [
+
+	"TODO: Delete me later"
+	self subclassResponsibility 
+]
+
+{ #category : 'accessing' }
+GncAST >> asLabel [
+	
+	self subclassResponsibility 
+]
+
+{ #category : 'accessing' }
 GncAST >> at: index [
 
 	self subclassResponsibility 
@@ -66,6 +79,39 @@ GncAST >> parent [
 GncAST >> parent: myParent [
 
 	parent := myParent
+]
+
+{ #category : 'rendering' }
+GncAST >> render [
+
+	| canvas shapes eb |
+	shapes := self shapes.
+	canvas := RSCanvas new.
+	canvas edges do: #withBorder.
+	canvas addAll: shapes.
+	eb := RSLineBuilder line.
+	eb canvas: canvas.
+	eb connectFrom: #parent.
+	RSTreeLayout on: shapes.
+	shapes do: [ :e | e translateBy: 0 @ 0 ].
+	canvas @ RSCanvasController.
+	^ canvas
+]
+
+{ #category : 'accessing' }
+GncAST >> shape [
+
+	| label box |
+	label := RSLabel new text: self asLabel.
+
+	box := RSBox new size: label textWidth; model: self; draggable; withBorder.
+	^ RSComposite new draggable; model: self; shapes: (RSGroup with: box with: label)
+]
+
+{ #category : 'rendering' }
+GncAST >> shapes [
+
+	self subclassResponsibility 
 ]
 
 { #category : 'translating' }
