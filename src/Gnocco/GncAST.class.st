@@ -89,12 +89,15 @@ GncAST >> render [
 	canvas := RSCanvas new.
 	canvas edges do: #withBorder.
 	canvas addAll: shapes.
-	eb := RSLineBuilder line.
+	eb := RSLineBuilder arrowedLine.
+	eb allowRepetition; beDirectional; color: Color black.
 	eb canvas: canvas.
 	eb connectFrom: #parent.
+	
 	RSTreeLayout on: shapes.
 	shapes do: [ :e | e translateBy: 0 @ 0 ].
 	canvas @ RSCanvasController.
+	
 	^ canvas
 ]
 
