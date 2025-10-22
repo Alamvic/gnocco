@@ -87,17 +87,14 @@ GncAST >> render [
 	| canvas shapes |
 	shapes := self shapes.
 	canvas := RSCanvas new.
-	canvas edges do: #withBorder.
 	canvas addAll: shapes.
 	
-	RSLineBuilder arrowedLine
-		withBorderAttachPoint;
-		canvas: canvas;
-		connectFrom: #parent.
-	RSTreeLayout on: shapes.
-	shapes do: [ :e | e translateBy: 0 @ 0 ].
-	canvas @ RSCanvasController.
+	"shapes do: [ :e | e translateBy: 0 @ 0 ]."
+
+	RSLineBuilder arrowedLine withBorderAttachPoint; canvas: canvas; connectFrom: #parent.
+	RSTreeLayout on: canvas nodes.
 	
+	canvas @ RSCanvasController.
 	^ canvas
 ]
 
