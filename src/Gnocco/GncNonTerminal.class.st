@@ -141,7 +141,7 @@ GncNonTerminal >> newRule [
 ]
 
 { #category : 'parsing' }
-GncNonTerminal >> parse: input from: currentIndex with: generator [
+GncNonTerminal >> parse: input from: currentIndex with: generator rule: rule [
 
 	^ generator parseNonTerminal: self on: input from: currentIndex
 ]

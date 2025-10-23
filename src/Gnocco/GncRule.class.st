@@ -167,6 +167,12 @@ GncRule >> reset [
 	fragments do: [ :fragment | fragment reset ]
 ]
 
+{ #category : 'accessing' }
+GncRule >> rewards [
+
+	^ rewards 
+]
+
 { #category : 'translating' }
 GncRule >> seal [
 

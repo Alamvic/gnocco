@@ -50,6 +50,12 @@ GncLeaf >> aLeaf [
 	^ self
 ]
 
+{ #category : 'rendering' }
+GncLeaf >> allNodes [
+
+	^ { self }
+]
+
 { #category : 'converting' }
 GncLeaf >> asLabel [
 	

@@ -25,6 +25,12 @@ GncInnerNode >> aLeaf [
 ]
 
 { #category : 'rendering' }
+GncInnerNode >> allNodes [
+
+	^ { self }, (children flatCollect: #allNodes)
+]
+
+{ #category : 'rendering' }
 GncInnerNode >> asLabel [
 	
 	| color |

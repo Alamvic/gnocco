@@ -20,6 +20,12 @@ GncAST >> aLeaf [
 	self subclassResponsibility 
 ]
 
+{ #category : 'translating' }
+GncAST >> allNodes [
+
+	self subclassResponsibility
+]
+
 { #category : 'accessing' }
 GncAST >> asLabel [
 	
@@ -96,6 +102,15 @@ GncAST >> render [
 	
 	canvas @ RSCanvasController.
 	^ canvas
+]
+
+{ #category : 'accessing' }
+GncAST >> reward: grammarInstance root: astRoot [
+
+	| level |
+	level := (astRoot treeHeight) - self treeHeight.
+	
+	^ self grammarRule rewardBy: level
 ]
 
 { #category : 'accessing' }
