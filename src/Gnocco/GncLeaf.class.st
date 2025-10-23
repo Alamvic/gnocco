@@ -44,6 +44,32 @@ GncLeaf class >> withToken: token [
 	^ self new token: token
 ]
 
+{ #category : 'accessing' }
+GncLeaf >> aLeaf [
+
+	^ self
+]
+
+{ #category : 'rendering' }
+GncLeaf >> allNodes [
+
+	^ { self }
+]
+
+{ #category : 'converting' }
+GncLeaf >> asLabel [
+	
+	^ RSLabel new text: token; color: Color black.
+]
+
+{ #category : 'accessing' }
+GncLeaf >> at: index [
+
+	(index ~= 1) ifTrue: [ 1 halt. ].
+
+	^ self
+]
+
 { #category : 'translating' }
 GncLeaf >> children [
 
@@ -60,6 +86,18 @@ GncLeaf >> generateInto: stream [
 GncLeaf >> isLeaf [
 
 	^ true
+]
+
+{ #category : 'accessing' }
+GncLeaf >> shape [
+
+	^ RSComposite new draggable; model: self; shapes: { self asLabel }
+]
+
+{ #category : 'rendering' }
+GncLeaf >> shapes [
+
+	^ { self shape }
 ]
 
 { #category : 'accessing - attributes' }

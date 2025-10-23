@@ -18,6 +18,43 @@ GncInnerNode class >> with: children [
 	^ self new children: children
 ]
 
+{ #category : 'accessing' }
+GncInnerNode >> aLeaf [
+
+	^ children atRandom aLeaf 
+]
+
+{ #category : 'rendering' }
+GncInnerNode >> allNodes [
+
+	^ { self }, (children flatCollect: #allNodes)
+]
+
+{ #category : 'rendering' }
+GncInnerNode >> asLabel [
+	
+	| color |
+	
+	color := RSColorPalette sequential blues3 range third.
+	^ RSLabel new text: tag; color: color.
+]
+
+{ #category : 'accessing' }
+GncInnerNode >> at: index [
+
+	| remaining |
+	
+	index = 1 ifTrue: [ ^ self ].
+	
+	remaining := index - 1.
+	children do: [ :child |
+		(remaining <= child treeSize) ifTrue: [ ^ child at: remaining ].
+		remaining := remaining - child treeSize.
+	].
+	
+	1 halt.
+]
+
 { #category : 'translating' }
 GncInnerNode >> children [
 
@@ -37,7 +74,10 @@ GncInnerNode >> children: someChildren [
 	treeHeight := treeHeight + 1.
 
 	treeSize := 1.
-	children do: [ :child | treeSize := treeSize + child treeSize ]
+	children do: [ :child |
+		treeSize := treeSize + child treeSize.
+		child parent: self.
+	]
 ]
 
 { #category : 'translating' }
@@ -66,6 +106,12 @@ GncInnerNode >> minSize [
 
 	^ ((children collect: [ :child | child minSize ]) fold: [ :i :j |
 		   i + j ]) + 1
+]
+
+{ #category : 'rendering' }
+GncInnerNode >> shapes [
+
+	^ { self shape }, (children flatCollect: #shapes)
 ]
 
 { #category : 'accessing' }

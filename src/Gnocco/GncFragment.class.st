@@ -51,7 +51,7 @@ GncFragment >> minSize [
 ]
 
 { #category : 'parsing' }
-GncFragment >> parse: input from: currentIndex with: generator [
+GncFragment >> parse: input from: currentIndex with: generator rule: rule [
 
 	self subclassResponsibility 
 ]
