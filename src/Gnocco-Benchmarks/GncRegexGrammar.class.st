@@ -18,7 +18,7 @@ Class {
 { #category : 'initialization' }
 GncRegexGrammar >> defineGrammar [
 
-	ntRegex --> ntConcat | ''
+	ntRegex --> ntConcat 
 				 | ntConcat, '|', ntRegex @ 0.
 	ntConcat --> ntModifier
 	           | ntModifier, ntConcat @ 100.
@@ -30,7 +30,6 @@ GncRegexGrammar >> defineGrammar [
 	         | 'b' @ 0
 	         | 'c' @ 0
 	         | '.' @ 0
-				| '()'
 	         | '(', ntRegex, ')' @ 0.
 	ntNonEmptyPure --> 'a'
 	                 | 'b'
