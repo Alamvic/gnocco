@@ -32,11 +32,12 @@ GncRegexGrammar >> defineGrammar [
 	         | '.' @ 0
 	         | '(', ntRegex, ')' @ 0.
 	ntNonEmptyPure --> 'a'
-	                 | 'b'
-	                 | 'c'
-	                 | '(', ntNonEmptyRegex, ')'.
-	ntNonEmptyRegex --> ntNonEmptyConcat | ''
-	                  | ntNonEmptyConcat, '|', ntNonEmptyRegex.
+	                 | 'b' @ 0
+	                 | 'c' @ 0
+	                 | '.' @ 0
+	                 | '(', ntNonEmptyRegex, ')' @ 0.
+	ntNonEmptyRegex --> ntNonEmptyConcat
+	                  | ntNonEmptyConcat, '|', ntNonEmptyRegex @ 0.
 	ntNonEmptyConcat --> ntNonEmptyPure
 	                   | ntNonEmptyPure, ntConcat
 	                   | ntModifier, ntNonEmptyConcat.
