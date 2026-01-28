@@ -3,12 +3,10 @@ Class {
 	#superclass : 'GncGrammar',
 	#instVars : [
 		'ntRegex',
+		'ntBranch',
 		'ntConcat',
 		'ntModifier',
-		'ntPure',
-		'ntNonEmptyPure',
-		'ntNonEmptyRegex',
-		'ntNonEmptyConcat'
+		'ntPure'
 	],
 	#category : 'Gnocco-Benchmarks-Grammar',
 	#package : 'Gnocco-Benchmarks',
@@ -18,28 +16,22 @@ Class {
 { #category : 'initialization' }
 GncRegexGrammar >> defineGrammar [
 
-	ntRegex --> ntConcat 
-				 | ntConcat, '|', ntRegex @ 0.
-	ntConcat --> ntModifier
-	           | ntModifier, ntConcat @ 100.
-	ntModifier --> ntPure
-	             | ntNonEmptyPure, '?'
-	             | ntNonEmptyPure, '*' @ 0
-	             | ntNonEmptyPure, '+' @ 0.
-	ntPure --> 'a'
-	         | 'b' @ 0
-	         | 'c' @ 0
-	         | '.' @ 0
-	         | '(', ntRegex, ')' @ 0.
-	ntNonEmptyPure --> 'a'
-	                 | 'b' @ 0
-	                 | 'c' @ 0
-	                 | '.' @ 0
-	                 | '(', ntNonEmptyRegex, ')' @ 0.
-	ntNonEmptyRegex --> ntNonEmptyConcat
-	                  | ntNonEmptyConcat, '|', ntNonEmptyRegex @ 0.
-	ntNonEmptyConcat --> ntNonEmptyPure
-	                   | ntNonEmptyPure, ntConcat
-	                   | ntModifier, ntNonEmptyConcat.
-	^ ntRegex
+    ntRegex --> ntBranch 
+              | ntBranch, '|', ntRegex.
+    
+    ntBranch --> ''
+               | ntConcat.
+    
+    ntConcat --> ntModifier
+               | ntModifier, ntConcat.
+    
+    ntModifier --> ntPure
+                 | ntPure, '?'
+                 | ntPure, '*'
+                 | ntPure, '+'.
+    
+    ntPure --> 'a' | 'b' | 'c' | '.'
+             | '(', ntRegex, ')'.
+    
+    ^ ntRegex
 ]
