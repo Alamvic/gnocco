@@ -16,22 +16,15 @@ Class {
 { #category : 'initialization' }
 GncRegexGrammar >> defineGrammar [
 
-    ntRegex --> ntBranch
-              | ntBranch, '|', ntRegex.
-    
-    ntBranch --> ''
-               | ntConcat.
-    
-    ntConcat --> ntModifier
-               | ntModifier, ntConcat.
-    
-    ntModifier --> ntPure
-                 | ntPure, '?'
-                 | ntPure, '*'
-                 | ntPure, '+'.
-    
-    ntPure --> 'a' | 'b' | 'c' | '.'
-             | '(', ntRegex, ')'.
-    
-    ^ ntRegex
+	ntRegex --> ntBranch | ntBranch , '|' , ntRegex.
+
+	ntBranch --> '' | ntConcat.
+
+	ntConcat --> ntModifier | ntModifier , ntConcat.
+
+	ntModifier --> ntPure | ntPure , '?' | ntPure , '*' | ntPure , '+'.
+
+	ntPure --> '.' | 'a' | 'b' | 'c' | '(' , ntRegex , ')'.
+
+	^ ntRegex
 ]
