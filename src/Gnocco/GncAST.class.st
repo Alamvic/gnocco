@@ -152,3 +152,17 @@ GncAST >> treeSize [
 
 	^ self subclassResponsibility
 ]
+
+{ #category : 'as yet unclassified' }
+GncAST >> updateWeightRecursive: reward [
+
+	grammarRule ifNotNil: [ grammarRule updateWeightWith: reward ].
+	
+	self updateWeightToChildren: reward.
+]
+
+{ #category : 'as yet unclassified' }
+GncAST >> updateWeightToChildren: reward [
+
+	self subclassResponsibility 
+]

@@ -118,3 +118,9 @@ GncLeaf >> treeSize [
 
 	^ self class treeSize
 ]
+
+{ #category : 'as yet unclassified' }
+GncLeaf >> updateWeightToChildren: reward [ 
+
+	"Do nothing, it's a leaf"
+]
