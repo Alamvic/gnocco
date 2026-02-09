@@ -50,6 +50,18 @@ GncAST >> generateInto: stream [
 	^ self subclassResponsibility
 ]
 
+{ #category : 'as yet unclassified' }
+GncAST >> grammarRule [
+
+	^ grammarRule
+]
+
+{ #category : 'as yet unclassified' }
+GncAST >> grammarRule: gncRule [
+
+	grammarRule := gncRule.
+]
+
 { #category : 'accessing' }
 GncAST >> inputSize [
 
