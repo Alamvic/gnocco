@@ -51,8 +51,6 @@ GncInnerNode >> at: index [
 		(remaining <= child treeSize) ifTrue: [ ^ child at: remaining ].
 		remaining := remaining - child treeSize.
 	].
-	
-	1 halt.
 ]
 
 { #category : 'translating' }
@@ -106,6 +104,13 @@ GncInnerNode >> minSize [
 
 	^ ((children collect: [ :child | child minSize ]) fold: [ :i :j |
 		   i + j ]) + 1
+]
+
+{ #category : 'as yet unclassified' }
+GncInnerNode >> repairChildren [
+
+	children do: [ :child | child parent: self . child repairChildren ]
+	
 ]
 
 { #category : 'rendering' }

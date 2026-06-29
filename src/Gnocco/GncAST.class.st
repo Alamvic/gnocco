@@ -116,6 +116,11 @@ GncAST >> render [
 	^ canvas
 ]
 
+{ #category : 'as yet unclassified' }
+GncAST >> repairChildren [
+	self subclassResponsibility.
+]
+
 { #category : 'accessing' }
 GncAST >> reward: grammarInstance root: astRoot [
 
@@ -123,6 +128,12 @@ GncAST >> reward: grammarInstance root: astRoot [
 	level := (astRoot treeHeight) - self treeHeight.
 	
 	^ self grammarRule rewardBy: level
+]
+
+{ #category : 'accessing' }
+GncAST >> root [
+	
+	^ parent ifNil: [ self ] ifNotNil: [ parent root ].
 ]
 
 { #category : 'accessing' }

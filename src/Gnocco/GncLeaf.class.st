@@ -88,6 +88,12 @@ GncLeaf >> isLeaf [
 	^ true
 ]
 
+{ #category : 'as yet unclassified' }
+GncLeaf >> repairChildren [
+
+	"do nothing"
+]
+
 { #category : 'accessing' }
 GncLeaf >> shape [
 
