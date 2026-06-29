@@ -76,6 +76,12 @@ GncLeaf >> children [
 	#(  )
 ]
 
+{ #category : 'as yet unclassified' }
+GncLeaf >> doCopy [
+
+	^ super copy token: token
+]
+
 { #category : 'translating' }
 GncLeaf >> generateInto: stream [
 

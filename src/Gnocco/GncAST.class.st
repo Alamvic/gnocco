@@ -44,6 +44,14 @@ GncAST >> children [
 	self subclassResponsibility
 ]
 
+{ #category : 'as yet unclassified' }
+GncAST >> doCopy [
+
+	^ self class new
+		  inputSize: inputSize;
+		  grammarRule: grammarRule
+]
+
 { #category : 'translating' }
 GncAST >> generateInto: stream [
 

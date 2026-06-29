@@ -78,10 +78,26 @@ GncInnerNode >> children: someChildren [
 	]
 ]
 
+{ #category : 'as yet unclassified' }
+GncInnerNode >> doCopy [
+
+	^ super doCopy
+		  treeHeight: treeHeight;
+		  treeSize: treeSize;
+		  tag: tag;
+		  children: (children collect: #doCopy)
+]
+
 { #category : 'translating' }
 GncInnerNode >> generateInto: stream [
 
 	children do: [ :child | child generateInto: stream ]
+]
+
+{ #category : 'accessing' }
+GncInnerNode >> inputSize: size [
+
+	inputSize := size
 ]
 
 { #category : 'testing' }
@@ -137,10 +153,22 @@ GncInnerNode >> treeHeight [
 	^ treeHeight
 ]
 
+{ #category : 'as yet unclassified' }
+GncInnerNode >> treeHeight: height [
+
+	treeHeight := height 
+]
+
 { #category : 'translating' }
 GncInnerNode >> treeSize [
 
 	^ treeSize
+]
+
+{ #category : 'as yet unclassified' }
+GncInnerNode >> treeSize: size [
+
+	treeSize := size 
 ]
 
 { #category : 'as yet unclassified' }
