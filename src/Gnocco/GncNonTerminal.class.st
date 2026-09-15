@@ -62,6 +62,11 @@ GncNonTerminal >> ->> fragment [
 	^ self --> fragment
 ]
 
+{ #category : 'accessing' }
+GncNonTerminal >> aMCTSValue [
+
+]
+
 { #category : 'visiting' }
 GncNonTerminal >> accept: word [
 
@@ -88,11 +93,24 @@ GncNonTerminal >> generateAst: generator [
 	
 ]
 
+{ #category : 'accessing' }
+GncNonTerminal >> generateMCTSAst: generator level: level [
+
+	^ generator visitNonTerminal: self level: level
+
+]
+
 { #category : 'initialization' }
 GncNonTerminal >> initialize [
 	rules := OrderedCollection new.
 	minHeight := Float infinity.
 	minSize := Float infinity.
+]
+
+{ #category : 'accessing' }
+GncNonTerminal >> isTerminal [
+
+	^ false
 ]
 
 { #category : 'accessing' }
@@ -117,6 +135,16 @@ GncNonTerminal >> minSize [
 GncNonTerminal >> minSize: size [
 
 	minSize := size
+]
+
+{ #category : 'accessing' }
+GncNonTerminal >> minimumTree [
+
+	| rule |
+	rule := (rules sort: [ :n1 :n2 | (n1 minSize) <= (n2 minSize) ]) first.
+
+	^ GncInnerNode new tag: self name; grammarRule: rule; children: rule minimumTree
+
 ]
 
 { #category : 'accessing' }
@@ -233,4 +261,10 @@ GncNonTerminal >> terminals [
 GncNonTerminal >> visit: visitor [
 
 	^ visitor visitNonTerminal: self
+]
+
+{ #category : 'interface' }
+GncNonTerminal >> visit: visitor level: level [
+
+	^ visitor visitNonTerminal: self level: level
 ]

@@ -166,12 +166,6 @@ GncInnerNode >> treeSize [
 ]
 
 { #category : 'as yet unclassified' }
-GncInnerNode >> treeSize: size [
-
-	treeSize := size 
-]
-
-{ #category : 'as yet unclassified' }
 GncInnerNode >> updateWeightToChildren: reward [ 
 
 	self children do: [ :child | child updateWeightRecursive: reward ]

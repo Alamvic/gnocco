@@ -39,6 +39,12 @@ GncFragment >> generateAst: generator [
 ]
 
 { #category : 'accessing' }
+GncFragment >> isTerminal [
+
+	self subclassResponsibility 
+]
+
+{ #category : 'accessing' }
 GncFragment >> minHeight [
 
 	^ self subclassResponsibility

@@ -6,6 +6,24 @@ Class {
 	#tag : 'Grammar'
 }
 
+{ #category : 'translating' }
+GncTerminal >> aMCTSValue [
+
+	self subclassResponsibility 
+]
+
+{ #category : 'as yet unclassified' }
+GncTerminal >> generateMCTSAst: generator level: level [
+
+	^ GncLeaf withToken: self aMCTSValue
+]
+
+{ #category : 'testing' }
+GncTerminal >> isTerminal [
+
+	^ true
+]
+
 { #category : 'accessing' }
 GncTerminal >> minHeight [
 
@@ -16,6 +34,12 @@ GncTerminal >> minHeight [
 GncTerminal >> minSize [
 
 	^ GncLeaf treeSize
+]
+
+{ #category : 'accessing' }
+GncTerminal >> minimumTree [
+
+	self subclassResponsibility 
 ]
 
 { #category : 'parsing' }
@@ -37,7 +61,19 @@ GncTerminal >> terminals [
 ]
 
 { #category : 'accessing' }
+GncTerminal >> values [
+	
+	self subclassResponsibility
+]
+
+{ #category : 'accessing' }
 GncTerminal >> visit: visitor [
 
 	^ visitor visitTerminal: self
+]
+
+{ #category : 'visiting' }
+GncTerminal >> visit: visitor level: level [
+
+	^ visitor visitTerminal: self level: level
 ]

@@ -27,6 +27,12 @@ GncTerminalLiteral >> = anotherTerminal [
 	^ literal = anotherTerminal literal
 ]
 
+{ #category : 'translating' }
+GncTerminalLiteral >> aMCTSValue [
+
+	^ literal
+]
+
 { #category : 'visiting' }
 GncTerminalLiteral >> accept: string [
 
@@ -85,10 +91,27 @@ GncTerminalLiteral >> literal: data [
 ]
 
 { #category : 'printing' }
+GncTerminalLiteral >> minimumTree [
+	
+	^ GncLeaf withToken: literal
+]
+
+{ #category : 'accessing' }
+GncTerminalLiteral >> name [
+	^ literal
+]
+
+{ #category : 'printing' }
 GncTerminalLiteral >> printNameOn: stream [
 
 	stream
 		<< '''';
 		<< literal;
 		<< ''''
+]
+
+{ #category : 'accessing' }
+GncTerminalLiteral >> values [
+
+	^ { literal }
 ]

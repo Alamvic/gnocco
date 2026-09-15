@@ -16,6 +16,12 @@ GncTerminalRange class >> from: from to: to [
 	^ self new from: from to: to
 ]
 
+{ #category : 'as yet unclassified' }
+GncTerminalRange >> aMCTSValue [
+
+	^ (from charCode to: to charCode) atRandom asCharacter
+]
+
 { #category : 'visiting' }
 GncTerminalRange >> accept: string [
 
@@ -65,6 +71,12 @@ GncTerminalRange >> generateToken: generator [
 	^ GncLeaf withToken: charCode asCharacter
 ]
 
+{ #category : 'accessing' }
+GncTerminalRange >> minimumTree [
+	
+	^ GncLeaf withToken: (from charCode asCharacter)
+]
+
 { #category : 'printing' }
 GncTerminalRange >> printNameOn: stream [
 
@@ -74,4 +86,10 @@ GncTerminalRange >> printNameOn: stream [
 		<< '-';
 		<< to;
 		<< ']'.
+]
+
+{ #category : 'printing' }
+GncTerminalRange >> values [
+	
+	^ (from to: to) collect: #asString
 ]
