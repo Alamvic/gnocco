@@ -37,6 +37,14 @@ GncRule >> addFragment: fragment [
 	fragments add: fragment asFragment
 ]
 
+{ #category : 'accessing' }
+GncRule >> backPropagate: reward level: level [
+
+	rewards at: level ifAbsentPut: [ 1 ].
+	 
+	rewards at: level update: [ :v | (v + reward) max: 1 ]
+]
+
 { #category : 'translating' }
 GncRule >> computeCost [
 
@@ -121,6 +129,16 @@ GncRule >> minSize: newSize [
 	minSize := newSize
 ]
 
+{ #category : 'accessing' }
+GncRule >> minimumTree [
+
+	^ fragments collect: [ :fragment | | node |
+		node := fragment minimumTree grammarRule: self.
+		node 
+	]
+
+]
+
 { #category : 'translating' }
 GncRule >> post: postCallback [
 
@@ -168,6 +186,14 @@ GncRule >> reset [
 ]
 
 { #category : 'accessing' }
+GncRule >> rewardBy: level [
+	
+	rewards at: level ifAbsent: [ ^0 ].
+	
+	^ rewards at: level
+]
+
+{ #category : 'accessing' }
 GncRule >> rewards [
 
 	^ rewards 
@@ -185,10 +211,60 @@ GncRule >> terminals [
 	^ self fragments select: #isTerminal
 ]
 
+{ #category : 'accessing' }
+GncRule >> updateWeightWith: reward [
+
+	weight set: ((weight get + reward) max: 1)
+]
+
+{ #category : 'accessing' }
+GncRule >> utc: totalVisits by: c level: level [
+	 
+	"UCT = (reward(rule) / visits(rule)) + C * sqrt(log(total_visits) / visits(rule)))"
+	| levelReward levelVisits |
+	
+	levelReward := self rewardBy: level.
+	levelVisits := self visitsBy: level.
+	
+	^ (levelReward / levelVisits) + (c * ((totalVisits log / levelVisits) sqrt))
+]
+
 { #category : 'translating' }
 GncRule >> visit: visitor [
 
 	^ visitor visitRule: self
+]
+
+{ #category : 'accessing' }
+GncRule >> visit: visitor level: level [
+
+	self visitIn: level. "visit"
+	
+	^ visitor visitRule: self level: level
+]
+
+{ #category : 'accessing' }
+GncRule >> visitIn: level [
+
+	visits at: level ifAbsentPut: [ 0 ].
+	
+	visits at: level update: [ :visit | visit + 1 ]
+]
+
+{ #category : 'accessing' }
+GncRule >> visitedIn: level [
+
+	visits at: level ifPresent: [ ^ true ].
+	
+	^ false
+]
+
+{ #category : 'accessing' }
+GncRule >> visitsBy: level [
+	
+	visits at: level ifAbsent: [ ^0 ].
+	
+	^ visits at: level
 ]
 
 { #category : 'accessing' }
@@ -201,6 +277,14 @@ GncRule >> weight [
 GncRule >> weight: aWeight [
 
 	weight := aWeight asWeight
+]
+
+{ #category : 'accessing' }
+GncRule >> weightAt: level [
+	
+	rewards at: level ifAbsent: [ ^ weight get max: 1 ].
+	
+	^ ((rewards at: level) + weight get) max: 1 
 ]
 
 { #category : 'accessing' }
