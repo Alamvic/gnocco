@@ -20,10 +20,28 @@ GncAST >> aLeaf [
 	self subclassResponsibility 
 ]
 
+{ #category : 'accessing' }
+GncAST >> allChildAtLevel: level currentLevel: currentLevel [
+
+	self subclassResponsibility 
+]
+
+{ #category : 'accessing' }
+GncAST >> allChildren [
+
+	self subclassResponsibility
+]
+
 { #category : 'translating' }
 GncAST >> allNodes [
 
 	self subclassResponsibility
+]
+
+{ #category : 'accessing' }
+GncAST >> asInput [
+
+	^ self asStringInput
 ]
 
 { #category : 'accessing' }
@@ -33,9 +51,71 @@ GncAST >> asLabel [
 ]
 
 { #category : 'accessing' }
+GncAST >> asPharoObject [
+
+	self subclassResponsibility 
+]
+
+{ #category : 'accessing' }
+GncAST >> asPrimitiveObject [
+
+	^ [ Object readFrom: self asStringInput ]
+		  on: Error
+		  do: [ :ex | self asStringInput ]
+]
+
+{ #category : 'accessing' }
+GncAST >> asStringInput [
+
+	^ String streamContents: [ :stream | self generateInto: stream ]
+]
+
+{ #category : 'accessing' }
 GncAST >> at: index [
 
 	self subclassResponsibility 
+]
+
+{ #category : 'accessing' }
+GncAST >> backPropagate: reward [
+
+	grammarRule ifNotNil: [ grammarRule backPropagate: reward ].
+]
+
+{ #category : 'accessing' }
+GncAST >> backPropagateRecursive: reward [
+
+	grammarRule ifNotNil: [ grammarRule backPropagate: reward ].
+	self backPropagateToChildren: reward.
+]
+
+{ #category : 'accessing' }
+GncAST >> backPropagateRecursive: reward level: level [
+
+	grammarRule ifNotNil: [ grammarRule backPropagate: reward level: level. "grammarRule visitIn: level" ].
+
+	self backPropagateToChildren: reward level: level + 1.
+]
+
+{ #category : 'accessing' }
+GncAST >> backPropagateToChildren: reward [
+
+	self subclassResponsibility 
+]
+
+{ #category : 'accessing' }
+GncAST >> backPropagateToChildren: reward level: level [
+
+	self subclassResponsibility 
+]
+
+{ #category : 'accessing' }
+GncAST >> canReplace: aNode [
+
+	"Return true if I can replace aNode in the AST. 
+	 Basic rule: same grammar type/tag."
+	
+	^ self grammarRule = aNode grammarRule
 ]
 
 { #category : 'translating' }
@@ -50,6 +130,12 @@ GncAST >> doCopy [
 	^ self class new
 		  inputSize: inputSize;
 		  grammarRule: grammarRule
+]
+
+{ #category : 'accessing' }
+GncAST >> emptyTree [
+
+	^ GncInnerNode new tag: self tag; grammarRule: grammarRule; children: {}.
 ]
 
 { #category : 'translating' }
@@ -93,6 +179,18 @@ GncAST >> inspectorTreeBuilder [
 GncAST >> isLeaf [
 
 	self subclassResponsibility 
+]
+
+{ #category : 'accessing' }
+GncAST >> isTypeVariable [
+
+	^ false
+]
+
+{ #category : 'accessing' }
+GncAST >> minimumTree [
+
+	^ GncInnerNode new tag: self tag; grammarRule: grammarRule; children: grammarRule minimumTree.
 ]
 
 { #category : 'accessing' }
@@ -160,6 +258,12 @@ GncAST >> shapes [
 	self subclassResponsibility 
 ]
 
+{ #category : 'accessing' }
+GncAST >> tag [
+
+	^ nil
+]
+
 { #category : 'translating' }
 GncAST >> treeHeight [
 
@@ -184,4 +288,10 @@ GncAST >> updateWeightRecursive: reward [
 GncAST >> updateWeightToChildren: reward [
 
 	self subclassResponsibility 
+]
+
+{ #category : 'accessing' }
+GncAST >> visited [
+	
+	^ false 
 ]

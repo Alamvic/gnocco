@@ -24,10 +24,41 @@ GncInnerNode >> aLeaf [
 	^ children atRandom aLeaf 
 ]
 
+{ #category : 'accessing' }
+GncInnerNode >> allChildAtLevel: level currentLevel: currentLevel [
+
+	^ ( level = currentLevel ) ifTrue: [ OrderedCollection with: self ] ifFalse: [
+		children flatCollect: [ :child | child allChildAtLevel: level currentLevel: currentLevel + 1 ]
+	].
+	
+	
+
+]
+
 { #category : 'rendering' }
 GncInnerNode >> allNodes [
 
 	^ { self }, (children flatCollect: #allNodes)
+]
+
+{ #category : 'accessing' }
+GncInnerNode >> allNodesAtLevel: level [
+
+	^ self allChildAtLevel: level currentLevel: 0
+]
+
+{ #category : 'accessing' }
+GncInnerNode >> asClassInstanceObject [
+
+	| objectClass |
+
+	objectClass := self objectClass.
+
+	^ (1 to: children size by: 2) inject: objectClass basicNew into: [ :inst :index | | value |
+		value := (children at: index + 1) asPharoObject.
+		inst instVarNamed: (children at: index) varName put: value.
+		inst
+	]
 ]
 
 { #category : 'rendering' }
@@ -37,6 +68,14 @@ GncInnerNode >> asLabel [
 	
 	color := RSColorPalette sequential blues3 range third.
 	^ RSLabel new text: tag; color: color.
+]
+
+{ #category : 'accessing' }
+GncInnerNode >> asPharoObject [
+
+	^ self isClassObject
+		  ifTrue: [ self asClassInstanceObject ]
+		  ifFalse: [ self asPrimitiveObject ]
 ]
 
 { #category : 'accessing' }
@@ -51,6 +90,18 @@ GncInnerNode >> at: index [
 		(remaining <= child treeSize) ifTrue: [ ^ child at: remaining ].
 		remaining := remaining - child treeSize.
 	].
+]
+
+{ #category : 'accessing' }
+GncInnerNode >> backPropagateToChildren: reward [
+
+	self children do: [ :child | child backPropagateRecursive: reward ]
+]
+
+{ #category : 'accessing' }
+GncInnerNode >> backPropagateToChildren: reward level: level [
+
+	self children do: [ :child | child backPropagateRecursive: reward level: level ]
 ]
 
 { #category : 'translating' }
@@ -78,6 +129,13 @@ GncInnerNode >> children: someChildren [
 	]
 ]
 
+{ #category : 'accessing' }
+GncInnerNode >> decreaseTreeSizeBy: aSize [
+
+    treeSize := treeSize - aSize.
+    parent ifNotNil: [ :p | p decreaseTreeSizeBy: aSize ].
+]
+
 { #category : 'as yet unclassified' }
 GncInnerNode >> doCopy [
 
@@ -95,15 +153,40 @@ GncInnerNode >> generateInto: stream [
 ]
 
 { #category : 'accessing' }
+GncInnerNode >> increaseTreeSizeBy: aSize [
+
+    treeSize := treeSize + aSize.
+    parent ifNotNil: [ :p | p increaseTreeSizeBy: aSize ].
+]
+
+{ #category : 'accessing' }
+GncInnerNode >> indexOf: aNode [
+
+	^ children indexOf: aNode
+]
+
+{ #category : 'accessing' }
 GncInnerNode >> inputSize: size [
 
 	inputSize := size
+]
+
+{ #category : 'accessing' }
+GncInnerNode >> isClassObject [
+
+	^ children first isTypeVariable
 ]
 
 { #category : 'testing' }
 GncInnerNode >> isLeaf [
 
 	^ false
+]
+
+{ #category : 'accessing' }
+GncInnerNode >> levelOf: subTree [
+
+	^ ( self treeHeight - subTree treeHeight )
 ]
 
 { #category : 'translating' }
@@ -122,11 +205,66 @@ GncInnerNode >> minSize [
 		   i + j ]) + 1
 ]
 
+{ #category : 'accessing' }
+GncInnerNode >> objectClass [
+
+	^ tag asClassInEnvironment: self class environment
+]
+
+{ #category : 'accessing' }
+GncInnerNode >> removeChild: child [
+
+	| childSize|
+
+	childSize := child treeSize.
+	children remove: child ifAbsent: [  Error signal: 'Trying to remove a wrong child' ].
+	child parent: nil. 
+	self decreaseTreeSizeBy: childSize.
+]
+
+{ #category : 'accessing' }
+GncInnerNode >> removeChildAt: index [ 
+
+	| childSize |
+	
+	childSize := (children at: index) treeSize. 
+	children removeAt: index.
+	self decreaseTreeSizeBy: childSize.
+]
+
 { #category : 'as yet unclassified' }
 GncInnerNode >> repairChildren [
 
 	children do: [ :child | child parent: self . child repairChildren ]
 	
+]
+
+{ #category : 'accessing' }
+GncInnerNode >> replaceChild: child by: newChild [
+
+	| index |
+
+	index := children indexOf: child.
+	self replaceChildAt: index with: newChild
+]
+
+{ #category : 'accessing' }
+GncInnerNode >> replaceChildAt: index with: newNode [
+
+	| previousNode previousSize newSize delta |
+	
+	previousNode := children at: index. 
+	previousSize := previousNode treeSize.
+	newSize := newNode treeSize.
+
+	children at: index put: newNode.
+	previousNode parent: nil. 
+	newNode parent: self.
+	
+	delta := newSize - previousSize.
+	( delta ~= 0 ) ifTrue: [ 
+		self increaseTreeSizeBy: delta ]
+
 ]
 
 { #category : 'rendering' }
@@ -163,6 +301,12 @@ GncInnerNode >> treeHeight: height [
 GncInnerNode >> treeSize [
 
 	^ treeSize
+]
+
+{ #category : 'accessing' }
+GncInnerNode >> treeSize: size [
+
+	treeSize := size 
 ]
 
 { #category : 'as yet unclassified' }

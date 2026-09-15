@@ -50,6 +50,18 @@ GncLeaf >> aLeaf [
 	^ self
 ]
 
+{ #category : 'accessing' }
+GncLeaf >> allChildAtLevel: level currentLevel: currentLevel [
+
+	^ ( level = currentLevel ) ifTrue: [ OrderedCollection with: self ] ifFalse: [ {} ]
+]
+
+{ #category : 'accessing' }
+GncLeaf >> allChildren [
+
+	^ #(  )
+]
+
 { #category : 'rendering' }
 GncLeaf >> allNodes [
 
@@ -63,11 +75,29 @@ GncLeaf >> asLabel [
 ]
 
 { #category : 'accessing' }
+GncLeaf >> asPharoObject [
+
+	^ self asPrimitiveObject 
+]
+
+{ #category : 'accessing' }
 GncLeaf >> at: index [
 
 	(index ~= 1) ifTrue: [ 1 halt. ].
 
 	^ self
+]
+
+{ #category : 'accessing' }
+GncLeaf >> backPropagateToChildren: reward [
+
+	"Do nothing, it's a leaf"
+]
+
+{ #category : 'accessing' }
+GncLeaf >> backPropagateToChildren: reward level: level [
+
+	"Do nothing, it's a leaf"
 ]
 
 { #category : 'translating' }
@@ -94,6 +124,12 @@ GncLeaf >> isLeaf [
 	^ true
 ]
 
+{ #category : 'accessing' }
+GncLeaf >> isTypeVariable [
+
+	^ token class = ByteString and: [ token last = $: ]
+]
+
 { #category : 'as yet unclassified' }
 GncLeaf >> repairChildren [
 
@@ -110,6 +146,12 @@ GncLeaf >> shape [
 GncLeaf >> shapes [
 
 	^ { self shape }
+]
+
+{ #category : 'accessing' }
+GncLeaf >> token [
+
+	^ token
 ]
 
 { #category : 'accessing - attributes' }
@@ -135,4 +177,10 @@ GncLeaf >> treeSize [
 GncLeaf >> updateWeightToChildren: reward [ 
 
 	"Do nothing, it's a leaf"
+]
+
+{ #category : 'accessing' }
+GncLeaf >> varName [
+
+	^ token allButLast
 ]
