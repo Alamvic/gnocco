@@ -10,13 +10,23 @@ Class {
 	#tag : 'Grammar'
 }
 
+{ #category : 'visiting' }
+GncGenericGrammarParser class >> accept: string from: grammar [
+
+	^ (self parse: string from: grammar) isNil not 
+]
+
 { #category : 'instance creation' }
 GncGenericGrammarParser class >> parse: string from: grammar [
 
 	| parsingResult |
 	parsingResult := self new parseNonTerminal: grammar start on: string from: 0.
+
+	parsingResult ifNil: [ ^ nil ].
 	
-	^ parsingResult ifNil: [ nil ] ifNotNil: [ parsingResult first ] 
+	(parsingResult second ~= string size) ifTrue: [ ^ nil ].
+	
+	^ parsingResult first
 ]
 
 { #category : 'initialization' }
@@ -38,9 +48,9 @@ GncGenericGrammarParser >> initialize [
 GncGenericGrammarParser >> parseNonTerminal: nonTerminal on: input from: index [
 
 	| key cached best |
-    key := { nonTerminal . index }.
+    key := { nonTerminal name . index }.
     cached := memo at: key ifAbsent: [ nil ].
-    cached ifNotNil: [ ^ cached ].
+    cached ifNotNil: [ ^ {cached first doCopy . cached second } ].
 
     best := nil.
 
